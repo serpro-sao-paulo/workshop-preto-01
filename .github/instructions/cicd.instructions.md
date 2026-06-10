@@ -1,6 +1,6 @@
 ---
 description: "Use when creating or reviewing GitHub Actions, CI/CD workflows, YAML pipeline gates, build checks, and deployment automation."
-applyTo: ".github/workflows/**,**/*.yml,**/*.yaml"
+applyTo: ".github/workflows/**"
 ---
 
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->

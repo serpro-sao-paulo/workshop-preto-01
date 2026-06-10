@@ -28,96 +28,193 @@
 
 ## Diagrama de Dependências entre Programas
 
-> Substitua o exemplo abaixo pelo mapa real do seu time. **Meta:** cobrir todos os 15 programas, sem órfãos.
+> Mapa real do SIFAP legado: **15 programas Natural + 4 DDMs Adabas**, sem órfãos.
+> Nota de leitura: no legado **não há `CALLNAT`** entre os programas de negócio — o acoplamento é via **dados compartilhados** (mesmos DDMs Adabas). `BATCHPGT` **reimplementa** a lógica de `CALCBENF`/`CALCDSCT` inline (duplicação), apesar do cabeçalho dizer "CHAMA CALCBENF E CALCDSCT".
 
 ```mermaid
 flowchart TD
- subgraph "Programas Online"
- CADBENF["CADBENF.NSN<br/>Cadastro de Beneficiários"]
- CONBENF["CONBENF.NSN<br/>Consulta de Beneficiários"]
- REGPGTO["REGPGTO.NSN<br/>Registro de Pagamentos"]
+ subgraph ONLINE["Programas Online (3270)"]
+   CADBENEF["CADBENEF.NSN<br/>Cadastro beneficiário"]
+   CADDEPEND["CADDEPEND.NSN<br/>Cadastro dependentes"]
+   CADPROG["CADPROG.NSN<br/>Cadastro programas"]
+   CONSBENF["CONSBENF.NSN<br/>Consulta beneficiário"]
  end
 
- subgraph "Programas Batch"
- BATCHPGT["BATCHPGT.NSN<br/>Processamento em Lote"]
+ subgraph CALC["Cálculo (online)"]
+   CALCBENF["CALCBENF.NSN<br/>Cálculo benefício"]
+   CALCDSCT["CALCDSCT.NSN<br/>Cálculo descontos"]
+   CALCCORR["CALCCORR.NSN<br/>Correção retroativa"]
  end
 
- subgraph "Subprogramas"
- CALCBENF["CALCBENF.NSN<br/>Cálculo de Benefícios"]
- VALCPF["VALCPF.NSN<br/>Validação de CPF"]
+ subgraph VALID["Validação (online)"]
+   VALBENEF["VALBENEF.NSN<br/>Valida cadastro"]
+   VALDOCS["VALDOCS.NSN<br/>Valida documentos"]
+   VALELEG["VALELEG.NSN<br/>Valida elegibilidade"]
  end
 
- subgraph "DDMs Adabas"
- DDM_BENEF[("DDM: BENEFICIARIO")]
- DDM_PGTO[("DDM: PAGAMENTO")]
+ subgraph BATCH["Programas Batch (JES2)"]
+   BATCHPGT["BATCHPGT.NSN<br/>Folha mensal"]
+   BATCHCON["BATCHCON.NSN<br/>Conciliação bancária"]
+   BATCHREL["BATCHREL.NSN<br/>Relatórios consolidados"]
  end
 
- CADBENF -->|CALLNAT| VALCPF
- CADBENF -->|CALLNAT| CALCBENF
- CADBENF -->|READ/STORE| DDM_BENEF
+ subgraph REL["Relatórios / Consulta"]
+   RELPGT["RELPGT.NSN<br/>Relatório pagamentos"]
+   RELAUDIT["RELAUDIT.NSN<br/>Relatório auditoria"]
+ end
 
- REGPGTO -->|CALLNAT| CALCBENF
- REGPGTO -->|READ/STORE| DDM_PGTO
+ subgraph DDMS["DDMs Adabas"]
+   DB[("BENEFICIARIO<br/>FNR 150")]
+   DP[("PROGRAMA-SOCIAL<br/>FNR 151")]
+   DG[("PAGAMENTO<br/>FNR 152")]
+   DA[("AUDITORIA<br/>FNR 153")]
+ end
 
- CONBENF -->|READ| DDM_BENEF
+ subgraph EXT["Sistemas Externos"]
+   RF{{"Receita Federal<br/>(CPF)"}}
+   BB{{"Banco do Brasil<br/>(CNAB 240)"}}
+   CX{{"CAIXA<br/>(CNAB 240)"}}
+   SIAFI{{"SIAFI / STN"}}
+   CADU{{"CadÚnico"}}
+ end
 
- BATCHPGT -->|CALLNAT| CALCBENF
- BATCHPGT -->|READ/UPDATE| DDM_PGTO
- BATCHPGT -->|READ| DDM_BENEF
+ CADBENEF -->|READ/STORE/UPDATE| DB
+ CADDEPEND -->|FIND/UPDATE PE| DB
+ CADPROG -->|FIND/STORE| DP
+ CONSBENF -->|FIND| DB
+ CONSBENF -->|READ| DG
+
+ CALCBENF -->|FIND| DB
+ CALCBENF -->|FIND| DP
+ CALCBENF -->|STORE| DG
+ CALCDSCT -->|FIND| DG
+ CALCDSCT -->|FIND PE| DB
+ CALCDSCT -->|UPDATE| DG
+ CALCCORR -->|READ/UPDATE| DG
+
+ VALBENEF -.valida.-> DB
+ VALDOCS -.valida.-> DB
+ VALELEG -->|FIND| DB
+ VALELEG -->|FIND| DP
+
+ BATCHPGT -->|READ BY CPF| DB
+ BATCHPGT -->|FIND| DP
+ BATCHPGT -->|FIND/STORE| DG
+ BATCHCON -->|FIND/UPDATE| DG
+ BATCHCON -->|STORE| DA
+ BATCHREL -->|READ| DG
+ BATCHREL -->|FIND| DB
+
+ RELPGT -->|READ| DG
+ RELPGT -->|FIND| DB
+ RELAUDIT -->|READ| DA
+
+ RF -. consulta .-> CADBENEF
+ BATCHPGT -. remessa .-> BB
+ BATCHPGT -. remessa .-> CX
+ BB -. retorno .-> BATCHCON
+ CX -. retorno .-> BATCHCON
+ BATCHCON -. concilia .-> SIAFI
+ CADU -. atualiza .-> DB
 ```
 
-> **Instrução:** este é apenas um exemplo inicial com 6 programas.
-> Seu time deve mapear **todos os 15 programas** e os **4 DDMs**.
+> **Cadeia batch mensal (ordem obrigatória — MYS-009):** `BATCHPGT` → `BATCHCON` → `BATCHREL`. A ordem virou dependência da conciliação com o SIAFI; reordenar quebra integrações externas.
 
 ## Diagrama de Fluxo de Dados (DDMs)
 
 ```mermaid
 flowchart LR
- subgraph "Entrada de Dados"
- UI["Terminal 3270"]
- BATCH["Arquivos Batch"]
+ subgraph IN["Entrada de Dados"]
+   UI["Terminal 3270<br/>(operadores CGPB/DEFIS)"]
+   RET["Arquivos de retorno<br/>CNAB 240 (BB/CAIXA)"]
+   CADU["CadÚnico<br/>(arquivo posicional)"]
  end
 
- subgraph "Processamento"
- PROG["Programas Natural"]
+ subgraph PROC["Processamento"]
+   ONL["Programas Online"]
+   BAT["Programas Batch"]
  end
 
- subgraph "Armazenamento (Adabas)"
- DDM1[("BENEFICIARIO")]
- DDM2[("PAGAMENTO")]
- DDM3[("DDM 3: ???")]
- DDM4[("DDM 4: ???")]
+ subgraph STORE["Armazenamento (Adabas)"]
+   DDM1[("BENEFICIARIO")]
+   DDM2[("PROGRAMA-SOCIAL")]
+   DDM3[("PAGAMENTO")]
+   DDM4[("AUDITORIA")]
  end
 
- UI --> PROG
- BATCH --> PROG
- PROG <--> DDM1
- PROG <--> DDM2
- PROG <--> DDM3
- PROG <--> DDM4
+ UI --> ONL
+ RET --> BAT
+ CADU --> DDM1
+ ONL <--> DDM1
+ ONL <--> DDM2
+ ONL <--> DDM3
+ BAT <--> DDM1
+ BAT <--> DDM2
+ BAT <--> DDM3
+ BAT --> DDM4
 ```
-
-> Substitua "DDM 3: ???" e "DDM 4: ???" pelos nomes reais encontrados em [`../01-arqueologia/legado-sifap/adabas-ddms/`](../01-arqueologia/legado-sifap/adabas-ddms/).
 
 ## Tabela de Dependências
 
-| Programa     | Chama (CALLNAT) | Lê (READ) DDMs | Escreve (STORE/UPDATE) DDMs | Observações |
-| ------------ | --------------- | -------------- | --------------------------- | ----------- |
-| CADBENF.NSN  |                 |                |                             |             |
-| CONBENF.NSN  |                 |                |                             |             |
-| REGPGTO.NSN  |                 |                |                             |             |
-| BATCHPGT.NSN |                 |                |                             |             |
-| CALCBENF.NSN |                 |                |                             |             |
-| VALCPF.NSN   |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
+| Programa | Chama (CALLNAT) | Lê (READ/FIND) DDMs | Escreve (STORE/UPDATE) DDMs | Observações |
+| -------- | --------------- | ------------------- | --------------------------- | ----------- |
+| CADBENEF.NSN | — (subrotina interna VALIDA-CPF) | BENEFICIARIO | BENEFICIARIO | Suspende >75 anos (MYS-001) |
+| CADDEPEND.NSN | — | BENEFICIARIO | BENEFICIARIO (PE DEPENDENTES) | Limite 5 deps hardcoded (MYS-002) |
+| CADPROG.NSN | — | PROGRAMA-SOCIAL | PROGRAMA-SOCIAL | Fator-K 0.347215 (MYS-003) |
+| CONSBENF.NSN | — | BENEFICIARIO, PAGAMENTO | — | Online; mascara CPF na tela |
+| CALCBENF.NSN | — (subrotinas internas) | BENEFICIARIO, PROGRAMA-SOCIAL | PAGAMENTO | 13º/abono dezembro (MYS-004); trunca centavos (MYS-005) |
+| CALCDSCT.NSN | — | PAGAMENTO, BENEFICIARIO (PE DESCONTOS) | PAGAMENTO | Teto 30% exceto judicial (MYS-006) |
+| CALCCORR.NSN | — | PAGAMENTO | PAGAMENTO | IPCA até 2014; bloco "Plano Verão" morto (EGG-001) |
+| VALBENEF.NSN | — | BENEFICIARIO (campos) | — | CPF 000… aceito (MYS-007) |
+| VALDOCS.NSN | — | BENEFICIARIO (campos) | — | Backdoor prefixos de teste (MYS-010/EGG-002) |
+| VALELEG.NSN | — | BENEFICIARIO, PROGRAMA-SOCIAL | — | Região 99 pula tudo (MYS-008) |
+| BATCHPGT.NSN | — (**duplica** CALCBENF/CALCDSCT inline) | BENEFICIARIO (BY CPF), PROGRAMA-SOCIAL, PAGAMENTO | PAGAMENTO | Crítico; ordem por CPF é dependência externa |
+| BATCHCON.NSN | — | PAGAMENTO, AUDITORIA, WORK FILE CNAB | PAGAMENTO, AUDITORIA | Concilia BB/SIAFI; Banco Real morto (EGG-003) |
+| BATCHREL.NSN | — | PAGAMENTO, BENEFICIARIO | flat file (impressão) | Arredonda half-up (≠ CALCBENF → INC-004) |
+| RELPGT.NSN | — | PAGAMENTO, BENEFICIARIO | flat file | Relatório analítico paginado |
+| RELAUDIT.NSN | — | AUDITORIA | tela/impressão | Oculta ação `EX` do relatório (MYS-010) |
+
+## Inventário de Integrações Externas (C4 L1 — contratos)
+
+| Sistema externo | Direção | Mecanismo | Frequência | Criticidade | Risco de contrato |
+| --------------- | ------- | --------- | ---------- | ----------- | ----------------- |
+| **Receita Federal (CPF)** | SIFAP → RF | Consulta online (timeout 30s) | Por inclusão/alteração cadastral | Alta | Síncrono; indisponibilidade bloqueia cadastro |
+| **Banco do Brasil** | SIFAP ↔ BB | Arquivo CNAB 240 (batch) | Mensal (remessa + retorno) | Crítica | Layout posicional fixo; canal principal de crédito |
+| **CAIXA** | SIFAP ↔ CAIXA | Arquivo CNAB 240 (batch) | Mensal | Alta | Canal alternativo (desde 2004) |
+| **SIAFI (STN)** | SIFAP ↔ SIAFI | Arquivo TXT (batch) | Mensal (conciliação) | Crítica | Conciliação por hash totalizador; depende da ordem batch |
+| **CadÚnico** | CadÚnico → SIFAP | Arquivo posicional (batch) | Periódico | Média | Integração **não padronizada** (2006); fora do inventário oficial |
+
+## Diagrama C4 — Nível 1 (Sistema em Contexto)
+
+```mermaid
+flowchart TB
+ subgraph USERS["Pessoas"]
+   OP["Operador CGPB<br/>(cadastro, cálculo)"]
+   FIS["Fiscal DEFIS<br/>(auditoria)"]
+   GES["Gestor MDAS/SENARC<br/>(relatórios)"]
+ end
+
+ SIFAP{{"SIFAP 2.0<br/>Administração de Pagamentos<br/>de Benefícios Sociais"}}
+
+ subgraph SYS["Sistemas Externos"]
+   RF["Receita Federal<br/>(validação CPF)"]
+   BB["Banco do Brasil<br/>(CNAB 240)"]
+   CX["CAIXA<br/>(CNAB 240)"]
+   SIAFI["SIAFI / STN<br/>(conciliação)"]
+   CADU["CadÚnico<br/>(atualização cadastral)"]
+ end
+
+ OP --> SIFAP
+ FIS --> SIFAP
+ GES --> SIFAP
+ SIFAP -->|consulta síncrona| RF
+ SIFAP -->|remessa/retorno mensal| BB
+ SIFAP -->|remessa/retorno mensal| CX
+ SIFAP -->|conciliação mensal| SIAFI
+ CADU -->|carga periódica| SIFAP
+```
+
+> **Leitura em 30 segundos:** três perfis de pessoas usam o SIFAP; o sistema valida CPF na Receita (síncrono), paga via BB/CAIXA (assíncrono, mensal), concilia com o SIAFI e recebe atualizações do CadÚnico. Esses 5 contratos externos não podem quebrar na modernização.
 
 ## Dependências Circulares
 

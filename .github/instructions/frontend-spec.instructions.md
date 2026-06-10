@@ -1,6 +1,6 @@
 ---
 description: "Convenções de frontend para Next.js 15 App Router — TypeScript strict, Tailwind CSS, shadcn/ui, server components"
-applyTo: '**/app/**,**/components/**,**/*.tsx,**/*.ts'
+applyTo: '**/app/**,**/components/**,**/*.tsx,**/frontend/**/*.ts'
 ---
 
 # Especificação de Frontend — Next.js 15 + TypeScript

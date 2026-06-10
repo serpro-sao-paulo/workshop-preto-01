@@ -19,24 +19,27 @@
 
 ## Local — primeira vez
 
-O repositório do time já vem completo do template (documentação, personas, legado
-SIFAP, CI e Spec-Kit). Não há script de bootstrap nem dev container.
+O backend Java e o banco de dados estão prontos para rodar. O repositório inclui:
+
+- `04-sifap-backend/` — Spring Boot 3.3 + Java 21
+- `docker-compose.yml` — PostgreSQL 16 + backend (multi-stage Dockerfile)
 
 ```bash
 git checkout develop && git pull
-code .
+cd workshop-preto-01
+
+# Sobe banco + backend (primeira build leva ~5 min — Maven baixa dependências)
+docker compose up -d
+
+# Acompanhar logs até aparecer "Started SifapApplication"
+docker compose logs -f backend
 ```
 
-> A nova aplicação (backend + frontend) **ainda não existe** — o time a cria com o
-> Spec-Kit no Estágio 3. Os comandos `docker compose up`, health check e Swagger
-> abaixo só funcionam **depois** que o backend/frontend forem gerados e ganharem
-> seus próprios `Dockerfile`/`compose.yml`.
-
-Depois que a aplicação existir (Estágio 3+):
+Depois que o backend estiver saudável:
 
 - Backend health: <http://localhost:8080/actuator/health>
-- Swagger UI: <http://localhost:8080/swagger-ui.html>
-- Frontend: <http://localhost:3000>
+- Swagger UI: <http://localhost:8080/swagger-ui/index.html>
+- OpenAPI JSON: <http://localhost:8080/api-docs>
 
 ## Local — diariamente
 
@@ -58,28 +61,42 @@ Acionado automaticamente em push para `main`, `develop`, `spec/**`, `impl/**`.
 Verifique execuções com falha na aba Actions. Reproduza localmente rodando os
 mesmos comandos do `ci.yml` (por exemplo `mvn verify`, lint do frontend).
 
-## Azure — Estágio 4
+## Azure — Terraform (Estágio 4)
 
-O Estágio 4 é quando a equipe aplica Terraform em uma assinatura sandbox fornecida pelas pessoas facilitadoras.
+A infraestrutura está descrita em `infra/` com módulos para networking, database, compute, registry, keyvault e monitoring.
+
+**Validar localmente (sem aplicar):**
 
 ```bash
 cd infra
-terraform init
-terraform plan -var-file=envs/dev/terraform.tfvars
-terraform apply -var-file=envs/dev/terraform.tfvars
+terraform init -backend=false
+terraform fmt -check -recursive
+terraform validate
 ```
 
-> Cada equipe tem uma cota de assinatura única. Marque todo recurso com `team=team-XX` ou seu apply falhará.
+**Aplicar em dev (requer credenciais Azure configuradas):**
+
+```bash
+terraform init
+terraform plan -var-file=envs/dev.tfvars -out=plan.tfplan
+terraform apply plan.tfplan
+```
+
+> O CI nunca executa `terraform apply` automaticamente. O `plan` é gerado como comentário no PR para revisão antes de qualquer mudança na infraestrutura.
 
 ## Problemas comuns
 
-| Sintoma                                   | Causa provável                     | Correção                                             |
-| ----------------------------------------- | ---------------------------------- | ---------------------------------------------------- |
-| `docker compose up` trava                 | Porta 5432 / 8080 / 3000 já em uso | `lsof -i :5432` e encerre o processo                 |
-| `mvn verify` falha em Testcontainers      | Docker não está em execução        | Inicie o Docker Desktop                              |
-| `pnpm test` falha em snapshots            | Componente mudou intencionalmente  | `pnpm test -- -u` para atualizar                     |
-| `terraform apply` rejeitado               | Tag `team=` ausente                | Adicione a tag ao recurso com falha                  |
-| GitHub Actions não consegue acessar Azure | Incompatibilidade na declaração de assunto OIDC | Rode novamente `az ad sp create-for-rbac` por equipe |
+| Sintoma | Causa provável | Correção |
+|---------|---------------|---------|
+| `docker compose up` trava na etapa `deps 6/6` | Maven baixando dependências pela primeira vez (~200 MB) | Aguardar — processo normal. Próximas builds usam cache |
+| `docker compose up` falha com porta em uso | Porta 5432 ou 8080 já ocupada | `netstat -ano \| findstr :5432` (Windows) e encerre o processo |
+| `mvn verify` falha em `*IT` com "Docker not found" | Docker Desktop não está em execução | Iniciar o Docker Desktop antes de rodar os testes |
+| Backend sobe mas retorna 401 em todos os endpoints | OAuth2 ativo sem IdP local | Verificar variável `SPRING_AUTOCONFIGURE_EXCLUDE` no `docker-compose.yml` |
+| `Flyway migration checksum mismatch` | Arquivo de migration editado após aplicação | Nunca editar migrations já aplicadas. Criar nova versão `V6__...` |
+| `ArchUnit test failed` | Importação cross-context entre bounded contexts | Remover import do pacote `domain/` ou `infrastructure/` de outro contexto |
+| `JaCoCo coverage gate failed` | Cobertura < 70% em `domain` ou `application` | Adicionar testes unitários para o código novo |
+| `terraform plan` falha | `terraform init` não rodou | Executar `terraform init -backend=false` antes do `validate` |
+| GitHub Actions não consegue acessar Azure | OIDC federated identity não configurada | Configurar `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID` como secrets |
 
 ## Quando escalar para uma pessoa facilitadora
 

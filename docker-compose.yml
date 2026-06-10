@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sifap-db
+    environment:
+      POSTGRES_DB: sifap
+      POSTGRES_USER: sifap_app
+      POSTGRES_PASSWORD: sifap_local_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - sifap_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sifap_app -d sifap"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./04-sifap-backend
+      dockerfile: Dockerfile
+      args:
+        SKIP_TESTS: "true"   # tests run in CI; local build skips for speed
+    container_name: sifap-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sifap
+      SPRING_DATASOURCE_USERNAME: sifap_app
+      SPRING_DATASOURCE_PASSWORD: sifap_local_only
+      # Local dev: disable OAuth2 JWT validation (no IdP running)
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: ""
+      SPRING_AUTOCONFIGURE_EXCLUDE: >-
+        org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health | grep -q '\"status\":\"UP\"' || exit 1"]
+      interval: 30s
+      timeout: 5s
+      start_period: 90s
+      retries: 3
+
+volumes:
+  sifap_pgdata:

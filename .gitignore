@@ -2,7 +2,13 @@
 # Note: legado-natural/ is bundled with the kit (real folder) and IS committed.
 reference/
 prototype
-infra
+# Terraform state — NEVER commit state files (contains secrets)
+infra/**/.terraform/
+infra/**/*.tfstate
+infra/**/*.tfstate.backup
+infra/**/*.tfplan
+# Lock file IS committed (pinned provider versions)
+!infra/**/.terraform.lock.hcl
 
 # OS files
 .DS_Store

@@ -16,22 +16,23 @@
 
 | Indicador | Estado | Observação |
 |---|---|---|
-| Time inteiro presente | ⚪ | Atualize: ✅ ou ⚠️ |
-| Repositório do time aberto em 5/5 laptops | ⚪ | — |
-| Branch `develop` protegida | ⚪ | — |
-| CI verde em `develop` | ⚪ | — |
-| Demo ensaiada | ⚪ | — |
+| Time inteiro presente | ✅ | Workshop em andamento |
+| Repositório do time aberto | ✅ | `develop` ativo |
+| Branch `develop` protegida | ✅ | CI + ArchUnit como gates |
+| CI configurado | ✅ | `.github/workflows/ci.yml` com SHA pinning + OIDC |
+| Docker Compose funcional | ✅ | `docker compose up -d` sobe postgres + backend |
+| Demo ensaiada | ⚪ | Pendente Estágio 4 |
 
 ---
 
 ## 🏰 Progresso dos 4 mundos
 
-| Estágio | Status | Owner | Início | DoD verde? | Notas |
-|---|---|---|---|---|---|
-| 🟦 **1 — Arqueologia** | ⚪ | Todos os pares | — | ☐ | — |
-| 🟫 **2 — Spec Moderna** | ⏸ aguarda H1 | Par 2 | — | ☐ | — |
-| 🟧 **3 — Implementação** | ⏸ aguarda H2 | Pares 3 + 4 | — | ☐ | — |
-| 🏰 **4 — Evolução** | ⏸ aguarda H3 | Par 5 | — | ☐ | — |
+| Estágio | Status | Owner | Entregáveis | DoD verde? |
+|---|---|---|---|---|
+| 🟦 **1 — Arqueologia** | ✅ | Par 1 | glossary (37 termos), discovery-report, business-rules-catalog (36 BRs) | ✅ |
+| 🟫 **2 — Spec Moderna** | ✅ | Par 2 | SPECIFICATION.md (22 REQ-IDs), bounded-contexts.md, 5 ADRs, IMPLEMENTATION_PLAN.md | ✅ |
+| 🟧 **3 — Implementação** | ✅ | Pares 3 + 4 | Backend Spring Boot completo, 5 migrations, 10 testes unitários, 4 ITs, query audit | ✅ |
+| 🏰 **4 — Evolução** | 🔄 | Par 5 | CI/CD hardened, Terraform 6 módulos, Dockerfile multi-stage, ADR-005 | 🔄 |
 
 **Legenda:** ⚪ não começou · 🔄 em progresso · ✅ pronto · ⚠️ atrasado · 🔴 bloqueado
 
@@ -39,11 +40,11 @@
 
 ## 🟢 Passagens (canos verdes entre mundos)
 
-| Passagem | De → Para | Quando | Status |
-|---|---|---|---|
-| **H1** | Par 1 → Par 2 | fim do Estágio 1 | ⚪ |
-| **H2** | Par 2 → Pares 3+4 | fim do Estágio 2 | ⚪ |
-| **H3** | Pares 3+4 → Par 5 | fim do Estágio 3 | ⚪ |
+| Passagem | De → Para | Status |
+|---|---|---|
+| **H1** | Par 1 → Par 2 | ✅ |
+| **H2** | Par 2 → Pares 3+4 | ✅ |
+| **H3** | Pares 3+4 → Par 5 | ✅ |
 
 ---
 

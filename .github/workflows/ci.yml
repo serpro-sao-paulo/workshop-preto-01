@@ -1,115 +1,400 @@
-name: CI
+# =============================================================================
+# ci.yml — SIFAP 2.0  GitHub Actions CI/CD Pipeline
+# =============================================================================
+# Jobs: detect-changes → build → security → package → deploy-dev → deploy-stage
+#
+# All third-party actions are pinned to a full commit SHA (not a floating tag).
+# OIDC is used for Azure authentication — no long-lived service-principal secrets.
+# pipeline-hardening.SKILL.md Tier 1 + Tier 2 controls applied.
+# =============================================================================
+
+name: CI/CD — SIFAP 2.0
 
 on:
-  push:
-    branches: [ main, develop, "spec/**", "impl/**" ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
+  push:
+    branches: [main, develop, "spec/**", "feature/**"]
+  workflow_dispatch:
+    inputs:
+      deploy_env:
+        description: "Target environment for manual deploy"
+        required: true
+        default: "dev"
+        type: choice
+        options: [dev, stage]
 
-# Minimum permissions required for the workflow
+# Default to least privilege; individual jobs escalate only what they need.
 permissions:
   contents: read
-  pull-requests: read
-  checks: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  JAVA_VERSION: "21"
+  ACR_REGISTRY: ${{ vars.ACR_REGISTRY }}          # e.g. sifapacr.azurecr.io
+  IMAGE_NAME: sifap-backend
+
+# =============================================================================
+# Job 1: Detect changed paths — avoids running jobs for unrelated changes
+# =============================================================================
 jobs:
   detect-changes:
     name: Detect changed paths
     runs-on: ubuntu-latest
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
-      frontend: ${{ steps.filter.outputs.frontend }}
-      infra: ${{ steps.filter.outputs.infra }}
+      infra:   ${{ steps.filter.outputs.infra }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
+      # SHA pinned — actions/checkout v4.2.2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      # SHA pinned — dorny/paths-filter v3.0.2
+      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36  # v3.0.2
         id: filter
         with:
           filters: |
             backend:
-              - 'backend/**'
-              - 'pom.xml'
-            frontend:
-              - 'frontend/**'
-              - 'package.json'
-              - 'pnpm-lock.yaml'
+              - '04-sifap-backend/**'
+              - 'docker-compose.yml'
             infra:
               - 'infra/**'
               - '**/*.tf'
 
-  backend:
-    name: Backend (Java 21 + Spring Boot)
+# =============================================================================
+# Job 2: Backend build + unit tests + ArchUnit + JaCoCo gate
+# =============================================================================
+  build:
+    name: Backend — Build & Test
     needs: detect-changes
-    if: needs.detect-changes.outputs.backend == 'true'
+    if: needs.detect-changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      checks: write            # required for test result annotations
+      pull-requests: write     # required for coverage comment on PR
     defaults:
       run:
-        working-directory: backend
+        working-directory: 04-sifap-backend
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      # SHA pinned — actions/checkout v4.2.2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      # SHA pinned — actions/setup-java v4.7.0
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba7c53  # v4.7.0
         with:
           distribution: temurin
-          java-version: "21"
+          java-version: ${{ env.JAVA_VERSION }}
           cache: maven
-      - name: Build and test
+
+      - name: Build, test and coverage gate
         run: ./mvnw -B verify
-      - name: Upload coverage report
+        env:
+          # Testcontainers IT tests need Docker; GitHub-hosted runners have Docker pre-installed
+          TESTCONTAINERS_RYUK_DISABLED: "true"
+
+      - name: Upload JaCoCo coverage report
         if: always()
-        uses: actions/upload-artifact@v4
+        # SHA pinned — actions/upload-artifact v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
         with:
           name: backend-coverage
-          path: backend/target/site/jacoco/
+          path: 04-sifap-backend/target/site/jacoco/
+          retention-days: 30
 
-  frontend:
-    name: Frontend (Next.js 15 + TypeScript)
-    needs: detect-changes
-    if: needs.detect-changes.outputs.frontend == 'true'
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+        with:
+          name: backend-test-results
+          path: 04-sifap-backend/target/surefire-reports/
+          retention-days: 30
+
+# =============================================================================
+# Job 3: Security scan — Dependency Check + Gitleaks
+# =============================================================================
+  security:
+    name: Security Scan
+    needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: pnpm
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Lint
-        run: pnpm lint
-      - name: Type-check
-        run: pnpm typecheck
-      - name: Test
-        run: pnpm test --run --coverage
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write   # required to upload SARIF to GitHub Security tab
 
-  infra:
-    name: Infra (Terraform)
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          fetch-depth: 0   # Gitleaks scans full history
+
+      # SHA pinned — gitleaks/gitleaks-action v2.3.7
+      - name: Gitleaks secret scan
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b0e703b3f6b19c6a3cfd5f  # v2.3.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_SUMMARY: "true"
+
+      # SHA pinned — actions/setup-java v4.7.0
+      - name: Set up JDK for Dependency Check
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba7c53  # v4.7.0
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+
+      - name: OWASP Dependency Check
+        working-directory: 04-sifap-backend
+        run: |
+          ./mvnw -B org.owasp:dependency-check-maven:check \
+            -DfailBuildOnCVSS=8 \
+            --no-transfer-progress
+        continue-on-error: true   # report to security tab; don't block merge
+
+      - name: Upload Dependency Check report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
+        with:
+          name: dependency-check-report
+          path: 04-sifap-backend/target/dependency-check-report.html
+          retention-days: 30
+
+# =============================================================================
+# Job 4: Package — Docker image + Trivy scan + SBOM + Cosign
+# =============================================================================
+  package:
+    name: Package — Docker Image
+    needs: [build, security]
+    # Only build image on push to branches (not on PRs — save registry costs)
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (needs.detect-changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write      # required for OIDC → ACR login + Cosign keyless signing
+      packages: write
+      security-events: write
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Compute image tags
+        id: tags
+        run: |
+          SHORT_SHA="${GITHUB_SHA::8}"
+          BRANCH="${GITHUB_REF_NAME//\//-}"
+          echo "sha_tag=${ACR_REGISTRY}/${IMAGE_NAME}:sha-${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "branch_tag=${ACR_REGISTRY}/${IMAGE_NAME}:${BRANCH}"    >> "$GITHUB_OUTPUT"
+          echo "short_sha=${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+
+      # SHA pinned — azure/login v2.3.0
+      - name: Azure login (OIDC — no long-lived secrets)
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ea782b887  # v2.3.0
+        with:
+          client-id:       ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id:       ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # SHA pinned — docker/setup-buildx-action v3.10.0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2  # v3.10.0
+
+      - name: Log in to ACR
+        run: az acr login --name ${{ vars.ACR_NAME }}
+
+      # SHA pinned — docker/build-push-action v6.15.0
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1  # v6.15.0
+        with:
+          context: 04-sifap-backend
+          push: true
+          tags: |
+            ${{ steps.tags.outputs.sha_tag }}
+            ${{ steps.tags.outputs.branch_tag }}
+          build-args: SKIP_TESTS=true
+          cache-from: type=registry,ref=${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
+          cache-to:   type=registry,ref=${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+
+      # SHA pinned — aquasecurity/trivy-action v0.30.0
+      - name: Trivy vulnerability scan (Critical + High)
+        uses: aquasecurity/trivy-action@18f2510ee396bbf400402c56c7c802dba93d4877  # v0.30.0
+        with:
+          image-ref:    ${{ steps.tags.outputs.sha_tag }}
+          format:       sarif
+          output:       trivy-results.sarif
+          severity:     CRITICAL,HIGH
+          exit-code:    "1"
+          ignore-unfixed: true
+
+      - name: Upload Trivy SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@45775bd8235c68ba998cffa5171334d58593da47  # v3.28.15
+        with:
+          sarif_file: trivy-results.sarif
+
+      # SHA pinned — anchore/sbom-action v0.20.0
+      - name: Generate SBOM (SPDX)
+        uses: anchore/sbom-action@f325610c9f50a54015d37c8d16cb3b0e2c8f4de5  # v0.20.0
+        with:
+          image:       ${{ steps.tags.outputs.sha_tag }}
+          format:      spdx-json
+          output-file: sbom.spdx.json
+          artifact-name: sbom-${{ steps.tags.outputs.short_sha }}.spdx.json
+
+      # SHA pinned — sigstore/cosign-installer v3.8.1
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@3454372f43399081ed03b604cb2d021dabca52bb  # v3.8.1
+
+      - name: Sign image (keyless via OIDC — no key management)
+        run: |
+          cosign sign --yes \
+            "${{ steps.tags.outputs.sha_tag }}@${{ steps.build.outputs.digest }}"
+        env:
+          COSIGN_EXPERIMENTAL: "1"
+
+      - name: Job summary
+        run: |
+          echo "### Image published :rocket:" >> "$GITHUB_STEP_SUMMARY"
+          echo "| | |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Tag** | \`${{ steps.tags.outputs.sha_tag }}\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Digest** | \`${{ steps.build.outputs.digest }}\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **SBOM** | sbom-${{ steps.tags.outputs.short_sha }}.spdx.json |" >> "$GITHUB_STEP_SUMMARY"
+
+# =============================================================================
+# Job 5: Deploy to dev (auto on develop push)
+# =============================================================================
+  deploy-dev:
+    name: Deploy → dev
+    needs: package
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: dev
+      url: https://sifap-dev.azurewebsites.net
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Azure login (OIDC)
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ea782b887  # v2.3.0
+        with:
+          client-id:       ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id:       ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # SHA pinned — azure/webapps-deploy v3.0.2
+      - name: Deploy to Azure App Service (dev)
+        uses: azure/webapps-deploy@b331f7b0d48219e7673e8c8bb0671c4c99940a91  # v3.0.2
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME_DEV }}
+          images:   ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ github.sha != '' && github.sha || 'latest' }}
+
+      - name: Smoke test — health endpoint
+        run: |
+          sleep 30
+          curl --retry 5 --retry-delay 10 --fail \
+            https://sifap-dev.azurewebsites.net/actuator/health
+
+# =============================================================================
+# Job 6: Deploy to stage (requires 1 approval; auto on main push)
+# =============================================================================
+  deploy-stage:
+    name: Deploy → stage
+    needs: package
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: stage            # GitHub environment with required reviewer configured in Settings
+      url: https://sifap-stage.azurewebsites.net
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      # Verify the image was signed before deploying — reject tampered artifacts
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@3454372f43399081ed03b604cb2d021dabca52bb  # v3.8.1
+
+      - name: Verify Cosign signature
+        run: |
+          cosign verify \
+            --certificate-identity-regexp "https://github.com/${{ github.repository }}/" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            "${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${GITHUB_SHA::8}"
+        env:
+          COSIGN_EXPERIMENTAL: "1"
+
+      - name: Azure login (OIDC)
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ea782b887  # v2.3.0
+        with:
+          client-id:       ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id:       ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy to Azure App Service (stage)
+        uses: azure/webapps-deploy@b331f7b0d48219e7673e8c8bb0671c4c99940a91  # v3.0.2
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME_STAGE }}
+          images:   ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${GITHUB_SHA::8}
+
+      - name: Smoke test — health endpoint
+        run: |
+          sleep 30
+          curl --retry 5 --retry-delay 10 --fail \
+            https://sifap-stage.azurewebsites.net/actuator/health
+
+# =============================================================================
+# Job 7: Terraform plan (infra validation — never auto-apply in CI)
+# =============================================================================
+  terraform-plan:
+    name: Terraform — Plan (validate only)
     needs: detect-changes
     if: needs.detect-changes.outputs.infra == 'true'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: infra
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write   # post plan as PR comment
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      # SHA pinned — hashicorp/setup-terraform v3.1.2
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@b9cd54531c595f31c94df75e7ef6b2a14c56b0ba  # v3.1.2
         with:
           terraform_version: "1.9.5"
-      - name: Format check
+
+      - name: Terraform Format Check
+        working-directory: infra
         run: terraform fmt -check -recursive
-      - name: Validate
-        run: |
-          terraform init -backend=false
-          terraform validate
+
+      - name: Terraform Init (no backend — validation only in CI)
+        working-directory: infra
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        working-directory: infra
+        run: terraform validate
+
+      # SHA pinned — aquasecurity/tfsec-action v1.0.3
+      - name: tfsec security scan
+        uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6  # v1.0.3
+        with:
+          working_directory: infra
+          soft_fail: true
