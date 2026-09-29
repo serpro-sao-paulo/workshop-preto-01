@@ -65,9 +65,9 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### Adabas
 
-- **O que é:** o banco de dados do mainframe onde o SIFAP guarda dados há 29 anos.
+- **O que é:** o banco de dados do mainframe onde o sisdnit guarda dados há 29 anos.
 - **Analogia:** o "Excel gigante" do governo, mas com regras especiais (ver MU e PE).
-- **Onde aparece:** Estágio 1, ao olhar os arquivos `.ddm` em `01-arqueologia/legado-sifap/adabas-ddms/`.
+- **Onde aparece:** Estágio 1, ao olhar os arquivos `.ddm` em `01-arqueologia/legado-sisdnit/adabas-ddms/`.
 
 ### Agent (Copilot Agent / modo Agent)
 
@@ -91,7 +91,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### Bounded Context
 
-- **O que é:** um pedaço bem delimitado do sistema com vocabulário próprio. Em SIFAP temos 4: `beneficiary`, `payment`, `audit`, `admin`.
+- **O que é:** um pedaço bem delimitado do sistema com vocabulário próprio. Em sisdnit temos 4: `beneficiary`, `payment`, `audit`, `admin`.
 - **Analogia:** departamentos de uma empresa — RH e Contabilidade têm a palavra "salário", mas significam coisas diferentes em cada um.
 - **Onde aparece:** Estágios 2 e 3.
 
@@ -127,7 +127,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** arquivo `.ddm` do Adabas que descreve a estrutura de uma "tabela" (campos, tipos, tamanhos).
 - **Analogia:** o schema do Excel — quais colunas existem, de que tipo, com que tamanho.
-- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sifap/adabas-ddms/`. Temos 4: BENEFICIARIO, PROGRAMA-SOCIAL, PAGAMENTO, AUDITORIA.
+- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sisdnit/adabas-ddms/`. Temos 4: BENEFICIARIO, PROGRAMA-SOCIAL, PAGAMENTO, AUDITORIA.
 
 ### DoD · Definition of Done
 
@@ -148,7 +148,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 - **O que é:** forma padrão de escrever requisitos sem ambiguidade, usando 6 padrões (sempre, evento, estado, opcional, proibido, combinado).
 - **Analogia:** receita de bolo — tem ingrediente, ordem e tempo. Sem chute.
 - **Onde aparece:** Estágio 2. Padrões detalhados em `02-spec-moderna/GUIDE.md§EARS`.
-- **Exemplo bom:** *"Quando um beneficiário é cadastrado, o SIFAP deve validar o CPF usando módulo 11."*
+- **Exemplo bom:** *"Quando um beneficiário é cadastrado, o sisdnit deve validar o CPF usando módulo 11."*
 - **Exemplo ruim:** *"O sistema deve ser seguro."* (não é testável)
 
 ## F
@@ -215,13 +215,13 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 - **O que é:** linguagem de programação dos anos 80 usada com Adabas no mainframe. Nossos arquivos `.NSN` são programas Natural.
 - **Analogia:** parente distante do COBOL — verboso, com `IF`/`END-IF`, sem orientação a objeto.
-- **Onde aparece:** Estágio 1. Guia de leitura para não-programadores: `01-arqueologia/legado-sifap/COMO-LER-NATURAL.md`.
+- **Onde aparece:** Estágio 1. Guia de leitura para não-programadores: `01-arqueologia/legado-sisdnit/COMO-LER-NATURAL.md`.
 
 ### NSN (arquivo `.NSN`)
 
 - **O que é:** extensão dos programas Natural.
 - **Analogia:** equivalente a `.py` (Python) ou `.java` (Java), mas para Natural.
-- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sifap/natural-programs/` (temos 15).
+- **Onde aparece:** Estágio 1, em `01-arqueologia/legado-sisdnit/programs/` (temos 15).
 
 ## P
 
@@ -274,7 +274,7 @@ Para quem precisa traduzir entre inglês técnico, português do workshop e a an
 
 ### `source_legacy:`
 
-- **O que é:** linha obrigatória em cada REQ-ID que aponta para o arquivo legado de origem (ex.: `01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148`).
+- **O que é:** linha obrigatória em cada REQ-ID que aponta para o arquivo legado de origem (ex.: `01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148`).
 - **Analogia:** nota de rodapé com fonte da informação.
 - **Onde aparece:** Estágio 2. **Se faltar, o CI rejeita o PR.**
 
@@ -331,7 +331,7 @@ Essa cadeia é a **rastreabilidade** que o CI verifica. Sempre que tiver dúvida
 </td>
 <td width="50%" valign="top" align="right">
 <sub><strong>PRÓXIMO →</strong></sub><br/>
-<a href="../01-arqueologia/legado-sifap/COMO-LER-NATURAL.md"><strong>Como Ler Natural</strong></a><br/>
+<a href="../01-arqueologia/legado-sisdnit/COMO-LER-NATURAL.md"><strong>Como Ler Natural</strong></a><br/>
 <sub>Extrair regras de .NSN sem saber a sintaxe.</sub>
 </td>
 </tr>

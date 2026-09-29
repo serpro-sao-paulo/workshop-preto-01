@@ -46,7 +46,7 @@ Resultado: Mario, 200 anos depois, **entende a decisão** sem precisar perguntar
 
 ## Contexto
 
-Estamos modernizando o SIFAP (29 anos em Natural/Adabas). Temos 8 horas.
+Estamos modernizando o sisdnit (29 anos em Natural/Adabas). Temos 8 horas.
 4 bounded contexts identificados: beneficiary, payment, audit, admin.
 Time não tem experiência operacional com microsserviços.
 
@@ -138,7 +138,7 @@ A maioria das ADRs ruins é ruim por uma de **5 razões**. Evite todas:
 
 ---
 
-## 🍄 Exemplo concreto: ADR do nosso SIFAP
+## 🍄 Exemplo concreto: ADR do nosso sisdnit
 
 Veja [`08-exemplos/ADR-001-monolito-modular-exemplo.md`](../08-exemplos/ADR-001-monolito-modular-exemplo.md) para uma ADR completa pronta. Use como template — copie a estrutura, troque a decisão.
 
@@ -148,7 +148,7 @@ Veja [`08-exemplos/ADR-001-monolito-modular-exemplo.md`](../08-exemplos/ADR-001-
 
 ```text
 # Pedir ao @architect para sugerir ADR
-"@architect, vamos decidir: PostgreSQL ou MongoDB para SIFAP 2.0?
+"@architect, vamos decidir: PostgreSQL ou MongoDB para sisdnit 2.0?
 Considere: dados financeiros, auditoria pesada, sem expertise em NoSQL.
 Sugira ADR no formato padrão."
 

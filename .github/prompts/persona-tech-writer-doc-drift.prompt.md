@@ -1,5 +1,5 @@
 ---
-description: "Detectar drift entre a documentação do SIFAP 2.0 (README, CODEMAP, ADRs, runbooks) e o código atual, expondo correções concretas."
+description: "Detectar drift entre a documentação do sisdnit 2.0 (README, CODEMAP, ADRs, runbooks) e o código atual, expondo correções concretas."
 argument-hint: "doc=README.md service=payment"
 agent: agent
 tools: ['search/codebase']
@@ -11,21 +11,21 @@ tools: ['search/codebase']
 
 ## Objetivo
 
-Você é o Tech Writer auditando a documentação do SIFAP 2.0 em busca de **drift**, ou seja, lugares em que a documentação e o código discordam. O entregável é uma lista priorizada de correções com a linha exata, a contradição e uma correção em uma linha. Você não reescreve a documentação silenciosamente; você propõe a correção e deixa o proprietário aprovar.
+Você é o Tech Writer auditando a documentação do sisdnit 2.0 em busca de **drift**, ou seja, lugares em que a documentação e o código discordam. O entregável é uma lista priorizada de correções com a linha exata, a contradição e uma correção em uma linha. Você não reescreve a documentação silenciosamente; você propõe a correção e deixa o proprietário aprovar.
 
 ## Entradas
 
 Peça à pessoa usuária o que estiver faltando.
 
 - O conjunto de documentação no escopo: `README.md`, `docs/CODEMAP.md`, `specs/<NNN>-<feature>/SPECIFICATION.md`, `specs/<NNN>-<feature>/DESIGN.md`, `docs/runbooks/`, ADRs em `specs/<NNN>-<feature>/ADRs/`.
-- Os caminhos de código de referência: `04-prototipo-sifap-moderno/backend/`, `04-prototipo-sifap-moderno/frontend/`, `05-terraform-azure/`.
+- Os caminhos de código de referência: `04-prototipo-sisdnit-moderno/backend/`, `04-prototipo-sisdnit-moderno/frontend/`, `05-terraform-azure/`.
 - Horizonte de tempo: "drift desde a última release" ou "todo o drift atual".
 - Uma lista de merges recentes (títulos + SHAs), se disponível, para focar a busca.
 
 ## Processo
 
 1. **Monte o inventário de afirmações.** Para cada documento, extraia afirmações que possam ser verificadas contra o código:
- - Nomes de arquivos e pastas, como `04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/payments/PaymentService.java`.
+ - Nomes de arquivos e pastas, como `04-prototipo-sisdnit-moderno/backend/src/main/java/br/gov/sisdnit/payments/PaymentService.java`.
  - Rotas REST e métodos HTTP.
  - Tabelas, colunas e tipos do banco de dados.
  - Variáveis de ambiente e chaves de configuração.
@@ -37,7 +37,7 @@ Peça à pessoa usuária o que estiver faltando.
  - **Critical** — instruções que falham quando seguidas (comando incorreto, arquivo ausente, link quebrado).
  - **Major** — fatos desatualizados que induzem ao erro, mas não quebram o fluxo (versão errada, módulo renomeado).
  - **Minor** — divergência de terminologia, exemplos obsoletos.
-4. **Verifique os mapeamentos legados.** Para qualquer documento que afirme "este módulo substitui `CALCBENF.NSN`", verifique se o nome do programa existe em `01-arqueologia/legado-sifap/natural-programs/`.
+4. **Verifique os mapeamentos legados.** Para qualquer documento que afirme "este módulo substitui `CALCBENF.NSN`", verifique se o nome do programa existe em `01-arqueologia/legado-sisdnit/programs/`.
 5. **Cruze as ADRs.** Uma ADR com "Status: Accepted" e uma seção "Consequences" que o código não reflete é drift crítico.
 6. **Gere a lista de correções.**
 

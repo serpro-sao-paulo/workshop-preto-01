@@ -28,7 +28,7 @@
 
 ## Quem é essa pessoa
 
-Dono dos dados. No SIFAP legado isso significa entender os 4 DDMs Adabas com MU e PE, com desnormalização pragmática, com índices ancestrais. No SIFAP 2.0 significa desenhar um schema PostgreSQL 16 que preserva a integridade lógica do negócio sem herdar as cicatrizes do Adabas.
+Dono dos dados. No sisdnit legado isso significa entender os 4 DDMs Adabas com MU e PE, com desnormalização pragmática, com índices ancestrais. No sisdnit 2.0 significa desenhar um schema PostgreSQL 16 que preserva a integridade lógica do negócio sem herdar as cicatrizes do Adabas.
 
 ## Missão no workshop
 
@@ -88,7 +88,7 @@ Traduzir o modelo Adabas para um schema relacional que funciona. Garantir migra�
 
 ## Se travar (defaults de emergência)
 
-- Não conhece o formato DDM? Abra [`../01-arqueologia/legado-sifap/adabas-ddms/BENEFICIARIO.ddm`](../../01-arqueologia/legado-sifap/adabas-ddms/BENEFICIARIO.ddm) — tem comentários explicando cada campo.
+- Não conhece o formato DDM? Abra [`../01-arqueologia/legado-sisdnit/adabas-ddms/BENEFICIARIO.ddm`](../../01-arqueologia/legado-sisdnit/adabas-ddms/BENEFICIARIO.ddm) — tem comentários explicando cada campo.
 - Migração quebrou? NUNCA edite uma migração existente. Crie nova: `V5__fix_xxx.sql`.
 - Qual índice criar? Regra: "Se aparece em WHERE ou JOIN e a tabela tem >100K linhas, crie índice."
 - PostgreSQL offline? Verifique se o Docker está rodando: `docker ps | grep postgres`.

@@ -2,20 +2,20 @@
 
 ---
 mode: agent
-description: "Escreva um Registro de Decisão de Arquitetura (ADR) capturando contexto, opções, decisão e consequências para uma escolha arquitetural do SIFAP 2.0."
+description: "Escreva um Registro de Decisão de Arquitetura (ADR) capturando contexto, opções, decisão e consequências para uma escolha arquitetural do sisdnit 2.0."
 ---
 
 # /create-adr
 
 ## Objetivo
 
-Você está escrevendo um **Registro de Decisão de Arquitetura** para o SIFAP 2.0 no formato usado em `specs/<NNN>-<feature>/ADRs/`. Um ADR é a resposta durável para "por que fizemos desse jeito?" Ele captura o contexto no momento da decisão, as opções consideradas, o caminho escolhido e as consequências. ADRs são imutáveis depois de aceitos — correções acontecem por meio de um *novo* ADR que substitui o anterior.
+Você está escrevendo um **Registro de Decisão de Arquitetura** para o sisdnit 2.0 no formato usado em `specs/<NNN>-<feature>/ADRs/`. Um ADR é a resposta durável para "por que fizemos desse jeito?" Ele captura o contexto no momento da decisão, as opções consideradas, o caminho escolhido e as consequências. ADRs são imutáveis depois de aceitos — correções acontecem por meio de um *novo* ADR que substitui o anterior.
 
 ## Entradas
 
 Peça ao usuário o que estiver faltando.
 
-- O tópico da decisão em linguagem clara (por exemplo, "Como o SIFAP integrará com o wrapper legado de Adabas?").
+- O tópico da decisão em linguagem clara (por exemplo, "Como o sisdnit integrará com o wrapper legado de Adabas?").
 - A pasta da feature onde o ADR fica (`specs/<NNN>-<feature>/ADRs/`).
 - O próximo número de ADR — olhe os arquivos existentes para evitar colisões.
 - Os `REQ-ID`s vinculados que a decisão afeta.
@@ -56,7 +56,7 @@ O entregável é um único arquivo em `specs/<NNN>-<feature>/ADRs/<NNNN>-<title-
 - **Substitui**: —
 
 ## 1. Contexto
-O SIFAP precisa continuar lendo do banco de dados legado Adabas durante a janela de modernização (estimada em 18 meses). O código legado (programas Natural em `02-cenario-sifap-legado/natural-programs/`) é somente leitura. Pontes ODBC diretas foram descontinuadas pelo fornecedor e são proibidas pela InfoSec para novas integrações. A equipe tem experiência em Java + REST; ninguém na equipe escreve Natural com fluência.
+O sisdnit precisa continuar lendo do banco de dados legado Adabas durante a janela de modernização (estimada em 18 meses). O código legado (programas Natural em `02-cenario-sisdnit-legado/programs/`) é somente leitura. Pontes ODBC diretas foram descontinuadas pelo fornecedor e são proibidas pela InfoSec para novas integrações. A equipe tem experiência em Java + REST; ninguém na equipe escreve Natural com fluência.
 
 ## 2. Opções consideradas
 

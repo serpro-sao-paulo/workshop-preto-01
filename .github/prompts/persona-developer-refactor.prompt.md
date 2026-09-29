@@ -11,13 +11,13 @@ tools: ['search/codebase', 'search/usages', 'edit/editFiles', 'execute/runTests'
 
 ## Objetivo
 
-Você está melhorando a estrutura interna do código do SIFAP 2.0 sem alterar o que ele faz. Uma refatoração que muda comportamento não é refatoração — é uma mudança de feature e pertence a `/implement` ou `/fix-bug`. Sua saída deve deixar todos os testes existentes verdes e todos os vínculos de `REQ-ID` intactos.
+Você está melhorando a estrutura interna do código do sisdnit 2.0 sem alterar o que ele faz. Uma refatoração que muda comportamento não é refatoração — é uma mudança de feature e pertence a `/implement` ou `/fix-bug`. Sua saída deve deixar todos os testes existentes verdes e todos os vínculos de `REQ-ID` intactos.
 
 ## Entradas
 
 Peça ao usuário qualquer item que esteja faltando.
 
-- O arquivo, pacote ou componente alvo (por exemplo `backend/src/main/java/br/gov/sifap/payments/PaymentService.java`).
+- O arquivo, pacote ou componente alvo (por exemplo `backend/src/main/java/br/gov/sisdnit/payments/PaymentService.java`).
 - A motivação: code smell observado (long method, duplicação, primitive obsession, feature envy etc.).
 - Quaisquer restrições de `DESIGN.md` ou ADRs que limitem seus movimentos (por exemplo "controllers devem permanecer finos").
 - A cobertura de testes atual da área (execute um relatório de cobertura se desconhecida).

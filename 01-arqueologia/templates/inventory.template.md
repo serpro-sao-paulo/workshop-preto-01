@@ -24,7 +24,7 @@ tags: ["template", "inventory", "archaeology", "stage-1"]
 
 
 **Data:** <!-- placeholder: YYYY-MM-DD -->
-**Caminho escaneado:** `01-arqueologia/legado-sifap/`
+**Caminho escaneado:** `01-arqueologia/legado-sisdnit/`
 
 ## Estrutura de Pastas
 

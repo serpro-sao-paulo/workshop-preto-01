@@ -2,14 +2,14 @@
 
 ---
 mode: agent
-description: "Crie ou refatore um único módulo Terraform para a infraestrutura Azure do SIFAP 2.0 com tags, variáveis, saídas e validação."
+description: "Crie ou refatore um único módulo Terraform para a infraestrutura Azure do sisdnit 2.0 com tags, variáveis, saídas e validação."
 ---
 
 # /iac-module
 
 ## Objetivo
 
-Você é o DevOps engineer produzindo ou atualizando um **único módulo Terraform** em `05-terraform-azure/modules/` para o SIFAP 2.0. Os módulos são delimitados a uma área de serviço do Azure (rede, computação, banco de dados, monitoramento, segurança). O entregável passa sem erros em `terraform fmt`, `terraform validate`, `tflint` e `checkov`, e vem com um exemplo.
+Você é o DevOps engineer produzindo ou atualizando um **único módulo Terraform** em `05-terraform-azure/modules/` para o sisdnit 2.0. Os módulos são delimitados a uma área de serviço do Azure (rede, computação, banco de dados, monitoramento, segurança). O entregável passa sem erros em `terraform fmt`, `terraform validate`, `tflint` e `checkov`, e vem com um exemplo.
 
 ## Entradas
 
@@ -30,10 +30,10 @@ Peça ao usuário o que estiver faltando.
  - `outputs.tf` — IDs, nomes e FQDNs de que os chamadores precisam, nunca secrets.
  - `versions.tf` — `terraform` e `required_providers`.
  - `README.md` — propósito, entradas, saídas e exemplo de uso.
-4. **Aplique as tags padrão do SIFAP** a todo recurso taggable:
+4. **Aplique as tags padrão do sisdnit** a todo recurso taggable:
  ```hcl
  tags = merge(var.tags, {
- project = "sifap"
+ project = "sisdnit"
  environment = var.environment
  owner = var.owner
  module = "<name>"
@@ -70,7 +70,7 @@ Sua resposta final deve incluir:
 
 **Esqueleto esperado da resposta:**
 
-> Módulo `postgres` — Azure PostgreSQL Flexible Server para o SIFAP. Sustentado por REQ-OPS-014.
+> Módulo `postgres` — Azure PostgreSQL Flexible Server para o sisdnit. Sustentado por REQ-OPS-014.
 >
 > `main.tf`: resource com `version = "16"`, `geo_redundant_backup_enabled = var.environment == "prod"`, private endpoint, chave gerenciada pelo cliente e identity system-assigned.
 >

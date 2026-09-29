@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+    <formset>
+
+    	<form name="RodoviaForm">
+        	<field property="sigla" depends="obrigatorio">
+                    <var><var-name>tipoAcao</var-name><var-value>incluir,alterar</var-value></var>
+                    <arg position="0" key="Sigla" resource="false"/>
+            </field>
+
+            <field property="descricao" depends="tamanhoMinimo">
+                    <var><var-name>tipoAcao</var-name><var-value>consultar</var-value></var>
+                    <var><var-name>minimo</var-name><var-value>3</var-value></var>
+                    <arg position="0" key="Informe pelo menos três caracteres para consulta" resource="false"/>
+            </field>
+            <field property="descricao" depends="obrigatorio">
+                    <var><var-name>tipoAcao</var-name><var-value>incluir,alterar</var-value></var>
+                    <arg position="0" key="Descrição" resource="false"/>
+            </field>
+            <field property="ufs" depends="obrigatorio">
+                    <var><var-name>tipoAcao</var-name><var-value>incluir,alterar</var-value></var>
+                    <arg position="0" key="UF" resource="false"/>
+            </field>
+						<!--
+						<field property="sigla" depends="peloMenosUmObrigatorio">
+            	<var><var-name>tipoAcao</var-name><var-value>consultar</var-value></var>
+         			<var>
+         				<var-name>listaCampos</var-name>
+         				<var-value>descricao,situacao,ufs</var-value>
+         			</var>
+            </field>
+						 -->
+			<field property="descricao" depends="tamanhoMinimo">
+                   <var><var-name>tipoAcao</var-name><var-value>consultar</var-value></var>
+                   <var><var-name>minimo</var-name><var-value>3</var-value></var>
+                   <arg position="0" key="Informe pelo menos três caracteres para consulta" resource="false"/>
+           </field>
+        </form>
+
+    </formset>
+</form-validation>

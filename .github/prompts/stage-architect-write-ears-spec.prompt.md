@@ -50,7 +50,7 @@ Um arquivo Markdown em `02-spec-moderna/SPECIFICATION.md`:
 ## Bounded Context: [Name]
 ### REQ-001: [Statement]
 - EARS Pattern: [pattern]
-- source_legacy: [01-arqueologia/legado-sifap/natural-programs/file.NSN#Lx-Ly, 01-arqueologia/legado-sifap/adabas-ddms/file.ddm#Lx-Ly, ou [GREENFIELD] + justificativa]
+- source_legacy: [01-arqueologia/legado-sisdnit/<path>/file.java|jsp|xml|js#Lx-Ly, ou [GREENFIELD] + justificativa]
 - Source Rule: [rule #, file, line]
 - Critérios de Aceite:
   - [ ] ...
@@ -62,7 +62,7 @@ Um arquivo Markdown em `02-spec-moderna/SPECIFICATION.md`:
 ## Definição de Pronto
 
 - [ ] Existem pelo menos 10 requisitos EARS com REQ-IDs únicos
-- [ ] Todo requisito tem uma linha `source_legacy:` apontando para `.NSN`/`.ddm` ou `[GREENFIELD] + justificativa`
+- [ ] Todo requisito tem uma linha `source_legacy:` apontando para `.java`, `.jsp`, `.xml` ou `.js`, ou `[GREENFIELD] + justificativa`
 - [ ] Todo requisito cita sua regra-fonte e arquivo legado
 - [ ] Todo requisito tem pelo menos 2 critérios de aceitação
 - [ ] Requisitos são agrupados por bounded context
@@ -77,7 +77,7 @@ Você é o `@architect-agent`. A equipe precisa escrever a especificação EARS 
 Leia `01-arqueologia/business-rules-catalog.md`. Filtre somente regras classificadas como "confirmed". Liste-as com suas referências de fonte.
 
 Se a equipe quiser promover regras "inferred" específicas, peça confirmação explícita por regra. Cada regra promovida deve incluir uma nota: "Promovida de inferred — decisão da equipe, [motivo]."
-Toda regra promovida ainda precisa de `source_legacy:` apontando para a evidência no legado; se a regra for nova, use `[GREENFIELD] + justificativa`.
+Toda regra promovida ainda precisa de `source_legacy:` apontando para um arquivo `.java`, `.jsp`, `.xml` ou `.js` no legado; se a regra for nova, use `[GREENFIELD] + justificativa`.
 
 **Passo 2 — Mapear regras para bounded contexts.**
 Leia `02-spec-moderna/bounded-contexts.md`. Para cada regra confirmed, determine qual bounded context é dono dela com base nos dados e programas envolvidos. Se uma regra atravessar múltiplos contextos, sinalize para discussão — talvez precise ser dividida ou atribuída a uma camada coordenadora.
@@ -96,7 +96,7 @@ Valide cada declaração contra o padrão. Se uma declaração não se encaixar 
 
 **Passo 4 — Atribuir REQ-IDs.**
 Numere requisitos sequencialmente: REQ-001, REQ-002 etc. Agrupe por bounded context.
-Para cada requisito, adicione imediatamente uma linha `source_legacy:`. Esta linha é obrigatória no workshop e deve apontar para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`.
+Para cada requisito, adicione imediatamente uma linha `source_legacy:`. Esta linha é obrigatória no workshop e deve apontar para um arquivo `.java`, `.jsp`, `.xml` ou `.js` em `01-arqueologia/legado-sisdnit/`, ou `[GREENFIELD] + justificativa`.
 
 **Passo 5 — Escrever critérios de aceitação.**
 Para cada requisito, escreva pelo menos 2 critérios de aceitação testáveis. Cada critério deve ser:

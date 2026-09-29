@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" font-family="Inter, system-ui, sans-serif">
   <rect width="1200" height="500" fill="#F7F7F5"/>
 
-  <text x="60" y="60" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" letter-spacing="1.9">LEGADO · SIFAP 1.0 · 1997</text>
-  <text x="60" y="110" fill="#1A1A1A" font-size="42" font-weight="500" letter-spacing="-0.8">Por que o SIFAP precisa mudar</text>
+  <text x="60" y="60" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" letter-spacing="1.9">LEGADO · sisdnit 1.0 · 1997</text>
+  <text x="60" y="110" fill="#1A1A1A" font-size="42" font-weight="500" letter-spacing="-0.8">Por que o sisdnit precisa mudar</text>
   <text x="60" y="148" fill="#737373" font-size="20">Quatro dores acumuladas depois de 29 anos em produção</text>
 
   <g transform="translate(60, 200)">

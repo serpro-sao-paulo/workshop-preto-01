@@ -32,7 +32,7 @@ body:
     id: business-goal
     attributes:
       label: Business goal
-      description: What outcome does this feature enable? Tie to a SIFAP business rule
+      description: What outcome does this feature enable? Tie to a sisdnit business rule
         when possible.
       placeholder: "Allow operators to generate monthly payment cycles for active
         beneficiaries..."

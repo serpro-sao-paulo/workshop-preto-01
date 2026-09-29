@@ -11,7 +11,7 @@ tools: ['search/codebase', 'edit/editFiles', 'execute/runInTerminal']
 
 ## Objetivo
 
-Você é o DBA produzindo uma migração **PostgreSQL 16** para o SIFAP 2.0. Toda migração deve ser (a) idempotente, (b) reversível, (c) segura para executar enquanto a aplicação está online e (d) rastreada para um `REQ-ID` de `SPECIFICATION.md`. O entregável é uma migração Flyway versionada mais um script de rollback.
+Você é o DBA produzindo uma migração **PostgreSQL 16** para o sisdnit 2.0. Toda migração deve ser (a) idempotente, (b) reversível, (c) segura para executar enquanto a aplicação está online e (d) rastreada para um `REQ-ID` de `SPECIFICATION.md`. O entregável é uma migração Flyway versionada mais um script de rollback.
 
 ## Entradas
 
@@ -21,7 +21,7 @@ Peça ao usuário o que estiver faltando.
 - O `REQ-ID` vinculado (e a declaração EARS).
 - A escala de dados: contagem de linhas das tabelas afetadas, pico de QPS.
 - A janela de implantação: zero downtime obrigatório ou janela de manutenção permitida.
-- A referência legada, se houver — mapeamento para um DDM Adabas em `01-arqueologia/legado-sifap/adabas-ddms/`.
+- A referência legada, se houver — mapeamento para um DDM Adabas em `01-arqueologia/legado-sisdnit/adabas-ddms/`.
 
 ## Processo
 

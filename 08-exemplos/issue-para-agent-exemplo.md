@@ -80,11 +80,11 @@ Quando um pagamento é aprovado (transição `PENDING → APPROVED`), o sistema 
 - [ ] Adicionar configuração ao `application.yml`:
 
   ```yaml
-  sifap:
+  sisdnit:
     notification:
       email:
         enabled: true
-        from: nao-responda@sifap.gov.br
+        from: nao-responda@sisdnit.gov.br
         retry:
           attempts: 3
           backoff-ms: 500
@@ -128,9 +128,9 @@ Quando um pagamento é aprovado (transição `PENDING → APPROVED`), o sistema 
 - **Stack:** Java 21, Spring Boot 3.3, PostgreSQL 16, Maven, Flyway.
 - **Módulo afetado:** `payment` (toca `Beneficiary` indiretamente via FK).
 - **Arquivos relevantes para o Agent ler:**
-  - `src/main/java/br/gov/client/sifap/payment/application/PaymentService.java`
-  - `src/main/java/br/gov/client/sifap/payment/domain/Payment.java`
-  - `src/main/java/br/gov/client/sifap/beneficiary/domain/Beneficiary.java`
+  - `src/main/java/br/gov/client/sisdnit/payment/application/PaymentService.java`
+  - `src/main/java/br/gov/client/sisdnit/payment/domain/Payment.java`
+  - `src/main/java/br/gov/client/sisdnit/beneficiary/domain/Beneficiary.java`
   - `src/main/resources/db/migration/` (referência de versionamento Flyway)
 - **REQ-IDs relacionadas:** REQ-PAY-005 (aprovação), REQ-PAY-006 (auditoria), REQ-PAY-008 (mascaramento de CPF — log de e-mail também deve mascarar).
 - **ADRs relevantes:**

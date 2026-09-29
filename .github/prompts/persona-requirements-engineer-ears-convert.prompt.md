@@ -9,15 +9,16 @@ tools: ['search/codebase', 'edit/editFiles']
 
 # /ears-convert
 
-## Pré-checagem dura (workshop SIFAP)
+## Pré-checagem dura (workshop sisdnit)
 Antes de escrever qualquer EARS, **exija uma fonte legada** para cada declaração de entrada. Fontes aceitáveis:
-- um arquivo em `01-arqueologia/legado-sifap/natural-programs/*.NSN` (preferido, com intervalo de linhas)
-- um arquivo em `01-arqueologia/legado-sifap/adabas-ddms/*.ddm`
+- um arquivo de código em `01-arqueologia/legado-sisdnit/**/*.java`, `**/*.jsp`, `**/*.xml` ou `**/*.js` (com intervalo de linhas quando aplicável)
 - o marcador literal `[GREENFIELD]` com uma justificativa em uma linha
+
+Arquivos `.NSM` e `.ddm` não são fontes aceitas por este gate.
 
 Se o usuário fornecer uma declaração **sem** identificar uma fonte legada, NÃO produza uma EARS. Responda:
 
-> "Ainda não posso emitir esta EARS. Informe qual arquivo em `01-arqueologia/legado-sifap/` é a fonte (por exemplo, `01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN`) ou marque como `[GREENFIELD]` com uma justificativa em uma linha. O CI rejeita EARS sem `source_legacy`."
+> "Ainda não posso emitir esta EARS. Informe qual arquivo `.java`, `.jsp`, `.xml` ou `.js` em `01-arqueologia/legado-sisdnit/` é a fonte ou marque como `[GREENFIELD]` com uma justificativa em uma linha. Arquivos `.NSM` e `.ddm` não são aceitos. O CI rejeita EARS sem `source_legacy`."
 
 Somente depois que toda declaração tiver uma fonte aceitável, prossiga para os passos abaixo.
 

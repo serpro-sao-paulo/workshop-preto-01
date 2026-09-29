@@ -23,7 +23,7 @@ body:
     id: adr-title
     attributes:
       label: Title
-      placeholder: "Use modular monolith over microservices for SIFAP 2.0"
+      placeholder: "Use modular monolith over microservices for sisdnit 2.0"
     validations:
       required: true
 
@@ -33,7 +33,7 @@ body:
       label: Context
       description: What is the issue we're seeing that motivates this decision?
       placeholder: |
-        SIFAP 2.0 must replace a monolithic Natural/Adabas system that has 15
+        sisdnit 2.0 must replace a monolithic Natural/Adabas system that has 15
         tightly-coupled business modules. The team needs to decide whether to...
     validations:
       required: true

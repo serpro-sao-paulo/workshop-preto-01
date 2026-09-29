@@ -202,7 +202,7 @@ Se você nunca abriu VS Code, Docker ou Copilot, este roteiro literal te coloca 
 | Termo do glossário não está claro | Abra `07-conceitos/03-glossario-visual.md` e use <kbd>Ctrl</kbd>+<kbd>F</kbd> |
 | VS Code/Copilot não abre | Vá para `00-SETUP.md` § "Passo 1 — Pré-requisitos" |
 | O cronograma parece muito apertado | É apertado mesmo. Confie na divisão por par — você não vai fazer tudo sozinho(a) |
-| Não programo. Vou ficar perdida(o)? | Não. Veja `01-arqueologia/legado-sifap/COMO-LER-NATURAL.md` (para o Estágio 1) e os defaults da sua `PERSONA.md` |
+| Não programo. Vou ficar perdida(o)? | Não. Veja `01-arqueologia/legado-sisdnit/COMO-LER-NATURAL.md` (para o Estágio 1) e os defaults da sua `PERSONA.md` |
 
 </details>
 

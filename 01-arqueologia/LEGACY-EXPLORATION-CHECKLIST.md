@@ -13,7 +13,7 @@
 
 > **HARD GATE ANTES DO ESTÁGIO 2.** Nenhum requisito EARS é aceito sem referência a um arquivo de programa Natural ou DDM. Requisitos greenfield (sem paralelo no legado) precisam ser marcados `[GREENFIELD]` e justificados por escrito na spec.
 >
-> Por quê? Na edição anterior do workshop, vários times pularam a exploração do legado e escreveram specs baseadas apenas no brief de modernização. O resultado foram specs que não preservavam as regras de negócio reais dos 29 anos do SIFAP. **Desta vez, o portão é obrigatório.**
+> Por quê? Na edição anterior do workshop, vários times pularam a exploração do legado e escreveram specs baseadas apenas no brief de modernização. O resultado foram specs que não preservavam as regras de negócio reais dos 29 anos do sisdnit. **Desta vez, o portão é obrigatório.**
 
 ---
 
@@ -22,8 +22,8 @@
 ```
 Todo REQ-ID no seu SPECIFICATION.md PRECISA ter uma linha `source_legacy` que
 aponte para um dos seguintes:
- - um programa .NSN específico em 01-arqueologia/legado-sifap/natural-programs/ (idealmente com faixa de linhas)
- - um arquivo .ddm específico em 01-arqueologia/legado-sifap/adabas-ddms/
+ - um programa .NSN específico em 01-arqueologia/legado-sisdnit/programs/ (idealmente com faixa de linhas)
+ - um arquivo .ddm específico em 01-arqueologia/legado-sisdnit/adabas-ddms/
  - a string literal [GREENFIELD] com justificativa de 1 linha
 ```
 
@@ -110,9 +110,9 @@ Quando começar a escrever EARS no Estágio 2, **todo requisito precisa seguir e
 ```yaml
 REQ-PAY-001:
  pattern: event-driven
- text: "Quando um ciclo de pagamento é gerado, o SIFAP deve criar registros de pagamento
+ text: "Quando um ciclo de pagamento é gerado, o sisdnit deve criar registros de pagamento
  para todo beneficiário com status ACTIVE."
- source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+ source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L120-L168
  acceptance: "10 beneficiários ativos + 2 suspensos produzem 10 registros de pagamento."
 ```
 
@@ -121,7 +121,7 @@ Caso greenfield (sem paralelo no legado):
 ```yaml
 REQ-AUTH-001:
   pattern: ubiquitous
-  text: "O SIFAP deve autenticar usuários via OAuth2 com tokens JWT."
+  text: "O sisdnit deve autenticar usuários via OAuth2 com tokens JWT."
   source_legacy: "[GREENFIELD] O legado usava autenticação por sessão de terminal; a API moderna precisa de autenticação por token."
   acceptance: "Requisições não autenticadas retornam 401."
 ```

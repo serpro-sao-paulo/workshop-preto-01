@@ -125,7 +125,7 @@ gh pr create \
   - ADR-002 sobre transações
 
   ## Source legacy
-  - 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+  - 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L120-L168
 
   ## Como testar
   - Veja seção 'acceptance' de cada REQ-ID"

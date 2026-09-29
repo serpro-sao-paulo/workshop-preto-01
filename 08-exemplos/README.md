@@ -17,7 +17,7 @@
 
 > **Por que esta pasta existe.** Templates vazios assustam. Quando você abre `SPECIFICATION.md` em branco e precisa preencher do zero, é fácil travar. Esta pasta mostra como cada artefato **fica quando bem feito** — você copia o padrão, troca os detalhes.
 >
-> **Aviso.** Os exemplos abaixo são **plausíveis mas ficcionais** — foram escritos para o caso SIFAP do workshop e refletem o que um time experiente entregaria. Não copie literalmente; use como modelo de profundidade e estilo.
+> **Aviso.** Os exemplos abaixo são **plausíveis mas ficcionais** — foram escritos para o caso sisdnit do workshop e refletem o que um time experiente entregaria. Não copie literalmente; use como modelo de profundidade e estilo.
 
 ## Índice
 

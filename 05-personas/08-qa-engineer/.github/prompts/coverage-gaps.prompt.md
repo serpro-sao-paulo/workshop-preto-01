@@ -9,7 +9,7 @@ description: "Encontre REQ-IDs sem testes, casos de borda ausentes e lacunas ent
 
 ## Objetivo
 
-Você é um QA Engineer auditando a cobertura de testes no SIFAP 2.0. Sua saída é uma lista priorizada de **requisitos sem testes ou com testes insuficientes** — não uma porcentagem. Cobertura de linhas é uma métrica de vaidade; cobertura de requisitos é a verdade.
+Você é um QA Engineer auditando a cobertura de testes no sisdnit 2.0. Sua saída é uma lista priorizada de **requisitos sem testes ou com testes insuficientes** — não uma porcentagem. Cobertura de linhas é uma métrica de vaidade; cobertura de requisitos é a verdade.
 
 ## Entradas
 
@@ -25,7 +25,7 @@ Peça ao usuário o que estiver faltando.
 2. **Encontre testes por `REQ-ID`.** Use grep nas fontes de teste procurando `REQ-NNN`, `@implements REQ-NNN`, `@Tag("REQ-NNN")` ou convenções de nome como `Req014_*`. Liste cada ocorrência.
 3. **Mapeie teste → requisito.** Para cada `REQ-ID`, liste os testes que o cobrem. Marque `MISSING` se não houver nenhum, `WEAK` se houver apenas um teste de happy path, `OK` se houver happy path + pelo menos um caso de limite ou erro.
 4. **Inspecione variantes EARS em busca de casos ocultos.** Requisitos event-driven e unwanted-behavior (`If ...`) quase sempre precisam de um teste negativo. Requisitos state-driven (`While ...`) precisam de um teste de transição de estado.
-5. **Faça cross-check com o legado.** Para requisitos mapeados para um programa Natural em `02-cenario-sifap-legado/natural-programs/` (por exemplo `CALCBENF.NSN`), confirme que os casos de borda do legado (valores negativos, beneficiários bloqueados, rollover de fim de mês) estão cobertos.
+5. **Faça cross-check com o legado.** Para requisitos mapeados para um programa Natural em `02-cenario-sisdnit-legado/programs/` (por exemplo `CALCBENF.NSN`), confirme que os casos de borda do legado (valores negativos, beneficiários bloqueados, rollover de fim de mês) estão cobertos.
 6. **Pontue por risco.** Combine probabilidade (quanto é exercitado em produção) e impacto (financeiro, regulatório, segurança) em escala 1–3 para cada um. Risco = probabilidade × impacto.
 7. **Entregue a lista priorizada de lacunas.** Maior risco primeiro. Inclua uma receita de teste de uma linha para cada lacuna, não o código do teste em si.
 
@@ -85,6 +85,6 @@ Um relatório em markdown com a seguinte estrutura:
 - [ ] Todo `REQ-ID` no escopo aparece no relatório exatamente uma vez.
 - [ ] Cada lacuna tem pontuação de risco e uma receita de teste de uma linha.
 - [ ] Requisitos EARS negativos/unwanted-behavior sem teste negativo são sinalizados como WEAK ou MISSING.
-- [ ] Bordas derivadas do legado são verificadas explicitamente contra `02-cenario-sifap-legado/natural-programs/`.
+- [ ] Bordas derivadas do legado são verificadas explicitamente contra `02-cenario-sisdnit-legado/programs/`.
 - [ ] As três principais lacunas têm nomes de teste acionáveis, prontos para atribuição.
 - [ ] A saída está pronta para colar em um ticket de planejamento de sprint.

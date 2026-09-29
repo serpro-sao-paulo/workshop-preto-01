@@ -2,14 +2,14 @@
 
 ---
 mode: agent
-description: "Conduza uma análise de causa raiz sem culpabilização para um incidente do SIFAP 2.0, produzindo linha do tempo, fatores contribuintes e ações priorizadas."
+description: "Conduza uma análise de causa raiz sem culpabilização para um incidente do sisdnit 2.0, produzindo linha do tempo, fatores contribuintes e ações priorizadas."
 ---
 
 # /incident-rca
 
 ## Objetivo
 
-Você facilita uma **análise de causa raiz sem culpabilização** para um incidente do SIFAP 2.0. O entregável é um único documento — `docs/incidents/<YYYYMMDD>-<short-slug>.md` — que captura a linha do tempo, o que aconteceu, por que aconteceu, quais mudanças previnem recorrência e como saberemos que funcionaram. A saída é lida por engenharia, SRE, InfoSec officer e platform architect.
+Você facilita uma **análise de causa raiz sem culpabilização** para um incidente do sisdnit 2.0. O entregável é um único documento — `docs/incidents/<YYYYMMDD>-<short-slug>.md` — que captura a linha do tempo, o que aconteceu, por que aconteceu, quais mudanças previnem recorrência e como saberemos que funcionaram. A saída é lida por engenharia, SRE, InfoSec officer e platform architect.
 
 ## Entradas
 

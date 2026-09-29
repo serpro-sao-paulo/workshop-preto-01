@@ -9,14 +9,14 @@ description: "Gere uma classe de teste completa para um único REQ-ID, com happy
 
 ## Objetivo
 
-Você está escrevendo a classe de teste para **um `REQ-ID` específico** no SIFAP 2.0. Você produz testes JUnit 5 (Java) ou Vitest (TypeScript) prontos para colar, cobrindo caminho feliz, limites e casos negativos — e para por aí. Você não implementa código de produção; você não modifica a spec.
+Você está escrevendo a classe de teste para **um `REQ-ID` específico** no sisdnit 2.0. Você produz testes JUnit 5 (Java) ou Vitest (TypeScript) prontos para colar, cobrindo caminho feliz, limites e casos negativos — e para por aí. Você não implementa código de produção; você não modifica a spec.
 
 ## Entradas
 
 Peça ao usuário o que estiver faltando.
 
 - O `REQ-ID`, sua declaração EARS completa e seus critérios de aceitação em `SPECIFICATION.md`.
-- A classe ou componente sob teste (por exemplo `br.gov.sifap.payments.PaymentService` ou `app/beneficiaries/page.tsx`).
+- A classe ou componente sob teste (por exemplo `br.gov.sisdnit.payments.PaymentService` ou `app/beneficiaries/page.tsx`).
 - O framework de teste — JUnit 5 + AssertJ + Mockito (backend) ou Vitest + Testing Library (frontend).
 - Quaisquer fixtures ou builders de teste existentes para reutilizar (`src/test/resources/fixtures/`, `__fixtures__/`).
 
@@ -60,7 +60,7 @@ Sua resposta final deve incluir:
 > | Beneficiário ativo ainda recebe desembolso (regressão) | `shouldDisburseWhenBeneficiaryActive` |
 > | Limite: `status=PENDING` não é "suspended" | `shouldDisburseWhenBeneficiaryPending` |
 >
-> Arquivo: `backend/src/test/java/br/gov/sifap/payments/PaymentServiceTest.java`
+> Arquivo: `backend/src/test/java/br/gov/sisdnit/payments/PaymentServiceTest.java`
 >
 > ```java
 > @Tag("REQ-PAY-014")

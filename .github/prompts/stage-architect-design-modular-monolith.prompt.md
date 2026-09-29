@@ -23,7 +23,7 @@ Depois que os bounded contexts forem decididos e a spec EARS estiver escrita. No
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O nome base do package Java (por exemplo, `com.datacorp.sifap`)
+- O nome base do package Java (por exemplo, `com.datacorp.sisdnit`)
 - Preferência de estilo de comunicação inter-context: somente interfaces, domain events ou misto
 - Quaisquer restrições não funcionais (por exemplo, "deve suportar 1000 usuários concorrentes" — se declaradas na spec)
 

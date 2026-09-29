@@ -24,7 +24,7 @@
 > 🧭 **Antes de entrar neste estágio** (1 minuto de leitura):
 >
 > - **Primeiro contato?** Leia [`../00-COMECE-AQUI.md`](../00-COMECE-AQUI.md) primeiro.
-> - **Não programa em Natural?** [`../01-arqueologia/legado-sifap/COMO-LER-NATURAL.md`](legado-sifap/COMO-LER-NATURAL.md) ensina a extrair regras dos `.NSN` sem saber a sintaxe.
+> - **Não programa em Natural?** [`../01-arqueologia/legado-sisdnit/COMO-LER-NATURAL.md`](legado-sisdnit/COMO-LER-NATURAL.md) ensina a extrair regras dos `.NSN` sem saber a sintaxe.
 > - **Tropeçou em alguma sigla** (DDM, MU, PE, BR-NNN)? [`../07-conceitos/03-glossario-visual.md`](../07-conceitos/03-glossario-visual.md) explica em 3 linhas.
 > - **Quer ver como fica o entregável**? [`../08-exemplos/business-rules-catalog-exemplo.md`](../08-exemplos/business-rules-catalog-exemplo.md) mostra um catálogo bem feito.
 > - **Cheat-sheet do Copilot** (Ask vs Plan vs Agent): [`../09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md).
@@ -73,7 +73,7 @@ Um facilitador (cordão azul) passa por volta de **13h50** e valida esses artefa
 
 Um sistema legado raramente tem documentação atualizada. O que ele tem é o **código**, e o código carrega regras de negócio que ninguém escreveu em nenhum outro lugar. Se você modernizar olhando só para o brief de modernização, você reescreve uma versão moderna **do brief**, não do sistema. E o sistema é o que está em produção.
 
-O SIFAP tem 29 anos. Tem regras tributárias de 2003 ainda válidas. Tem cálculos de safra que só fazem sentido se você conhece a história. Tem um relatório que o TCU aceita há 23 anos com o mesmo layout. Você não pode modernizar o que você não leu.
+O sisdnit tem 29 anos. Tem regras tributárias de 2003 ainda válidas. Tem cálculos de safra que só fazem sentido se você conhece a história. Tem um relatório que o TCU aceita há 23 anos com o mesmo layout. Você não pode modernizar o que você não leu.
 
 A arqueologia digital existe para isso: extrair conhecimento do código antes de tocar nele.
 
@@ -81,7 +81,7 @@ A arqueologia digital existe para isso: extrair conhecimento do código antes de
 
 ## Como pensar nisso (modelo mental antes do passo a passo)
 
-Pense no SIFAP como **uma cidade que vocês cinco vão escavar em 3 horas**. Cada par é uma equipe arqueológica responsável por um quarteirão. Ninguém tem tempo de escavar a cidade inteira sozinho, então a regra é simples:
+Pense no sisdnit como **uma cidade que vocês cinco vão escavar em 3 horas**. Cada par é uma equipe arqueológica responsável por um quarteirão. Ninguém tem tempo de escavar a cidade inteira sozinho, então a regra é simples:
 
 - **Cada par fica com 3 programas.** Quinze programas divididos por cinco pares dá três cada. Sem orfãos.
 - **Tudo que você acha vai num caderno comum** (os arquivos templates dentro deste folder). Outros pares vão ler o que você escreveu para construir a especificação depois.
@@ -94,14 +94,14 @@ O resultado bom não é "eu li tudo". O resultado bom é "extraí o que importa 
 
 ## Onde está o legado
 
-Está dentro do próprio kit, em [`../01-arqueologia/legado-sifap/`](legado-sifap/):
+Está dentro do próprio kit, em [`../01-arqueologia/legado-sisdnit/`](legado-sisdnit/):
 
 | Recurso                          | Caminho                                                                    | Quantidade                  |
 | -------------------------------- | -------------------------------------------------------------------------- | --------------------------- |
-| Programas Natural                | [`../01-arqueologia/legado-sifap/natural-programs/`](legado-sifap/natural-programs/)               | 15 arquivos `.NSN`          |
-| DDMs Adabas                      | [`../01-arqueologia/legado-sifap/adabas-ddms/`](legado-sifap/adabas-ddms/)                         | 4 arquivos `.ddm`           |
-| Documentação parcial (1997-2018) | [`../01-arqueologia/legado-sifap/legacy-docs/`](legado-sifap/legacy-docs/)                         | 3 documentos desatualizados |
-| README do sistema                | [`../01-arqueologia/legado-sifap/README.md`](legado-sifap/README.md)                               | 1 arquivo                   |
+| Programas Natural                | [`../01-arqueologia/legado-sisdnit/programs/`](legado-sisdnit/programs/)               | 15 arquivos `.NSN`          |
+| DDMs Adabas                      | [`../01-arqueologia/legado-sisdnit/adabas-ddms/`](legado-sisdnit/adabas-ddms/)                         | 4 arquivos `.ddm`           |
+| Documentação parcial (1997-2018) | [`../01-arqueologia/legado-sisdnit/legacy-docs/`](legado-sisdnit/legacy-docs/)                         | 3 documentos desatualizados |
+| README do sistema                | [`../01-arqueologia/legado-sisdnit/README.md`](legado-sisdnit/README.md)                               | 1 arquivo                   |
 
 > Os documentos em `legacy-docs/` estão em português de propósito — são parte da imersão. Eles representam o que o cliente tinha guardado entre 1997 e 2018.
 
@@ -129,13 +129,13 @@ Cada par lidera 3 programas. **Nenhum programa pode ficar sem leitor.**
 
 **O objetivo da primeira hora é apenas entender o terreno.** Você ainda não vai extrair regras, só vai criar o mapa.
 
-1. **Todo o time, primeiros 15 minutos:** abra [`../01-arqueologia/legado-sifap/README.md`](legado-sifap/README.md) e leia o histórico do SIFAP. **Por que esse passo existe:** se você não sabe que o `RELPGT.NSN` é o relatório aceito pelo TCU desde 2003, você pode propor "modernizar o layout" e quebrar uma auditoria externa. Contexto evita decisão burra.
+1. **Todo o time, primeiros 15 minutos:** abra [`../01-arqueologia/legado-sisdnit/README.md`](legado-sisdnit/README.md) e leia o histórico do sisdnit. **Por que esse passo existe:** se você não sabe que o `RELPGT.NSN` é o relatório aceito pelo TCU desde 2003, você pode propor "modernizar o layout" e quebrar uma auditoria externa. Contexto evita decisão burra.
 
 2. **Pares 1 e 5 em colaboração:** abra cada um dos 15 programas `.NSN` em modo leitura rápida (só os comentários e as constantes) e comece a popular [`glossary.md`](glossary.md). **Como pensar:** vocês não estão entendendo programas, estão **catalogando vocabulário**. Qualquer abreviação críptica (`DSCT`, `BENF`, `PE`, `MU`, `CTC`) é entrada de glossário. Meta: 30+ termos ao fim do dia.
 
 3. **Par 2:** comece a desenhar o [`dependency-map.md`](dependency-map.md). Use o Copilot Chat com o prompt: _"Liste todas as ocorrências de CALLNAT nestes 15 arquivos e desenhe um diagrama Mermaid."_ Você vai descobrir, por exemplo, que `BATCHPGT` chama `VALELEG`, `CALCBENF`, `CALCCORR` e `CALCDSCT`. Esse grafo é a base dos bounded contexts do Estágio 2.
 
-4. **Par 4 com Par 3 como revisor:** abra os 4 DDMs em [`../01-arqueologia/legado-sifap/adabas-ddms/`](legado-sifap/adabas-ddms/). Para cada DDM, liste todos os campos com tipo e tamanho, marcando `MU` (multi-valor) e `PE` (grupo periódico). **Por que isso importa:** esses dois construtos não existem em PostgreSQL relacional puro. Onde você ver `MU TELEFONES`, sabe que vai virar uma tabela `beneficiary_phone` no Estágio 3.
+4. **Par 4 com Par 3 como revisor:** abra os 4 DDMs em [`../01-arqueologia/legado-sisdnit/adabas-ddms/`](legado-sisdnit/adabas-ddms/). Para cada DDM, liste todos os campos com tipo e tamanho, marcando `MU` (multi-valor) e `PE` (grupo periódico). **Por que isso importa:** esses dois construtos não existem em PostgreSQL relacional puro. Onde você ver `MU TELEFONES`, sabe que vai virar uma tabela `beneficiary_phone` no Estágio 3.
 
 > **Ao fim da Hora 1**, faça um stand-up de 2 minutos: cada par diz em uma frase o que descobriu. Se um par está perdido, esse é o momento de pedir ajuda.
 
@@ -164,7 +164,7 @@ Cada par lidera 3 programas. **Nenhum programa pode ficar sem leitor.**
 
 - `BR-NNN` (numeração sequencial)
 - Descrição da regra em uma frase
-- **`Programa Fonte` preenchido** com `01-arqueologia/legado-sifap/natural-programs/ARQUIVO.NSN#L<início>-L<fim>` (formato preferido) ou no mínimo o nome do arquivo
+- **`Programa Fonte` preenchido** com `01-arqueologia/legado-sisdnit/programs/ARQUIVO.NSN#L<início>-L<fim>` (formato preferido) ou no mínimo o nome do arquivo
 - Campos DDM envolvidos
 - Nível de risco (CRÍTICO / ALTO / MÉDIO / BAIXO)
 
@@ -210,16 +210,16 @@ A regra que está escondida aqui é: **descontos têm teto de 30% do valor bruto
 
 | ID     | Regra                                                                                   | Programa Fonte                                   | Campos DDM                                                               | Nível de Risco | Notas                                                                   |
 | ------ | --------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------ | -------------- | ----------------------------------------------------------------------- |
-| BR-013 | Desconto total não pode exceder 30% do valor bruto, exceto descontos judiciais (tipo J) | `01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148` | `PAGAMENTO.VLR-BRUTO`, `PAGAMENTO.VLR-TOTAL-DSCT`, `PAGAMENTO.TIPO-DSCT` | CRÍTICO        | Regra financeira, viola limite cria prejuízo. Tipo 'J' = exceção legal. |
+| BR-013 | Desconto total não pode exceder 30% do valor bruto, exceto descontos judiciais (tipo J) | `01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148` | `PAGAMENTO.VLR-BRUTO`, `PAGAMENTO.VLR-TOTAL-DSCT`, `PAGAMENTO.TIPO-DSCT` | CRÍTICO        | Regra financeira, viola limite cria prejuízo. Tipo 'J' = exceção legal. |
 
 **Uma futura REQ-ID no Estágio 2** (já no formato com `source_legacy`):
 
 ```yaml
 REQ-PAY-013:
  pattern: state-driven
- text: "Enquanto o tipo de desconto NÃO for 'J' (judicial), o SIFAP deve limitar
+ text: "Enquanto o tipo de desconto NÃO for 'J' (judicial), o sisdnit deve limitar
  o desconto total a 30% do valor bruto do pagamento."
- source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
+ source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148
  acceptance:
  - "Dado pagamento bruto R$ 1000 e descontos solicitados R$ 400 tipo I, o desconto aplicado é R$ 300."
  - "Dado pagamento bruto R$ 1000 e descontos R$ 400 tipo J, o desconto aplicado é R$ 400."

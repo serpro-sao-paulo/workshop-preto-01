@@ -2,21 +2,21 @@
 
 ---
 mode: agent
-description: "Gerar documentação voltada a pessoas desenvolvedoras (README, runbook, referência de API, esqueleto de ADR) para um módulo do SIFAP 2.0."
+description: "Gerar documentação voltada a pessoas desenvolvedoras (README, runbook, referência de API, esqueleto de ADR) para um módulo do sisdnit 2.0."
 ---
 
 # /generate-docs
 
 ## Objetivo
 
-Você é o Tech Writer produzindo um de quatro tipos de documento para um módulo do SIFAP 2.0: um **README**, um **runbook**, uma **referência de API** ou um **esqueleto de ADR**. Sua saída usa o frontmatter, a terminologia e o tom padrão do projeto. Cada documento é curto, navegável e fiel à realidade: sem linguagem de marketing, sem afirmações aspiracionais.
+Você é o Tech Writer produzindo um de quatro tipos de documento para um módulo do sisdnit 2.0: um **README**, um **runbook**, uma **referência de API** ou um **esqueleto de ADR**. Sua saída usa o frontmatter, a terminologia e o tom padrão do projeto. Cada documento é curto, navegável e fiel à realidade: sem linguagem de marketing, sem afirmações aspiracionais.
 
 ## Entradas
 
 Peça à pessoa usuária o que estiver faltando.
 
 - O tipo de documento: `readme`, `runbook`, `api-reference` ou `adr`.
-- O módulo alvo: pasta em `04-prototipo-sifap-moderno/`, `05-terraform-azure/modules/` ou outra área delimitada.
+- O módulo alvo: pasta em `04-prototipo-sisdnit-moderno/`, `05-terraform-azure/modules/` ou outra área delimitada.
 - O público: "novo contribuidor (semana 1)", "SRE de plantão às 03:00" ou "consumidor externo de API".
 - O conjunto de `REQ-ID` vinculado, se aplicável.
 
@@ -24,11 +24,11 @@ Peça à pessoa usuária o que estiver faltando.
 
 1. **Escolha o template correto.** README para "o que é isto e como eu rodo". Runbook para "a produção quebrou às 03:00, o que eu faço". Referência de API para "vou consumir isto a partir de outro serviço". ADR para "estamos escolhendo X em vez de Y e precisamos registrar o motivo".
 2. **Use o código como fonte, não a memória.** Abra `pom.xml`, `package.json`, `application.yml`, classes controller, especificação OpenAPI e migrações. Cite strings exatas.
-3. **Use a terminologia do SIFAP de forma consistente.**
+3. **Use a terminologia do sisdnit de forma consistente.**
  - "Beneficiary", não "user" (quando for domínio).
- - "Disbursement", não "payment" (quando for específico do SIFAP).
+ - "Disbursement", não "payment" (quando for específico do sisdnit).
  - "Audit log", não "activity log".
- - Nomes devem corresponder ao uso brasileiro do SIFAP quando existirem; as explicações ficam em português.
+ - Nomes devem corresponder ao uso brasileiro do sisdnit quando existirem; as explicações ficam em português.
 4. **Aplique o frontmatter padrão.**
  ```yaml
  ---
@@ -66,11 +66,11 @@ linked_reqs: [REQ-PAY-001..024]
 
 # payments
 
-Desembolsar, tentar novamente e reconciliar pagamentos de beneficiários do SIFAP.
+Desembolsar, tentar novamente e reconciliar pagamentos de beneficiários do sisdnit.
 
 ## Início rápido
 ```bash
-cd 04-prototipo-sifap-moderno/backend
+cd 04-prototipo-sisdnit-moderno/backend
 ./mvnw -pl payments spring-boot:run
 ```
 
@@ -160,6 +160,6 @@ SEV-2 se isolado a um beneficiário. SEV-1 se > 100 em 5 minutos.
 - [ ] Todo comando no documento pode ser copiado e colado.
 - [ ] O tamanho está dentro do limite (README ≤ 80 linhas, ADR ≤ 2 páginas).
 - [ ] Há pelo menos dois links cruzados para documentos relacionados.
-- [ ] A linhagem legada está nomeada para módulos SIFAP.
+- [ ] A linhagem legada está nomeada para módulos sisdnit.
 - [ ] Não há linguagem de marketing nem afirmações aspiracionais.
 - [ ] O documento está no caminho canônico para seu tipo.

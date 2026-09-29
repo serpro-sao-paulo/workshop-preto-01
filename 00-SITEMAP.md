@@ -28,7 +28,7 @@
 @archaeologist          @architect              @builder              @evolution
                                                                           │
                                                                           ▼
-                                                                     👸 SIFAP 2.0
+                                                                     👸 sisdnit 2.0
 ```
 
 ---
@@ -44,7 +44,7 @@
 | **00** | [`00-SITEMAP.md`](00-SITEMAP.md) | Este arquivo |
 | **00** | [`00-GIT-WORKFLOW.md`](00-GIT-WORKFLOW.md) | Branches, PRs, merges |
 | **01** | [`01-arqueologia/`](01-arqueologia/) | 🟦 ESTÁGIO 1 — ler legado |
-| **01** | [`01-arqueologia/legado-sifap/`](01-arqueologia/legado-sifap/) | 15 .NSN + 4 DDMs |
+| **01** | [`01-arqueologia/legado-sisdnit/`](01-arqueologia/legado-sisdnit/) | 15 .NSN + 4 DDMs |
 | **02** | [`02-spec-moderna/`](02-spec-moderna/) | 🟫 ESTÁGIO 2 — EARS, ADRs, C4 |
 | **03** | [`03-implementacao/`](03-implementacao/) | 🟧 ESTÁGIO 3 — Java + Next.js |
 | **04** | [`04-evolucao/`](04-evolucao/) | 🏰 ESTÁGIO 4 — Agent + Terraform |
@@ -69,7 +69,7 @@ flowchart LR
     classDef stage3 fill:#F1F8E3,stroke:#7FBA00,color:#0A0A0A
     classDef stage4 fill:#FFE5DC,stroke:#F25022,color:#0A0A0A
 
-    LEGACY[📜 legado-sifap<br/>15 .NSN + 4 DDMs]:::stage1
+    LEGACY[📜 legado-sisdnit<br/>15 .NSN + 4 DDMs]:::stage1
     GLOSS[glossary.md]:::stage1
     BR[business-rules-catalog.md]:::stage1
     DEPS[dependency-map.md]:::stage1
@@ -116,7 +116,7 @@ flowchart LR
 | **TL ou Dev (Par 3)** | [05-personas/06-developer/PERSONA.md](05-personas/06-developer/PERSONA.md) | [08-exemplos/PaymentService-exemplo.java](08-exemplos/PaymentService-exemplo.java) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
 | **DBA ou QA (Par 4)** | [05-personas/07-dba/PERSONA.md](05-personas/07-dba/PERSONA.md) | [08-exemplos/V1__init_payment_module-exemplo.sql](08-exemplos/V1__init_payment_module-exemplo.sql) | [03-implementacao/GUIDE.md](03-implementacao/GUIDE.md) |
 | **DevOps ou TW (Par 5)** | [05-personas/09-devops-engineer/PERSONA.md](05-personas/09-devops-engineer/PERSONA.md) | [08-exemplos/issue-para-agent-exemplo.md](08-exemplos/issue-para-agent-exemplo.md) | [04-evolucao/GUIDE.md](04-evolucao/GUIDE.md) |
-| **Não programa em Natural** | [01-arqueologia/legado-sifap/COMO-LER-NATURAL.md](01-arqueologia/legado-sifap/COMO-LER-NATURAL.md) | [01-arqueologia/GUIDE.md](01-arqueologia/GUIDE.md) | (sua persona) |
+| **Não programa em Natural** | [01-arqueologia/legado-sisdnit/COMO-LER-NATURAL.md](01-arqueologia/legado-sisdnit/COMO-LER-NATURAL.md) | [01-arqueologia/GUIDE.md](01-arqueologia/GUIDE.md) | (sua persona) |
 | **Encontrou termo estranho** | [07-conceitos/03-glossario-visual.md](07-conceitos/03-glossario-visual.md) | (volte de onde veio) | — |
 
 ---

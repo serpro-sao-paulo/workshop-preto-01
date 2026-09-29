@@ -85,7 +85,7 @@ Transformar spec em código rodando. Usar o Copilot deliberadamente — Ask para
 
 ## 3 prompts de exemplo
 
-1. **(Chat)** _"Explique o programa CALCDSCT.NSN do SIFAP legado e identifique a regra de teto de desconto. Depois me ajude a implementar o equivalente em Java seguindo o padrão do `PaymentService` existente."_
+1. **(Chat)** _"Explique o programa CALCDSCT.NSN do sisdnit legado e identifique a regra de teto de desconto. Depois me ajude a implementar o equivalente em Java seguindo o padrão do `PaymentService` existente."_
 2. **(Plan)** _"Selecione BeneficiaryEntity.java, BeneficiaryService.java e BeneficiaryController.java. Planeje a adição de um campo 'email' ao beneficiário: entity, service, controller, migration e teste."_
 3. **(Agent)** _"Implemente a feature descrita nesta Issue: [cole a issue]. Respeite a arquitetura de 3 camadas e inclua testes."_
 

@@ -20,10 +20,10 @@
 > Preencha este relatório ao final do Estágio 4.
 > Seja honesto — queremos aprender o que funciona e o que não funciona. Avaliação positiva forçada não ajuda ninguém.
 
-**Time**: [Nome do Time]
+**Time**: Par 5 · Operações (DevOps + Tech Writer)
 **Data**: 19/05/2026
-**Edição**:
-**Participantes**: [Liste os membros]
+**Edição**: Workshop sisdnit — Legado para Azure
+**Participantes**: DevOps Engineer, Tech Writer
 
 ---
 
@@ -31,17 +31,17 @@
 
 ### Issue 1
 
-- **Título**: [Título da Issue]
-- **Link**: [URL da Issue no GitHub]
-- **Descrição resumida**: [1–2 frases]
-- **Tempo para escrever a Issue**: \_\_\_ minutos
+- **Título**: [REQ-AUD-01] Trilha de auditoria deve incluir eventos de exclusão (corrigir MYS-018)
+- **Link**: ver [`issue-par5-trilha-auditoria.md`](issue-par5-trilha-auditoria.md) (Issue real ainda não aberta no GitHub neste ambiente de workshop)
+- **Descrição resumida**: implementar serviço de auditoria que exibe TODAS as ações, corrigindo a omissão silenciosa de exclusões (`EX`) herdada do `RELAUDIT.NSN`.
+- **Tempo para escrever a Issue**: ~15 minutos
 
 ### Issue 2
 
-- **Título**: [Título da Issue]
-- **Link**: [URL da Issue no GitHub]
-- **Descrição resumida**: [1–2 frases]
-- **Tempo para escrever a Issue**: \_\_\_ minutos
+- **Título**: (não criada) — candidata: [REQ-CPF-01] Máscara única de CPF corrigindo o vazamento de MYS-019
+- **Link**: —
+- **Descrição resumida**: unificar a mascaração de CPF (`***.***.XXX-XX`) sobre string de 11 dígitos, eliminando o ramo que vaza os 3 primeiros dígitos.
+- **Tempo para escrever a Issue**: —
 
 ---
 
@@ -49,12 +49,12 @@
 
 ### PR 1 (da Issue 1)
 
-- **Link**: [URL do PR]
-- **Tempo que o Agent levou**: \_\_\_ minutos
-- **Arquivos modificados**: \_\_\_
-- **Testes criados**: Sim / Não
-- **Precisou de ajustes manuais?**: Sim / Não
-- **Foi mergeado?**: Sim / Não
+- **Link**: — (não houve PR de Agent na nuvem; o workshop usou os **agentes de estágio** no editor: `@archaeologist` no Estágio 1 e `@evolution` no Estágio 4)
+- **Tempo que o Agent levou**: —
+- **Arquivos modificados**: —
+- **Testes criados**: Não (a Issue REQ-AUD-01 ficou pronta para disparo; implementação não executada por Agent de PR)
+- **Precisou de ajustes manuais?**: —
+- **Foi mergeado?**: Não
 
 ### PR 2 (da Issue 2)
 
@@ -71,9 +71,9 @@
 
 > Liste o que o Agent fez bem. Exemplos: entendeu a arquitetura, criou testes bons, seguiu padrões, etc.
 
-1. [O que funcionou]
-2.
-3.
+1. Os agentes de estágio respeitaram as convenções do kit (formato de tabela de regras, âncoras `ARQUIVO.NSN#Ln`, resumos estatísticos) sem precisar repetir as instruções.
+2. O `@archaeologist` correlacionou bem mistério ↔ regra ↔ código (MYS-018/019 ligados a BR-049/050 e às linhas do `RELAUDIT`/`CONSBENF`).
+3. O `@evolution` gerou CI e esqueleto Terraform coerentes com o princípio "plan-only, nunca apply".
 
 ---
 
@@ -81,9 +81,9 @@
 
 > O que vocês não esperavam? Positivo ou negativo.
 
-1. [Surpresa]
-2.
-3.
+1. A quantidade de "backdoors" e omissões documentadas com comentários do tipo "NAO CORRIGIR SEM APROVACAO DA AUDITORIA" — o legado sabia dos bugs e os congelou.
+2. Quanto a rastreabilidade (BR → REQ → linha Natural) facilita escrever uma Issue boa para o Agent depois.
+3. O custo baixo de manter o pipeline separado para o protótipo (`prototipo-backend.yml`) em vez de mexer no `ci.yml` genérico.
 
 ---
 
@@ -91,9 +91,9 @@
 
 > Onde o Agent errou, não entendeu ou produziu código ruim?
 
-1. [Falha]
-2.
-3.
+1. O backend do protótipo usa Maven puro (sem `mvnw`), então o `ci.yml` original (que chama `./mvnw`) não serviria — foi preciso um workflow dedicado.
+2. O kit referencia pastas (`05-terraform-azure/`, `infra/`) que não existem nesta sub-pasta; foi preciso criar o esqueleto `prototipo/infra` do zero.
+3. Não houve execução real de Agent de PR na nuvem neste ambiente — a Issue ficou pronta, mas não virou PR mergeado.
 
 ### Tipos de falha encontrados
 
@@ -104,7 +104,7 @@
 - [ ] Lógica de negócio errada
 - [ ] Faltou tratamento de erros
 - [ ] Credenciais ou dados sensíveis no código
-- [ ] Outro: \_\_\_
+- [x] Outro: referências a pastas/comandos inexistentes no kit (mvnw, infra/) que exigiram adaptação manual
 
 ---
 
@@ -112,12 +112,12 @@
 
 | Critério                | Nota (1–5) | Comentário |
 | ----------------------- | ---------- | ---------- |
-| Corretude do código     |            |            |
-| Aderência à arquitetura |            |            |
-| Qualidade dos testes    |            |            |
-| Documentação gerada     |            |            |
-| Clareza do código       |            |            |
-| **Média geral**         |            |            |
+| Corretude do código     | 4          | CI e Terraform válidos; backend do Par 3/4 segue verde (25 testes). |
+| Aderência à arquitetura | 5          | Respeitou pacotes `br.gov.client.sisdnit.*` e camadas domain/application. |
+| Qualidade dos testes    | 4          | Testes existentes preservados; Issue REQ-AUD-01 já define os casos de teste. |
+| Documentação gerada     | 5          | Runbook, glossário e âncoras de rastreabilidade consistentes. |
+| Clareza do código       | 4          | YAML/HCL legíveis e comentados (plan-only sinalizado). |
+| **Média geral**         | **4,4**    | Bom para artefatos de Operação; falta validar um PR de Agent real. |
 
 Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 
@@ -126,12 +126,12 @@ Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 ## 7. Você usaria o Agent novamente?
 
 - [ ] Sim, para tudo — economiza muito tempo
-- [ ] Sim, para tarefas simples e bem definidas
+- [x] Sim, para tarefas simples e bem definidas
 - [ ] Talvez, mas precisa de muita supervisão
 - [ ] Não, gasto mais tempo revisando do que implementando
 - [ ] Não tenho certeza ainda
 
-**Justificativa**: [Explique sua escolha]
+**Justificativa**: para artefatos de Operação (CI, Terraform plan, runbook, glossário) e para tarefas com Issue bem escrita e rastreável, o Agent acelera muito. Para regras de negócio com backdoors do legado, ainda exige revisão humana cuidadosa.
 
 ---
 
@@ -139,9 +139,9 @@ Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 
 > Se outra equipe fosse usar o Agent pela primeira vez, o que vocês diriam?
 
-1. [Dica]
-2.
-3.
+1. Escreva a Issue com âncoras para o código legado (`ARQUIVO.NSN#Ln`) e para a BR/MYS — o PR sai muito melhor.
+2. Mantenha pipelines de protótipo separados do CI genérico para não quebrar quando faltar `mvnw`/`infra`.
+3. Deixe explícito "plan-only, nunca apply" em qualquer Issue de infraestrutura.
 
 ---
 
@@ -149,11 +149,11 @@ Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 
 | Aspecto     | Modo Agent | Copilot Chat | Manual |
 | ----------- | ---------- | ------------ | ------ |
-| Velocidade  |            |              |        |
-| Qualidade   |            |              |        |
-| Controle    |            |              |        |
-| Aprendizado |            |              |        |
-| Quando usar |            |              |        |
+| Velocidade  | Alta       | Média        | Baixa  |
+| Qualidade   | Boa (com Issue clara) | Boa (com contexto) | Alta (mais lento) |
+| Controle    | Médio      | Alto         | Total  |
+| Aprendizado | Médio      | Alto         | Alto   |
+| Quando usar | Tarefa bem definida e rastreável | Explorar/depurar | Decisão crítica de negócio |
 
 ---
 
@@ -161,7 +161,7 @@ Escala: 1=Péssimo, 2=Ruim, 3=Aceitável, 4=Bom, 5=Excelente
 
 > Espaço para qualquer observação adicional sobre a experiência com IA generativa no desenvolvimento:
 
-[Escreva aqui]
+O maior ganho do Par 5 foi transformar achados de arqueologia (MYS-018 omissão de exclusões; MYS-019 vazamento de CPF) em uma Issue acionável e em pipeline/infra reproduzíveis. O fluxo "arqueólogo documenta → Issue rastreável → Agent implementa" é promissor, desde que a rastreabilidade BR → REQ → linha Natural seja mantida.
 
 
 ---

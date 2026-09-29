@@ -2,7 +2,7 @@
 
 ---
 mode: agent
-description: "Escreva CONSTITUTION.md — as regras e princípios inegociáveis que governam a construção de uma feature do SIFAP 2.0."
+description: "Escreva CONSTITUTION.md — as regras e princípios inegociáveis que governam a construção de uma feature do sisdnit 2.0."
 ---
 
 # /create-constitution
@@ -54,7 +54,7 @@ O entregável é `specs/<NNN>-<feature>/CONSTITUTION.md`:
 |----|------|----------------------|
 | C1 | Serviços de backend rodam somente em Java 21 (Temurin) e Spring Boot 3.3. | Build falha. |
 | C2 | Frontend roda em Next.js 15 com TypeScript `strict: true`. Sem `any`. | Lint bloqueia merge. |
-| C3 | PostgreSQL 16 é o único sistema de registro para dados do SIFAP. | Exige exceção de InfoSec. |
+| C3 | PostgreSQL 16 é o único sistema de registro para dados do sisdnit. | Exige exceção de InfoSec. |
 | C4 | Toda infraestrutura de nuvem é Azure. Sem multi-cloud nesta funcionalidade. | Novo ADR + fórum de arquitetura obrigatórios. |
 
 ## 2. Segurança

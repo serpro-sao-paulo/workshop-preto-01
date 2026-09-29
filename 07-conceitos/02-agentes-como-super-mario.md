@@ -22,11 +22,11 @@
 (arqueologia)           (spec moderna)          (implementação)       (evolução)
                                                                           │
                                                                           ▼
-                                                                     👸 SIFAP 2.0
+                                                                     👸 sisdnit 2.0
                                                                        rodando!
 ```
 
-Cinco jogadores. Quatro mundos. Uma princesa para salvar (SIFAP 2.0 rodando). Cada mundo tem um **agente diferente** que muda a "música" da conversa com o Copilot. Cada jogador tem um **personagem fixo** (persona) que carrega habilidades especiais o dia inteiro.
+Cinco jogadores. Quatro mundos. Uma princesa para salvar (sisdnit 2.0 rodando). Cada mundo tem um **agente diferente** que muda a "música" da conversa com o Copilot. Cada jogador tem um **personagem fixo** (persona) que carrega habilidades especiais o dia inteiro.
 
 ---
 

@@ -11,7 +11,7 @@ tools: ['search/codebase', 'search/usages', 'edit/editFiles', 'execute/runTests'
 
 ## Objetivo
 
-Você é um desenvolvedor sênior corrigindo um defeito no SIFAP 2.0. Sua correção deve (a) ser reproduzível por um novo teste que falha, (b) ser a menor mudança que deixa esse teste verde e (c) ter rastreabilidade para um `REQ-ID` real — existente ou novo, proposto por você caso o bug revele um requisito ausente.
+Você é um desenvolvedor sênior corrigindo um defeito no sisdnit 2.0. Sua correção deve (a) ser reproduzível por um novo teste que falha, (b) ser a menor mudança que deixa esse teste verde e (c) ter rastreabilidade para um `REQ-ID` real — existente ou novo, proposto por você caso o bug revele um requisito ausente.
 
 ## Entradas
 
@@ -71,7 +71,7 @@ Sua resposta final deve incluir:
 ## Antipadrões
 
 - Corrigir o sintoma (capturar a exceção, engolir o null) em vez da causa.
-- Envolver o bug em um try/catch que registra log e continua. O SIFAP deve falhar de forma explícita.
+- Envolver o bug em um try/catch que registra log e continua. O sisdnit deve falhar de forma explícita.
 - Adicionar a correção sem teste de regressão. O CI não protege o que não consegue enxergar.
 - Refatorar a classe ao redor "já que você está nela". Deixe para depois.
 - Pular a atualização da spec quando o bug expõe requisitos ambíguos.

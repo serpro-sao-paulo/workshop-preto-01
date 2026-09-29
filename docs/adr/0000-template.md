@@ -26,7 +26,7 @@
 Qual é o problema que estamos vendo e que motiva esta decisão? Referencie o
 objetivo de negócio, a restrição legada ou a necessidade de stakeholder.
 
-Seja específico. Cite REQ-IDs ou programas em `02-cenario-sifap-legado/` quando relevante.
+Seja específico. Cite REQ-IDs ou programas em `02-cenario-sisdnit-legado/` quando relevante.
 
 ## Decisão
 

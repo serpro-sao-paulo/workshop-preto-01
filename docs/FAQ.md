@@ -26,8 +26,8 @@ R: 5 pessoas. Cada uma veste 2 personas (1 par). Total: 10 personas cobertas.
 **Q: Posso escolher minhas 2 personas?**
 R: Sim, mas combine com o time. Pares 1, 4 e 5 acomodam não-devs. Pares 2 e 3 pedem background técnico.
 
-**Q: O que é o "SIFAP"?**
-R: Sistema fictício de pagamentos do governo, com 29 anos em Natural/Adabas. O workshop simula modernizar para Java + Next.js. Veja [`01-arqueologia/legado-sifap/README.md`](../01-arqueologia/legado-sifap/README.md).
+**Q: O que é o "sisdnit"?**
+R: Sistema fictício de pagamentos do governo, com 29 anos em Natural/Adabas. O workshop simula modernizar para Java + Next.js. Veja [`01-arqueologia/legado-sisdnit/README.md`](../01-arqueologia/legado-sisdnit/README.md).
 
 ---
 

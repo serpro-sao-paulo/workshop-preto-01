@@ -83,8 +83,8 @@
 ## 🧠 A regra mestre
 
 > **Modernizar é arqueologia digital, não greenfield.**
-> Quem trata SIFAP como projeto novo perde 29 anos de regra de negócio.
-> Quem trata como arqueologia entrega um SIFAP 2.0 que substitui o 1.0.
+> Quem trata sisdnit como projeto novo perde 29 anos de regra de negócio.
+> Quem trata como arqueologia entrega um sisdnit 2.0 que substitui o 1.0.
 
 ---
 

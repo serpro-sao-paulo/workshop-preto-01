@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="RodoviaForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="sigla" type="java.lang.String"/>
+			<form-property name="descricao" type="java.lang.String"/>
+			<form-property name="situacao" type="java.lang.Integer"/>
+			<form-property name="ufs" type="java.lang.String[]"/>
+		</form-bean>
+	</form-beans>
+  <action-mappings>
+		<action
+            path="/jsp/siac/inclusao_rodovia"
+            name="RodoviaForm"
+            scope="request"
+            input="/jsp/siac/f_inclusao_rodovia1.jsp"
+            validate="true"
+            parameter="tipoAcao"
+            type="br.gov.serpro.sunne.dnit.siac.acao.AcaoRodovia">
+        <forward name="reset" path="/jsp/siac/f_inclusao_rodovia1.jsp" />
+   		<forward name="incluir" path="/jsp/siac/f_inclusao_rodovia3.jsp" />
+   		<forward name="erro" path="" />
+    </action>
+    <action
+          path="/jsp/siac/consulta_rodovia"
+          name="RodoviaForm"
+          scope="request"
+          validate="true"
+          input="/jsp/siac/f_consulta_rodovia1.jsp"
+          parameter="tipoAcao"
+          type="br.gov.serpro.sunne.dnit.siac.acao.AcaoRodovia">
+        <forward name="reset" path="/jsp/siac/f_consulta_rodovia1.jsp" />
+   		<forward name="consultar" path="/jsp/siac/f_consulta_rodovia2.jsp" />
+  		<forward name="detalhar" path="/jsp/siac/f_consulta_rodovia3.jsp" />
+    	<forward name="rodoviaNaoEncontrada" path="/jsp/siac/f_consulta_rodovia4.jsp" />
+    	<forward name="erro" path="" />
+    	<forward name="voltarPrincipal" path="/jsp/siac/administracao_siac.jsp" />
+			<forward name="reset" path="/jsp/siac/f_consulta_rodovia1.jsp" />
+      <forward name="voltarMenu" path="/jsp/siac/administracao_siac.jsp" />
+  	</action>
+   	<action
+          path="/jsp/siac/alteracao_rodovia"
+          name="RodoviaForm"
+          scope="request"
+          validate="true"
+          input="/jsp/siac/f_alteracao_rodovia1.jsp"
+          parameter="tipoAcao"
+          type="br.gov.serpro.sunne.dnit.siac.acao.AcaoRodovia">
+        <forward name="reset" path="/jsp/siac/f_alteracao_rodovia1.jsp" />
+   		<forward name="consultar" path="/jsp/siac/f_alteracao_rodovia2.jsp" />
+     	<forward name="detalhar" path="/jsp/siac/f_alteracao_rodovia3.jsp" />
+     	<forward name="alterar" path="/jsp/siac/f_alteracao_rodovia4.jsp" />
+     	<forward name="reset" path="/jsp/siac/f_alteracao_rodovia1.jsp" />
+      <forward name="rodoviaNaoEncontrada" path="/jsp/siac/f_alteracao_rodovia5.jsp" />
+      <forward name="voltarPrincipal" path="/jsp/siac/administracao_siac.jsp" />
+  	</action>
+	</action-mappings>
+
+</struts-config>
+

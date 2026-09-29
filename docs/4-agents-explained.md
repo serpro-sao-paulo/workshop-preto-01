@@ -69,8 +69,8 @@ O agente ajuda a transformar a descoberta em algo implementável:
 ```yaml
 REQ-PAY-001:
   pattern: event-driven
-  text: "Quando um ciclo de pagamento for gerado, o SIFAP deverá criar registros de pagamento para todo beneficiário com status ACTIVE."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+  text: "Quando um ciclo de pagamento for gerado, o sisdnit deverá criar registros de pagamento para todo beneficiário com status ACTIVE."
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L120-L168
   acceptance: "10 ativos + 2 suspensos produzem 10 registros de pagamento."
 ```
 

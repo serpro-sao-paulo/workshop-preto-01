@@ -17,7 +17,7 @@
 > 3. Encontrará o template ADR e exemplos preenchidos
 > 4. Link direto para o GUIDE detalhado
 
-> Escreva a especificação modernizada do SIFAP usando notação EARS, crie Arquitetura Decision Records (ADRs) e defina as fronteiras de escopo.
+> Escreva a especificação modernizada do sisdnit usando notação EARS, crie Arquitetura Decision Records (ADRs) e defina as fronteiras de escopo.
 
 ## Onde isso encaixa no SDLC
 

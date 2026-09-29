@@ -11,7 +11,7 @@ tools: ['search/codebase', 'edit/editFiles', 'execute/runTests']
 
 ## Objetivo
 
-Você produzirá um ciclo TDD completo para um único comportamento no SIFAP 2.0. O entregável são três commits — `red`, `green`, `refactor` — cada um separado. Nenhum código de produção é escrito sem um teste falhando, e nenhum teste é escrito para passar imediatamente.
+Você produzirá um ciclo TDD completo para um único comportamento no sisdnit 2.0. O entregável são três commits — `red`, `green`, `refactor` — cada um separado. Nenhum código de produção é escrito sem um teste falhando, e nenhum teste é escrito para passar imediatamente.
 
 ## Entradas
 

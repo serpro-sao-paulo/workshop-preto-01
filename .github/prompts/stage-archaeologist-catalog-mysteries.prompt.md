@@ -18,7 +18,7 @@ Depois que a equipe tiver rodado pelo menos um outro prompt archaeologist (`/ext
 ## Pré-condições
 
 - Pelo menos um artefato existe sob `01-arqueologia/` com marcadores `<!-- mystery: ... -->` ou desconhecidos anotados
-- A pasta `01-arqueologia/legado-sifap/` está acessível para sugestões de investigação de follow-up
+- A pasta `01-arqueologia/legado-sisdnit/` está acessível para sugestões de investigação de follow-up
 
 ## Entradas que a Equipe Deve Fornecer
 

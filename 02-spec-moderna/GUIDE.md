@@ -30,7 +30,7 @@
 > - **Confuso entre Ask, Plan e Agent?** [`../09-cheat-sheets/copilot-3-modes.md`](../09-cheat-sheets/copilot-3-modes.md).
 
 > [!IMPORTANT]
-> **Regra dura — rastreabilidade obrigatória.** Todo requisito EARS no seu `SPECIFICATION.md` precisa incluir uma linha `source_legacy:` apontando para um arquivo `.NSN` ou `.ddm` dentro de [`../01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/), **ou** ser marcado `source_legacy: "[GREENFIELD] <justificativa de uma linha>"`. O CI rejeita PRs que violem isso. Facilitadores verificam por amostragem no Passagem #2 (~16:00).
+> **Regra dura — rastreabilidade obrigatória.** Todo requisito EARS no seu `SPECIFICATION.md` precisa incluir uma linha `source_legacy:` apontando para um arquivo `.NSN` ou `.ddm` dentro de [`../01-arqueologia/legado-sisdnit/`](../01-arqueologia/legado-sisdnit/), **ou** ser marcado `source_legacy: "[GREENFIELD] <justificativa de uma linha>"`. O CI rejeita PRs que violem isso. Facilitadores verificam por amostragem no Passagem #2 (~16:00).
 >
 > Por quê? Na edição anterior alguns times escreveram specs só a partir do brief de modernização, pulando a leitura do legado. Os protótipos perderam regras de negócio reais. Desta vez, rastreabilidade é o portão.
 
@@ -76,7 +76,7 @@ REQ-IDs sem `source_legacy` viram débito técnico imediato. REQ-IDs sem `accept
 Antes de começar, estude a especificação de referência:
 
 ```
-03-spec-sifap-moderno/SPECIFICATION.md
+03-spec-sisdnit-moderno/SPECIFICATION.md
 ```
 
 Esse documento mostra o formato e o nível de detalhe esperado. Sua spec deve seguir a mesma estrutura — incluindo `source_legacy:` em todo requisito.
@@ -91,9 +91,9 @@ EARS é um método para escrever requisitos sem ambiguidade. São **6 padrões**
 
 > **O [sistema] deve [ação].**
 
-Exemplo SIFAP:
+Exemplo sisdnit:
 
-> O SIFAP deve armazenar todos os registros de pagamento com timestamp UTC.
+> O sisdnit deve armazenar todos os registros de pagamento com timestamp UTC.
 
 Use quando: a regra vale SEMPRE, sem condição.
 
@@ -101,9 +101,9 @@ Use quando: a regra vale SEMPRE, sem condição.
 
 > **Quando [evento], o [sistema] deve [ação].**
 
-Exemplo SIFAP:
+Exemplo sisdnit:
 
-> Quando um beneficiário é cadastrado, o SIFAP deve validar o CPF usando o algoritmo módulo 11 da Receita Federal.
+> Quando um beneficiário é cadastrado, o sisdnit deve validar o CPF usando o algoritmo módulo 11 da Receita Federal.
 
 Use quando: a regra só vale após um evento específico.
 
@@ -111,9 +111,9 @@ Use quando: a regra só vale após um evento específico.
 
 > **Enquanto [condição], o [sistema] deve [ação].**
 
-Exemplo SIFAP:
+Exemplo sisdnit:
 
-> Enquanto um pagamento estiver com status PENDING, o SIFAP deve permitir cancelamento por um usuário com perfil OPERATOR.
+> Enquanto um pagamento estiver com status PENDING, o sisdnit deve permitir cancelamento por um usuário com perfil OPERATOR.
 
 Use quando: a regra só vale durante um estado.
 
@@ -121,9 +121,9 @@ Use quando: a regra só vale durante um estado.
 
 > **Onde [condição opcional], o [sistema] deve [ação].**
 
-Exemplo SIFAP:
+Exemplo sisdnit:
 
-> Onde o operador escolher exportar o relatório, o SIFAP deve gerar um arquivo CSV com codificação UTF-8.
+> Onde o operador escolher exportar o relatório, o sisdnit deve gerar um arquivo CSV com codificação UTF-8.
 
 Use quando: a funcionalidade não é obrigatória — depende de escolha do usuário.
 
@@ -131,10 +131,10 @@ Use quando: a funcionalidade não é obrigatória — depende de escolha do usu�
 
 > **O [sistema] não deve [ação indesejada].**
 
-Exemplo SIFAP:
+Exemplo sisdnit:
 
-> O SIFAP não deve permitir exclusão de registros da tabela de auditoria.
-> O SIFAP não deve processar pagamentos para beneficiários com status CANCELLED.
+> O sisdnit não deve permitir exclusão de registros da tabela de auditoria.
+> O sisdnit não deve processar pagamentos para beneficiários com status CANCELLED.
 
 Use quando: você precisa documentar restrições ou proibições explícitas.
 
@@ -142,9 +142,9 @@ Use quando: você precisa documentar restrições ou proibições explícitas.
 
 > **Enquanto [condição], quando [evento], onde [condição opcional], o [sistema] deve [ação].**
 
-Exemplo SIFAP:
+Exemplo sisdnit:
 
-> Enquanto o beneficiário estiver com status ACTIVE, quando um ciclo de pagamento for gerado em dezembro, o SIFAP deve calcular o 13º salário usando uma fórmula diferenciada.
+> Enquanto o beneficiário estiver com status ACTIVE, quando um ciclo de pagamento for gerado em dezembro, o sisdnit deve calcular o 13º salário usando uma fórmula diferenciada.
 
 Use quando: múltiplas condições se combinam.
 
@@ -154,14 +154,14 @@ Compare lado a lado — o vago vs o EARS testável:
 
 ```diff
 - "O sistema deve ser seguro"
-+ "O SIFAP deve mascarar CPF em logs usando o formato XXX.XXX.NNN-NN"
++ "O sisdnit deve mascarar CPF em logs usando o formato XXX.XXX.NNN-NN"
 
 - "Pagamentos devem ser processados"
-+ "Quando um ciclo for gerado, o SIFAP deve criar registros de pagamento
++ "Quando um ciclo for gerado, o sisdnit deve criar registros de pagamento
 +  para todos os beneficiários com status ACTIVE"
 
 - "Auditoria completa"
-+ "Quando qualquer entidade for alterada, o SIFAP deve gravar um registro
++ "Quando qualquer entidade for alterada, o sisdnit deve gravar um registro
 +  de auditoria com estado anterior e posterior em formato JSON"
 ```
 
@@ -174,15 +174,15 @@ Ao escrever um requisito, pergunte: _"Como eu testaria isso automaticamente?"_ S
 
 | Requisito                                                                         | Teste                                   |
 | --------------------------------------------------------------------------------- | --------------------------------------- |
-| REQ-BEN-01: "O SIFAP deve validar CPF com módulo 11"                              | CPF inválido retorna erro 400           |
+| REQ-BEN-01: "O sisdnit deve validar CPF com módulo 11"                              | CPF inválido retorna erro 400           |
 | REQ-PAY-03: "Quando um ciclo for gerado, criar pagamentos para beneficiários ACTIVE" | 10 ativos + 2 suspensos = 10 pagamentos |
-| REQ-AUD-01: "O SIFAP não deve permitir DELETE em auditoria"                       | DELETE retorna erro 403                 |
+| REQ-AUD-01: "O sisdnit não deve permitir DELETE em auditoria"                       | DELETE retorna erro 403                 |
 
 ---
 
 ## Exemplo concreto: do legado ao teste
 
-Veja o ciclo completo de uma regra do SIFAP, do código legado até o teste automatizado.
+Veja o ciclo completo de uma regra do sisdnit, do código legado até o teste automatizado.
 
 ### 1. Regra encontrada no Estágio 1
 
@@ -206,9 +206,9 @@ Usando os padrões **Unwanted Behavior** + **Event**:
 ```yaml
 REQ-PAY-DSCT-01:
  pattern: unwanted
- text: "O SIFAP não deve permitir que o total de descontos não judiciais exceda
+ text: "O sisdnit não deve permitir que o total de descontos não judiciais exceda
  30% do valor bruto do pagamento."
- source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
+ source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148
  acceptance:
  - "Desconto não judicial de 35% é truncado para 30%"
  - "Desconto judicial de 50% é aceito integralmente"
@@ -216,9 +216,9 @@ REQ-PAY-DSCT-01:
 
 REQ-PAY-DSCT-02:
  pattern: event-driven
- text: "Quando um desconto judicial é aplicado, o SIFAP deve adicionar o valor
+ text: "Quando um desconto judicial é aplicado, o sisdnit deve adicionar o valor
  ao total de descontos sem aplicar o teto de 30%."
- source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
+ source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148
 ```
 
 ### 3. Código (Estágio 3)
@@ -310,33 +310,33 @@ Use Mermaid para criar pelo menos os diagramas **Contexto (C4-L1)** e **Containe
 
 ```mermaid
 C4Context
- title Diagrama de Contexto - SIFAP 2.0
+ title Diagrama de Contexto - sisdnit 2.0
 
  Person(operator, "Operador", "Servidor que registra pagamentos")
  Person(auditor, "Auditor", "Audita operações e gera relatórios")
  Person(admin, "Administrador", "Gerencia usuários e configurações")
 
- System(sifap, "SIFAP 2.0", "Sistema de Fiscalização e Acompanhamento de Pagamentos")
+ System(sisdnit, "sisdnit 2.0", "Sistema de Fiscalização e Acompanhamento de Pagamentos")
 
  System_Ext(govbr, "Gov.br", "Autenticação via Single Sign-On")
  System_Ext(siafi, "SIAFI", "Sistema Integrado de Administração Financeira do Governo Federal")
 
- Rel(operator, sifap, "Registra pagamentos")
- Rel(auditor, sifap, "Consulta e audita")
- Rel(admin, sifap, "Gerencia o sistema")
- Rel(sifap, govbr, "Autentica usuários")
- Rel(sifap, siafi, "Envia dados financeiros")
+ Rel(operator, sisdnit, "Registra pagamentos")
+ Rel(auditor, sisdnit, "Consulta e audita")
+ Rel(admin, sisdnit, "Gerencia o sistema")
+ Rel(sisdnit, govbr, "Autentica usuários")
+ Rel(sisdnit, siafi, "Envia dados financeiros")
 ```
 
 ### Exemplo C4-L2: diagrama de containers
 
 ```mermaid
 C4Container
- title Diagrama de Containers - SIFAP 2.0
+ title Diagrama de Containers - sisdnit 2.0
 
  Person(user, "Usuário", "Operador, Auditor ou Administrador")
 
- Container_Boundary(sifap, "SIFAP 2.0") {
+ Container_Boundary(sisdnit, "sisdnit 2.0") {
  Container(frontend, "Frontend", "Next.js 15", "Interface web responsiva")
  Container(backend, "API Backend", "Java 21 + Spring Boot 3", "API REST com módulos de domínio")
  ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Dados de beneficiários, pagamentos e auditoria")
@@ -390,8 +390,8 @@ Abra o Copilot Chat e digite `/`. Se os comandos `/speckit.*` não aparecerem, a
 1. /speckit.constitution
  → Cria ou atualiza `.specify/memory/constitution.md`
 
-2. /speckit.specify "Modernize SIFAP payment cycle preserving source_legacy traceability"
- → Cria estrutura em `specs/001-sifap-payment-cycle/`
+2. /speckit.specify "Modernize sisdnit payment cycle preserving source_legacy traceability"
+ → Cria estrutura em `specs/001-sisdnit-payment-cycle/`
 
 3. /speckit.clarify
  → Resolve ambiguidades da spec antes do design
@@ -460,7 +460,7 @@ No Passagem #2 (~16:00), o **Par 2 (Arquitetura)** entrega EARS + ADRs + C4 para
 ## Dica de ouro
 
 > [!TIP]
-> Não reinvente a roda. A especificação de referência em `03-spec-sifap-moderno/SPECIFICATION.md` já tem a estrutura ideal. Use como base e adapte com as descobertas do seu time.
+> Não reinvente a roda. A especificação de referência em `03-spec-sisdnit-moderno/SPECIFICATION.md` já tem a estrutura ideal. Use como base e adapte com as descobertas do seu time.
 
 ---
 

@@ -79,7 +79,7 @@
 ### "CI rejeitou meu PR: `missing source_legacy`"
 
 - **Causa:** uma das EARS não tem a linha `source_legacy:`.
-- **Solução:** abra o `SPECIFICATION.md`, procure REQ-IDs sem `source_legacy:`, e ou (a) aponte para `01-arqueologia/legado-sifap/...#L<linha>` ou (b) marque `[GREENFIELD] <motivo>`.
+- **Solução:** abra o `SPECIFICATION.md`, procure REQ-IDs sem `source_legacy:`, e ou (a) aponte para `01-arqueologia/legado-sisdnit/...#L<linha>` ou (b) marque `[GREENFIELD] <motivo>`.
 - 📘 Veja [`07-conceitos/05-ears-receita-de-cogumelo.md`](../07-conceitos/05-ears-receita-de-cogumelo.md).
 
 ### "`/speckit.clarify` está fazendo 12 perguntas. É muito?"
@@ -118,7 +118,7 @@
 ### "`Module not found: shadcn/ui`"
 
 - **Causa:** dependências não instaladas.
-- **Solução:** `cd 04-prototipo-sifap-moderno/frontend && npm install`.
+- **Solução:** `cd 04-prototipo-sisdnit-moderno/frontend && npm install`.
 
 ---
 

@@ -7,7 +7,7 @@
 
 > **Para quem é isto?** Para quem ouviu "vamos escrever EARS" no Estágio 2 e ficou sem saber por onde começar.
 >
-> **Em uma frase:** EARS é a **receita exata** do cogumelo que vai virar SIFAP 2.0 — sem ambiguidade, sem "a gosto", sem "uma pitada de…". Cada requisito vira uma frase com formato fixo, **testável**.
+> **Em uma frase:** EARS é a **receita exata** do cogumelo que vai virar sisdnit 2.0 — sem ambiguidade, sem "a gosto", sem "uma pitada de…". Cada requisito vira uma frase com formato fixo, **testável**.
 
 ![CONCEITO 05](https://img.shields.io/badge/CONCEITO-05-7FBA00?style=for-the-badge) ![T\u00d3PICO EARS](https://img.shields.io/badge/T%C3%93PICO-EARS-1A1A1A?style=for-the-badge) ![ESTÁGIO 2](https://img.shields.io/badge/USE%20NO-Est%C3%A1gio%202-737373?style=for-the-badge)
 
@@ -33,7 +33,7 @@ Agora **qualquer Toad** reproduz o mesmo cogumelo. E você consegue **testar**: 
 
 ---
 
-## 📜 Os 6 padrões EARS (com SIFAP + Mario)
+## 📜 Os 6 padrões EARS (com sisdnit + Mario)
 
 EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
@@ -41,9 +41,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **O [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 sisdnit |
 |---|---|
-| O Mario deve usar a paleta de cores oficial Nintendo. | O SIFAP deve armazenar todos os registros em UTC. |
+| O Mario deve usar a paleta de cores oficial Nintendo. | O sisdnit deve armazenar todos os registros em UTC. |
 
 > ✅ Use quando a regra vale **sempre, sem condição**.
 
@@ -53,9 +53,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Quando [evento], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 sisdnit |
 |---|---|
-| Quando Mario tocar num cogumelo, ele deve crescer. | Quando um beneficiário é cadastrado, o SIFAP deve validar o CPF (módulo 11). |
+| Quando Mario tocar num cogumelo, ele deve crescer. | Quando um beneficiário é cadastrado, o sisdnit deve validar o CPF (módulo 11). |
 
 > ✅ Use quando a regra **dispara por um evento**.
 
@@ -65,9 +65,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Enquanto [condição], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 sisdnit |
 |---|---|
-| Enquanto Mario estiver com estrela, ele deve ser invencível. | Enquanto um pagamento estiver PENDING, o SIFAP deve permitir cancelamento pelo OPERATOR. |
+| Enquanto Mario estiver com estrela, ele deve ser invencível. | Enquanto um pagamento estiver PENDING, o sisdnit deve permitir cancelamento pelo OPERATOR. |
 
 > ✅ Use quando a regra vale **durante um estado** que muda.
 
@@ -77,9 +77,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Onde [condição opcional], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 sisdnit |
 |---|---|
-| Onde o jogador apertar B durante o pulo, Mario deve dar um pulo mais alto. | Onde o operador escolher exportar, o SIFAP deve gerar CSV em UTF-8. |
+| Onde o jogador apertar B durante o pulo, Mario deve dar um pulo mais alto. | Onde o operador escolher exportar, o sisdnit deve gerar CSV em UTF-8. |
 
 > ✅ Use quando é **escolha do usuário**.
 
@@ -89,9 +89,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **O [sistema] não deve [ação proibida].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 sisdnit |
 |---|---|
-| Mario não deve atravessar paredes. | O SIFAP não deve permitir DELETE em registros de auditoria. |
+| Mario não deve atravessar paredes. | O sisdnit não deve permitir DELETE em registros de auditoria. |
 
 > ✅ Use para **proibições explícitas** (segurança, compliance).
 
@@ -101,9 +101,9 @@ EARS tem **6 formatos prontos**. Você escolhe o que combina com sua regra.
 
 > **Enquanto [condição], quando [evento], onde [opcional], o [sistema] deve [ação].**
 
-| 🍄 Mario | 🏛 SIFAP |
+| 🍄 Mario | 🏛 sisdnit |
 |---|---|
-| Enquanto Mario for grande, quando ele agachar num cano verde com seta para baixo, onde o jogador apertar baixo por 1 segundo, ele deve entrar no cano. | Enquanto o beneficiário for ACTIVE, quando o ciclo for gerado em dezembro, onde o programa for "Bolsa Família", o SIFAP deve aplicar bônus de 13º. |
+| Enquanto Mario for grande, quando ele agachar num cano verde com seta para baixo, onde o jogador apertar baixo por 1 segundo, ele deve entrar no cano. | Enquanto o beneficiário for ACTIVE, quando o ciclo for gerado em dezembro, onde o programa for "Bolsa Família", o sisdnit deve aplicar bônus de 13º. |
 
 > ✅ Use para regras com **várias condições combinadas** (raro, mas existe).
 
@@ -116,9 +116,9 @@ Toda EARS no nosso workshop carrega **uma moeda numerada** — o `source_legacy:
 ```yaml
 REQ-PAY-DSCT-01:
   pattern: unwanted
-  text: "O SIFAP não deve permitir que o total de descontos não-judiciais
+  text: "O sisdnit não deve permitir que o total de descontos não-judiciais
          exceda 30% do valor bruto."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148  # 🪙 moeda numerada
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148  # 🪙 moeda numerada
   acceptance:
     - "Desconto não judicial de 35% é truncado para 30%"
     - "Desconto judicial de 50% é aceito integralmente"
@@ -129,8 +129,8 @@ REQ-PAY-DSCT-01:
 
 | Situação | `source_legacy:` |
 |---|---|
-| Regra extraída do legado | `01-arqueologia/legado-sifap/natural-programs/X.NSN#L<inicio>-L<fim>` |
-| Campo de DDM | `01-arqueologia/legado-sifap/adabas-ddms/X.ddm` |
+| Regra extraída do legado | `01-arqueologia/legado-sisdnit/programs/X.NSN#L<inicio>-L<fim>` |
+| Campo de DDM | `01-arqueologia/legado-sisdnit/adabas-ddms/X.ddm` |
 | Funcionalidade nova (não existe no legado) | `"[GREENFIELD] OAuth2 não existia em terminal 3270, mas a API moderna precisa"` |
 
 ---
@@ -145,9 +145,9 @@ Se não souber responder, **a EARS está vaga**.
 
 | ❌ EARS vaga | ✅ EARS testável |
 |---|---|
-| O sistema deve ser seguro | O SIFAP deve mascarar CPF em logs no formato `XXX.XXX.NNN-NN` |
-| Pagamentos devem ser processados | Quando um ciclo for gerado, o SIFAP deve criar registros de pagamento para todos os beneficiários ACTIVE |
-| Auditoria completa | Quando qualquer entidade for alterada, o SIFAP deve gravar evento de auditoria com `before_json` e `after_json` |
+| O sistema deve ser seguro | O sisdnit deve mascarar CPF em logs no formato `XXX.XXX.NNN-NN` |
+| Pagamentos devem ser processados | Quando um ciclo for gerado, o sisdnit deve criar registros de pagamento para todos os beneficiários ACTIVE |
+| Auditoria completa | Quando qualquer entidade for alterada, o sisdnit deve gravar evento de auditoria com `before_json` e `after_json` |
 
 ---
 
@@ -156,12 +156,12 @@ Se não souber responder, **a EARS está vaga**.
 ```text
 # Converter regra do catálogo BR em EARS
 /ears-convert BR-013: descontos têm teto de 30% exceto judiciais.
-Use legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148 como source_legacy.
+Use legado-sisdnit/programs/CALCDSCT.NSN#L142-L148 como source_legacy.
 
 # Validar uma EARS já escrita
 "@architect, esta EARS é testável? Como você testaria?
 
-REQ-PAY-001: Quando um beneficiário é cadastrado, o SIFAP deve validar
+REQ-PAY-001: Quando um beneficiário é cadastrado, o sisdnit deve validar
 o CPF usando módulo 11."
 
 # Buscar lacunas no SPECIFICATION

@@ -1,6 +1,6 @@
 ---
 description: "Extrai regras de negócio de um programa Natural lendo blocos IF/THEN/ELSE e confirmando com documentação."
-argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN docs=01-arqueologia/legado-sifap/legacy-docs/"
+argument-hint: "file=01-arqueologia/legado-sisdnit/programs/PGMAIN01.NSN docs=01-arqueologia/legado-sisdnit/legacy-docs/"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
 ---
@@ -19,19 +19,19 @@ Depois que a equipe completar o inventário inicial (`/archaeology-kickoff`) e e
 
 - `01-arqueologia/inventory.md` existe
 - A equipe selecionou um arquivo específico de programa Natural para analisar
-- A pasta `01-arqueologia/legado-sifap/` está acessível
+- A pasta `01-arqueologia/legado-sisdnit/` está acessível
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O path completo para o programa Natural a analisar (por exemplo, `01-arqueologia/legado-sifap/natural-programs/PGXXXXXX.NSN`)
-- Quaisquer paths de documentação disponíveis em `01-arqueologia/legado-sifap/legacy-docs/` (opcional — usados para confirmação)
+- O path completo para o programa Natural a analisar (por exemplo, `01-arqueologia/legado-sisdnit/programs/PGXXXXXX.NSN`)
+- Quaisquer paths de documentação disponíveis em `01-arqueologia/legado-sisdnit/legacy-docs/` (opcional — usados para confirmação)
 
 ## O Que Vou Fazer
 
 - Ler o programa especificado de cima a baixo
 - Identificar todo bloco condicional: `IF...THEN...ELSE...END-IF`, `DECIDE ON`, `AT BREAK OF` e operadores de comparação
 - Para cada bloco condicional, formular uma regra de negócio candidata em linguagem clara
-- Fazer cross-reference com documentação em `01-arqueologia/legado-sifap/legacy-docs/`, se disponível
+- Fazer cross-reference com documentação em `01-arqueologia/legado-sisdnit/legacy-docs/`, se disponível
 - Classificar cada regra como **confirmed** (correspondência em documentação), **inferred** (somente código, sem suporte documental) ou **mystery** (lógica pouco clara)
 - Rascunhar candidatos de notação EARS para regras confirmadas
 
@@ -114,5 +114,5 @@ Não infira regras a partir de nomes de programas ou organização de arquivos. 
 ## Exemplo de Invocação
 
 ```
-/extract-business-rules file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN docs=01-arqueologia/legado-sifap/legacy-docs/
+/extract-business-rules file=01-arqueologia/legado-sisdnit/programs/PGMAIN01.NSN docs=01-arqueologia/legado-sisdnit/legacy-docs/
 ```

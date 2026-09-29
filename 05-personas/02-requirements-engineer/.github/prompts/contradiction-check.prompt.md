@@ -30,7 +30,7 @@ Peça ao usuário o que estiver faltando.
  - **Conflito de estado** — REQ-A permite uma ação enquanto está no estado S1; REQ-B a proíbe durante o estado sobreposto S2 ⊆ S1.
  - **Conflito de ator** — REQ-A concede permissão ao papel R1; REQ-B proíbe a mesma operação ao papel R2 onde R2 ⊇ R1.
 4. **Verifique contra a CONSTITUTION.** Qualquer requisito que viole uma regra constitucional é uma contradição com a própria constituição (normalmente regras C de segurança, dados ou compliance).
-5. **Verifique contra invariantes do legado.** Se um REQ contradiz comportamento imposto pelo SIFAP legado (documentado em `02-cenario-sifap-legado/legacy-docs/REGRAS-NEGOCIO-2012.md`), sinalize como risco de regressão.
+5. **Verifique contra invariantes do legado.** Se um REQ contradiz comportamento imposto pelo sisdnit legado (documentado em `02-cenario-sisdnit-legado/legacy-docs/REGRAS-NEGOCIO-2012.md`), sinalize como risco de regressão.
 6. **Pontue a severidade.**
  - **Critical** — contradição direta, sem implementação possível que satisfaça ambos.
  - **Major** — conflito de limite ou estado resolvível apenas alterando um REQ.
@@ -91,7 +91,7 @@ Resolver Critical e Major antes da aprovação da spec. Levar (1) e (2) ao produ
 - Ignorar a constituição. Conflitos constitucionais têm severidade maior que conflitos entre REQs pares.
 - Confundir ambiguidade com contradição. Ambiguidade é para `/clarify`; contradição é incompatibilidade.
 - Resolver silenciosamente na própria cabeça. Sempre exponha e encaminhe — mesmo quando parecer "obvious".
-- Pular verificações de regressão legada. A modernização do SIFAP vive ou morre pela fidelidade ao legado.
+- Pular verificações de regressão legada. A modernização do sisdnit vive ou morre pela fidelidade ao legado.
 - Tratar conflitos de limite como "can fix in design". Se a matemática não fecha, o REQ está errado.
 
 ## Critérios de sucesso
@@ -100,6 +100,6 @@ Resolver Critical e Major antes da aprovação da spec. Levar (1) e (2) ao produ
 - [ ] Achados classificados por tipo (Direct / Threshold / State / Actor) e severidade (Critical / Major / Minor).
 - [ ] Cada achado tem uma resolução proposta em uma linha.
 - [ ] Conflitos constitucionais verificados.
-- [ ] Riscos de regressão legada verificados contra `02-cenario-sifap-legado/legacy-docs/`.
+- [ ] Riscos de regressão legada verificados contra `02-cenario-sisdnit-legado/legacy-docs/`.
 - [ ] Achados Critical e Major sinalizados para resolução antes do sign-off da fase.
 - [ ] Saída pronta para colar no PR da spec ou em um ticket de esclarecimento.

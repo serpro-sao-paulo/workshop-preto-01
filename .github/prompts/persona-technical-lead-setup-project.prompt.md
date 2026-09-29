@@ -1,6 +1,6 @@
 ---
 description: "Inicialize um novo projeto habilitado para Copilot"
-argument-hint: "project=sifap-2.0 stack=java-next"
+argument-hint: "project=sisdnit-2.0 stack=java-next"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles', 'execute/runInTerminal']
 ---

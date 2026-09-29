@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Mapa de Dependências — SIFAP Legado
+# Mapa de Dependências — sisdnit Legado
 
 ![ESTÁGIO 01 Arqueologia](https://img.shields.io/badge/ESTÁGIO-01%20Arqueologia-F25022?style=for-the-badge) ![TIPO Worksheet](https://img.shields.io/badge/TIPO-Worksheet-1A1A1A?style=for-the-badge) ![PREENCHA Durante S1](https://img.shields.io/badge/PREENCHA-Durante%20S1-737373?style=for-the-badge)
 
@@ -10,8 +10,8 @@
 >
 > **O que você terá ao final do estágio:**
 >
-> 1. Este documento totalmente preenchido com os dados reais do legado SIFAP
-> 2. Rastreabilidade para `01-arqueologia/legado-sifap/` (programas `.NSN` e DDMs)
+> 1. Este documento totalmente preenchido com os dados reais do legado sisdnit
+> 2. Rastreabilidade para `01-arqueologia/legado-sisdnit/` (programas `.NSN` e DDMs)
 > 3. Base de evidência usada nas EARS do Estágio 2 (`source_legacy:`)
 >
 > 📘 **Guia passo a passo:** [`GUIDE.md`](GUIDE.md).
@@ -31,43 +31,37 @@
 > Substitua o exemplo abaixo pelo mapa real do seu time. **Meta:** cobrir todos os 15 programas, sem órfãos.
 
 ```mermaid
+> **Par 1 · Visão** mapeou os 3 programas de cadastro abaixo. Os demais pares acrescentam batches, cálculos, validações e relatórios até cobrir os 15 programas.
+
+```mermaid
 flowchart TD
- subgraph "Programas Online"
- CADBENF["CADBENF.NSN<br/>Cadastro de Beneficiários"]
- CONBENF["CONBENF.NSN<br/>Consulta de Beneficiários"]
- REGPGTO["REGPGTO.NSN<br/>Registro de Pagamentos"]
+ subgraph "Cadastros (online) — Par 1"
+ CADBENEF["CADBENEF.NSN<br/>Cadastro de Beneficiário"]
+ CADDEPEND["CADDEPEND.NSN<br/>Cadastro de Dependentes"]
+ CADPROG["CADPROG.NSN<br/>Cadastro de Programas Sociais"]
  end
 
- subgraph "Programas Batch"
- BATCHPGT["BATCHPGT.NSN<br/>Processamento em Lote"]
- end
-
- subgraph "Subprogramas"
- CALCBENF["CALCBENF.NSN<br/>Cálculo de Benefícios"]
- VALCPF["VALCPF.NSN<br/>Validação de CPF"]
+ subgraph "Subrotinas internas"
+ VALIDACPF["VALIDA-CPF<br/>(SUBROUTINE em CADBENEF)<br/>Módulo 11"]
  end
 
  subgraph "DDMs Adabas"
- DDM_BENEF[("DDM: BENEFICIARIO")]
- DDM_PGTO[("DDM: PAGAMENTO")]
+ DDM_BENEF[("BENEFICIARIO<br/>ARQ 150")]
+ DDM_PROG[("PROGRAMA-SOCIAL<br/>ARQ 155")]
  end
 
- CADBENF -->|CALLNAT| VALCPF
- CADBENF -->|CALLNAT| CALCBENF
- CADBENF -->|READ/STORE| DDM_BENEF
+ CADBENEF -->|PERFORM| VALIDACPF
+ CADBENEF -->|FIND / STORE / UPDATE| DDM_BENEF
+ CADBENEF -.->|referencia COD-PROGRAMA| DDM_PROG
 
- REGPGTO -->|CALLNAT| CALCBENF
- REGPGTO -->|READ/STORE| DDM_PGTO
+ CADDEPEND -->|FIND / UPDATE grupo PE| DDM_BENEF
 
- CONBENF -->|READ| DDM_BENEF
-
- BATCHPGT -->|CALLNAT| CALCBENF
- BATCHPGT -->|READ/UPDATE| DDM_PGTO
- BATCHPGT -->|READ| DDM_BENEF
+ CADPROG -->|FIND / STORE| DDM_PROG
 ```
 
-> **Instrução:** este é apenas um exemplo inicial com 6 programas.
-> Seu time deve mapear **todos os 15 programas** e os **4 DDMs**.
+> ℹ️ **Observação do Par 1:** os 3 cadastros são **autônomos** — não há `CALLNAT` entre eles. A validação de CPF é uma `DEFINE SUBROUTINE` interna ao `CADBENEF` (não um subprograma chamável), então é candidata a virar serviço compartilhado no Estágio 3. `CADBENEF` apenas referencia `COD-PROGRAMA` (chave para `PROGRAMA-SOCIAL`) sem ler o arquivo 155 diretamente.
+
+> **Instrução:** complete o mapa com **todos os 15 programas** e os **4 DDMs** (`BENEFICIARIO`, `PAGAMENTO`, `PROGRAMA-SOCIAL`, `AUDITORIA`).
 
 ## Diagrama de Fluxo de Dados (DDMs)
 
@@ -83,10 +77,10 @@ flowchart LR
  end
 
  subgraph "Armazenamento (Adabas)"
- DDM1[("BENEFICIARIO")]
+ DDM1[("BENEFICIARIO<br/>ARQ 150")]
  DDM2[("PAGAMENTO")]
- DDM3[("DDM 3: ???")]
- DDM4[("DDM 4: ???")]
+ DDM3[("PROGRAMA-SOCIAL<br/>ARQ 155")]
+ DDM4[("AUDITORIA")]
  end
 
  UI --> PROG
@@ -97,27 +91,21 @@ flowchart LR
  PROG <--> DDM4
 ```
 
-> Substitua "DDM 3: ???" e "DDM 4: ???" pelos nomes reais encontrados em [`../01-arqueologia/legado-sifap/adabas-ddms/`](../01-arqueologia/legado-sifap/adabas-ddms/).
+> Substitua "DDM 3: ???" e "DDM 4: ???" pelos nomes reais encontrados em [`../01-arqueologia/legado-sisdnit/adabas-ddms/`](../01-arqueologia/legado-sisdnit/adabas-ddms/).
+
+> ✅ Os 4 DDMs reais são: `BENEFICIARIO` (ARQ 150), `PAGAMENTO`, `PROGRAMA-SOCIAL` (ARQ 155) e `AUDITORIA`. O Par 1 toca apenas em `BENEFICIARIO` e `PROGRAMA-SOCIAL`.
 
 ## Tabela de Dependências
 
-| Programa     | Chama (CALLNAT) | Lê (READ) DDMs | Escreve (STORE/UPDATE) DDMs | Observações |
+| Programa     | Chama (CALLNAT) | Lê (READ/FIND) DDMs | Escreve (STORE/UPDATE) DDMs | Observações |
 | ------------ | --------------- | -------------- | --------------------------- | ----------- |
-| CADBENF.NSN  |                 |                |                             |             |
-| CONBENF.NSN  |                 |                |                             |             |
-| REGPGTO.NSN  |                 |                |                             |             |
-| BATCHPGT.NSN |                 |                |                             |             |
-| CALCBENF.NSN |                 |                |                             |             |
-| VALCPF.NSN   |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
-|              |                 |                |                             |             |
+| CADBENEF.NSN  | — (PERFORM VALIDA-CPF interno) | BENEFICIARIO (ARQ 150) | BENEFICIARIO (STORE/UPDATE) | Cadastro de beneficiário; referência lógica a COD-PROGRAMA. |
+| CADDEPEND.NSN  | — | BENEFICIARIO (ARQ 150) | BENEFICIARIO (UPDATE grupo PE) | Inclui dependentes no grupo periódico do titular. |
+| CADPROG.NSN  | — | PROGRAMA-SOCIAL (ARQ 155) | PROGRAMA-SOCIAL (STORE) | Cadastro/consulta de programas; aplica Fator-K. |
+| _BATCHPGT.NSN_ | _(Par 2)_ | | | A preencher pelo Par 2. |
+| _CALCBENF.NSN_ | _(Par 3)_ | | | A preencher pelo Par 3. |
+| _VALBENEF.NSN_ | _(Par 4)_ | | | A preencher pelo Par 4. |
+| _RELPGT.NSN_ | _(Par 5)_ | | | A preencher pelo Par 5. |
 
 ## Dependências Circulares
 
@@ -129,7 +117,7 @@ flowchart LR
 
 > Programas que não são chamados por nenhum outro (possíveis pontos de entrada ou código morto):
 
-- A investigar.
+- Os 3 cadastros do Par 1 (`CADBENEF`, `CADDEPEND`, `CADPROG`) são **pontos de entrada online** (terminal), não código morto — não são chamados por `CALLNAT`, mas são acionados diretamente pelo usuário. Demais programas: a investigar pelos outros pares.
 
 ---
 

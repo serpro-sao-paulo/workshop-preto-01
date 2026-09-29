@@ -1,10 +1,12 @@
-# Instruções do GitHub Copilot — Workshop de Modernização de Legado
+# Instruções do GitHub Copilot — Modernização de Requisitos do Legado
 
 > Contexto, stack, convenções e regras que se aplicam a todo o repositório. Confie nestas instruções; pesquise no código só quando estiverem incompletas ou incorretas.
 
 ## Contexto do Projeto
 
-Modernização do legado **SIFAP** (Sistema de Fiscalização e Administração de Pagamentos) — Natural/Adabas, 29 anos — para Java 21 + Next.js 15. Código legado em [`01-arqueologia/legado-sifap/`](../01-arqueologia/legado-sifap/) (15 programas `.NSN` + 4 DDMs). Dois níveis de agentes: persona-kit por pessoa + agente de estágio por equipe ([`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md)).
+Modernização do legado **SISDNIT** (ver Legado/01-arqueologia/legado-sisdnit/copilot-instructions-legado.md)
+Código legado em [`01-arqueologia/legado-sisdnit/`](../01-arqueologia/legado-sisdnit/) (arquivos `.java`, `.xml`, '.jsp', '.js'). 
+Dois níveis de agentes: persona-kit por pessoa + agente de estágio por equipe ([`06-agentes-de-estagio/README.md`](../06-agentes-de-estagio/README.md)).
 
 ## Ferramentas Aprovadas — Somente Estas
 
@@ -15,13 +17,12 @@ Toolchain fixa; misturar ferramentas quebra a rastreabilidade spec → code → 
 - **GitHub Copilot CLI** *(opcional)* — tarefas em terminal
 - **GitHub Spec-Kit** (`Specify CLI` + `/speckit.*`) — Spec-Driven Development
 - **GitHub** (Issues, PRs, Actions, Projects) — fonte da verdade
-- **Docker / Docker Compose** — paridade local · **Terraform** — IaC (Azure provider)
 
 **Não use** outros assistentes de IA (Cursor, Windsurf, Codex, Cline, Continue, Aider, Codeium, Tabnine), IDEs alternativos (IntelliJ, Eclipse, Neovim), UIs web de chat para gerar código, nem frameworks SDD alternativos (Kiro etc.).
 
 ## Stack-Alvo
 
-- **Backend:** Java 21 + Spring Boot 3.3 + JPA/Hibernate + PostgreSQL 16
+- **Backend:** Java 21 + Spring Boot 3.3 + JPA/Hibernate + Oracle 19c
 - **Frontend:** Next.js 15 (App Router) + TypeScript 5 (strict) + Tailwind CSS + shadcn/ui
 - **Containers:** Docker + Docker Compose
 - **IaC:** Terraform (Azure provider ~> 3.x)
@@ -70,14 +71,18 @@ Toolchain fixa; misturar ferramentas quebra a rastreabilidade spec → code → 
 
 - Todo requisito usa **notação EARS** (Easy Approach to Requirements Syntax)
 - Todo requisito tem um **REQ-ID** único no formato `REQ-NNN`
-- **Todo requisito carrega uma linha `source_legacy:`** apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justificativa`. O job de CI `legacy-traceability` rejeita PRs que violam isso. Consulte [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+<!-- 
+- **Todo requisito carrega uma linha `source_legacy:`** apontando para um arquivo `.java`, `.jsp`, `.xml` ou `.js` em `01-arqueologia/legado-sisdnit/`, ou `[GREENFIELD] + justificativa`. Arquivos `.NSM` e `.ddm` são ignorados pelo gate. O job de CI `legacy-traceability` rejeita PRs que violam isso. Consulte [`01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md`](../01-arqueologia/LEGACY-EXPLORATION-CHECKLIST.md).
+-->
 - Testes rastreiam para REQ-IDs por comentários inline
-- Estratégia de branch: `spec/<NNN>-<feature>` → `develop` → `main` (sem `stage`; ver [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md))
-- Antes de escrever EARS no Estágio 2, o par DEVE ter lido os programas Natural atribuídos (HARD GATE — ver checklist acima)
+<!-- 
+- Estratégia de branch: `spec/<NNN>-<feature>` → `develop` → `main` (sem `stage`; ver [`00-GIT-WORKFLOW.md`](../00-GIT-WORKFLOW.md)) 
+-->
+- Antes de escrever EARS no Estágio 2, o par DEVE ter lido os programas atribuídos (HARD GATE — ver checklist acima)
 
 ## Regras Rígidas — Não Faça Isto
 
-- ❌ Não gere código da nova aplicação sem antes ler o legado em `01-arqueologia/legado-sifap/` e ter um REQ-ID com `source_legacy:`
+- ❌ Não gere código da nova aplicação sem antes ler o legado em `01-arqueologia/legado-sisdnit/` e ter um REQ-ID com `source_legacy:`
 - ❌ Não adicione dependências sem justificativa em um ADR
 - ❌ Não escreva testes depois do fato — escreva-os enquanto implementa
 - ❌ Não exponha secrets em mensagens de commit, logs ou descrições de PR

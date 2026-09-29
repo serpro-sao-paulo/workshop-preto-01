@@ -88,7 +88,7 @@
 
 - [ ] PO conduz, marca tempo
 - [ ] Time inteiro fica visível na câmera
-- [ ] Princesa salva! 👸 (SIFAP 2.0 rodando)
+- [ ] Princesa salva! 👸 (sisdnit 2.0 rodando)
 
 ---
 

@@ -32,7 +32,7 @@ funcionalidade especificada. O Spec-Kit ajuda a manter a sequência:
 
 Em termos simples: o Spec-Kit evita que o time pule direto para código. Primeiro
 ele força a pergunta "o que vamos construir?", depois "como vamos construir?",
-depois "quais tarefas executam isso?". Para o SIFAP, isso é essencial porque
+depois "quais tarefas executam isso?". Para o sisdnit, isso é essencial porque
 cada decisão moderna precisa preservar uma regra encontrada no Natural/Adabas ou
 deixar claro que é uma melhoria greenfield.
 
@@ -82,16 +82,16 @@ features geradas pelos comandos vivem em `specs/<numero-nome-da-feature>/`.
 
 ## Os 6 padrões EARS
 
-| # | Padrão | Modelo | Exemplo SIFAP |
+| # | Padrão | Modelo | Exemplo sisdnit |
 | --- | --- | --- | --- |
-| 1 | Ubiquitous | O sistema deverá [ação] | O SIFAP deverá registrar uma entrada de auditoria em toda alteração |
+| 1 | Ubiquitous | O sistema deverá [ação] | O sisdnit deverá registrar uma entrada de auditoria em toda alteração |
 | 2 | Event-Driven | Quando [X], o sistema deverá [ação] | Quando um ciclo for gerado, criar pagamentos para beneficiários ativos |
 | 3 | State-Driven | Enquanto [X], o sistema deverá [ação] | Enquanto estiver pendente, permitir cancelamento |
 | 4 | Optional | Onde [escolha], o sistema deverá [ação] | Onde o usuário exportar, gerar CSV em UTF-8 |
 | 5 | Unwanted | O sistema não deverá [ação] | O sistema não deverá permitir DELETE no log de auditoria |
 | 6 | Complex | Enquanto [X], quando [Y], onde [Z], o sistema deverá [ação] | Enquanto estiver ativo, quando dezembro fechar, calcular o 13º benefício |
 
-## Exemplo mínimo no SIFAP
+## Exemplo mínimo no sisdnit
 
 Depois que o Par 1 encontra uma regra em `BATCHPGT.NSN`, o Requirements Engineer
 pode abrir o Copilot no modo Ask e escrever:
@@ -99,9 +99,9 @@ pode abrir o Copilot no modo Ask e escrever:
 ```text
 /speckit.specify
 Funcionalidade: geração de ciclo de pagamento mensal.
-Regra legado: quando o ciclo mensal é gerado, o SIFAP cria pagamentos apenas
+Regra legado: quando o ciclo mensal é gerado, o sisdnit cria pagamentos apenas
 para beneficiários ativos.
-source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L120-L168
 Critério: 10 beneficiários ativos + 2 suspensos produzem 10 pagamentos.
 ```
 
@@ -110,8 +110,8 @@ O resultado esperado em `spec.md` é uma regra rastreável, por exemplo:
 ```yaml
 REQ-PAY-001:
   pattern: event-driven
-  text: "Quando um ciclo de pagamento for gerado, o SIFAP deverá criar registros de pagamento para todo beneficiário com status ACTIVE."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+  text: "Quando um ciclo de pagamento for gerado, o sisdnit deverá criar registros de pagamento para todo beneficiário com status ACTIVE."
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L120-L168
   acceptance: "10 ativos + 2 suspensos produzem 10 registros de pagamento."
 ```
 
@@ -139,7 +139,7 @@ flowchart LR
 | Estágio 3 | `/speckit.analyze` | Lacunas e inconsistências antes de codar |
 | Estágio 3 | `/speckit.implement` | Código guiado por spec + plan + tasks |
 
-## Como adaptar ao SIFAP legado
+## Como adaptar ao sisdnit legado
 
 - Inclua `source_legacy:` em todo requisito que nasceu de `.NSN` ou `.ddm`.
 - Use `[GREENFIELD]` apenas quando não houver paralelo no legado e justifique.

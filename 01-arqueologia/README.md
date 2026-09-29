@@ -19,7 +19,7 @@
 
 > **LEIA PRIMEIRO:** [`LEGACY-EXPLORATION-CHECKLIST.md`](LEGACY-EXPLORATION-CHECKLIST.md) — portão duro antes do Estágio 2.
 >
-> Explore o sistema SIFAP legado com Copilot Ask e os agentes de etapa. Extraia regras de negócio, construa um glossário e mapeie dependências. Todo artefato produzido aqui alimenta o Estágio 2; especificações sem rastreabilidade ao legado são rejeitadas pelo CI.
+> Explore o sistema sisdnit legado com Copilot Ask e os agentes de etapa. Extraia regras de negócio, construa um glossário e mapeie dependências. Todo artefato produzido aqui alimenta o Estágio 2; especificações sem rastreabilidade ao legado são rejeitadas pelo CI.
 
 ## Onde isso encaixa no SDLC
 
@@ -42,7 +42,7 @@ Todos os 5 pares trabalham em paralelo, cada um responsável por 3 programas Nat
 | [`mysteries-checklist.md`](mysteries-checklist.md)                   | Checklist de lógica escondida para os times                             |
 | [`mysteries-found.md`](mysteries-found.md)                           | Modelo para registrar mistérios descobertos                             |
 
-O código legado em si fica em [`../01-arqueologia/legado-sifap/`](legado-sifap/) (compartilhado pelo kit).
+O código legado em si fica em [`../01-arqueologia/legado-sisdnit/`](legado-sisdnit/) (compartilhado pelo kit).
 
 ---
 

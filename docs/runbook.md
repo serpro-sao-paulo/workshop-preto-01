@@ -20,7 +20,7 @@
 ## Local — primeira vez
 
 O repositório do time já vem completo do template (documentação, personas, legado
-SIFAP, CI e Spec-Kit). Não há script de bootstrap nem dev container.
+sisdnit, CI e Spec-Kit). Não há script de bootstrap nem dev container.
 
 ```bash
 git checkout develop && git pull
@@ -38,6 +38,26 @@ Depois que a aplicação existir (Estágio 3+):
 - Swagger UI: <http://localhost:8080/swagger-ui.html>
 - Frontend: <http://localhost:3000>
 
+## Protótipo backend (já existe — Estágio 3)
+
+O núcleo migrado (cálculo de pagamento do Par 3 + validações do Par 4) vive em
+[`03-implementacao/prototipo/backend`](../03-implementacao/prototipo/backend). É um
+módulo Maven puro (sem wrapper) que roda só com JDK 21 e Maven.
+
+```bash
+cd 03-implementacao/prototipo/backend
+mvn -B test          # roda os testes unitários (25 testes verdes)
+mvn -B verify        # build + testes
+rm -rf target        # limpa artefatos depois
+```
+
+- Pré-requisito: `java -version` deve apontar para um JDK 21+.
+- O que o build cobre hoje: cálculo de benefício/desconto, validações de
+  beneficiário e elegibilidade (com os testes que isolam os backdoors MYS-014/015/017).
+- Esqueleto de infraestrutura (plan-only) em
+  [`03-implementacao/prototipo/infra`](../03-implementacao/prototipo/infra) —
+  **nunca** rode `terraform apply` no workshop.
+
 ## Local — diariamente
 
 ```bash
@@ -53,6 +73,7 @@ Acionado automaticamente em push para `main`, `develop`, `spec/**`, `impl/**`.
 | Fluxo de trabalho  | O que faz                                                                  | Quando                            |
 | ------------------ | -------------------------------------------------------------------------- | --------------------------------- |
 | `ci.yml`           | Backend `mvn verify`, frontend lint+test+typecheck, Terraform fmt+validate | Todo push e PR                    |
+| `prototipo-backend.yml` | Build+test do protótipo (`mvn verify`) + `terraform validate` (plan-only) | Mudanças em `03-implementacao/prototipo/**` |
 | `spec-quality.yml` | markdownlint + rastreabilidade de REQ-ID                                   | Quando `**.md` ou `specs/` mudam |
 
 Verifique execuções com falha na aba Actions. Reproduza localmente rodando os

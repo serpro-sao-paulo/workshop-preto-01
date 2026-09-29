@@ -87,7 +87,7 @@
 
 ## 📋 Antes de Começar — Modelo Mental
 
-Este kit é um **template do GitHub**. Vocês não clonam e copiam nada à mão: o líder clica em **"Use this template"** e o GitHub cria um repositório novo do time já com **tudo dentro** — documentação, personas, código legado SIFAP (`01-arqueologia/legado-sifap/`), workflows de CI e a base do Spec-Kit.
+Este kit é um **template do GitHub**. Vocês não clonam e copiam nada à mão: o líder clica em **"Use this template"** e o GitHub cria um repositório novo do time já com **tudo dentro** — documentação, personas, código legado sisdnit (`01-arqueologia/legado-sisdnit/`), workflows de CI e a base do Spec-Kit.
 
 Você vai terminar com **1 repositório de trabalho**:
 
@@ -97,7 +97,7 @@ Você vai terminar com **1 repositório de trabalho**:
 | **`workshop-<cor>-<numero>`** | **Todo o trabalho do time vai aqui.** Criado pelo líder via template. | github.com/serpro-sao-paulo/workshop-&lt;cor&gt;-&lt;numero&gt; (**público**) |
 
 > [!IMPORTANT]
-> **O código legado SIFAP já vem dentro** do repositório do time (em `01-arqueologia/legado-sifap/`). Você lê durante a Arqueologia, mas **nunca edita** o legado.
+> **O código legado sisdnit já vem dentro** do repositório do time (em `01-arqueologia/legado-sisdnit/`). Você lê durante a Arqueologia, mas **nunca edita** o legado.
 
 > [!NOTE]
 > **A nova aplicação ainda não existe.** Não há `Dockerfile`, backend nem frontend prontos neste kit — **o time cria tudo** a partir das specs, usando o Spec-Kit no Estágio 3. Você começa pela Arqueologia (ler o legado), não por código.
@@ -132,7 +132,7 @@ Você vai terminar com **1 repositório de trabalho**:
 
 **Escolham uma pessoa para ser líder do time** (normalmente quem cobre a persona Technical Lead no Par 3). Somente a pessoa líder faz os Passos 2 a 5. As outras 4 pessoas aguardam e seguem a partir do Passo 6.
 
-Este kit é um **template do GitHub**. Você não cria um repositório vazio nem copia arquivos à mão — o GitHub gera um repositório novo já com **todo o conteúdo** do kit (documentação, personas, código legado SIFAP, workflows de CI e a base do Spec-Kit).
+Este kit é um **template do GitHub**. Você não cria um repositório vazio nem copia arquivos à mão — o GitHub gera um repositório novo já com **todo o conteúdo** do kit (documentação, personas, código legado sisdnit, workflows de CI e a base do Spec-Kit).
 
 ### Passo a passo
 
@@ -142,7 +142,7 @@ Este kit é um **template do GitHub**. Você não cria um repositório vazio nem
 
 - **Owner**: selecione a organização do workshop **`serpro-sao-paulo`**.
 - **Repository name**: `workshop-<cor>-<numero>` — use a cor do seu grupo e o número, por exemplo `workshop-azul-01`, `workshop-verde-03`.
-- **Description**: `Workshop SIFAP 2.0 — Grupo <cor> <numero>`
+- **Description**: `Workshop sisdnit 2.0 — Grupo <cor> <numero>`
 - **Visibility**: **Public** ✅ (o repositório do time **deve ser público**)
 - Deixe **Include all branches** desmarcado (só a `main` basta).
 
@@ -175,7 +175,7 @@ git push -u origin develop
 `develop` é onde as branches de funcionalidade de todo mundo serão integradas. Promoções para `main` acontecem via PR depois de cada estágio.
 
 > [!NOTE]
-> O código legado SIFAP já está em `01-arqueologia/legado-sifap/` e o Spec-Kit já vem configurado. Você **não** precisa rodar nenhum script de validação ou bootstrap — comece a trabalhar direto pela Arqueologia.
+> O código legado sisdnit já está em `01-arqueologia/legado-sisdnit/` e o Spec-Kit já vem configurado. Você **não** precisa rodar nenhum script de validação ou bootstrap — comece a trabalhar direto pela Arqueologia.
 
 > ⚠️ **Importante.** De agora em diante, ninguém faz push diretamente para `main`. O Passo 4 protege essa branch.
 

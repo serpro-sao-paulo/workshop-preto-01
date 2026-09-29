@@ -6,6 +6,10 @@
         "speckit.tasks": true,
         "speckit.implement": true
     },
+    "workbench.editor.enablePreview": true,
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor"
+    },
     "chat.tools.terminal.autoApprove": {
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true

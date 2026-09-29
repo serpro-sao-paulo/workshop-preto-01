@@ -32,7 +32,7 @@ Dono da estrutura interna do sistema. Decide como módulos são organizados, ond
 
 ## Missão no workshop
 
-Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do SIFAP 2.0 (Beneficiary, Agreement, Payment, Adjustment, Cycle, Audit) e o padrão de comunicação entre eles. Garantir que o código do Estágio 3 respeite as fronteiras desenhadas.
+Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do sisdnit 2.0 (Beneficiary, Agreement, Payment, Adjustment, Cycle, Audit) e o padrão de comunicação entre eles. Garantir que o código do Estágio 3 respeite as fronteiras desenhadas.
 
 ## Seu papel no framework Agentic Legacy Modernization
 
@@ -64,7 +64,7 @@ Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do S
 ## Como você se sai bem
 
 - O layout de pacotes reflete os bounded contexts, não as camadas técnicas.
-- Seus ADRs são curtos, específicos, e citam a referência do `03-spec-sifap-moderno/` quando relevante.
+- Seus ADRs são curtos, específicos, e citam a referência do `03-spec-sisdnit-moderno/` quando relevante.
 - O Modular Monolith permanece monolito no deploy mas modular no código.
 - Você redesenha fronteiras quando preciso, em vez de "pedir perdão depois".
 
@@ -82,7 +82,7 @@ Produzir C4 Níveis 2 e 3 coerentes com a spec. Definir os bounded contexts do S
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Com base nestes requisitos EARS, proponha os bounded contexts do SIFAP 2.0. Para cada contexto liste: entidades, serviços expostos e dependências de outros contextos."_
+1. **(Chat)** _"Com base nestes requisitos EARS, proponha os bounded contexts do sisdnit 2.0. Para cada contexto liste: entidades, serviços expostos e dependências de outros contextos."_
 2. **(Plan)** _"No projeto Spring Boot, planeje a estrutura de pacotes para um novo bounded context 'notification' seguindo o padrão dos existentes (domain/application/infrastructure)."_
 3. **(Chat)** _"Revise este PR e identifique imports que cruzam fronteiras de bounded context. Para cada violação, sugira como isolar."_
 

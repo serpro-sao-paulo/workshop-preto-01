@@ -26,7 +26,7 @@
 
 ## Contexto
 
-Estamos modernizando o SIFAP, um sistema de 29 anos com **4 domínios bem definidos** (beneficiário, pagamento, auditoria, administração) e ~4.2 milhões de beneficiários. Temos **8 horas** para entregar protótipo funcional + deploy via IaC.
+Estamos modernizando o sisdnit, um sistema de 29 anos com **4 domínios bem definidos** (beneficiário, pagamento, auditoria, administração) e ~4.2 milhões de beneficiários. Temos **8 horas** para entregar protótipo funcional + deploy via IaC.
 
 Restrições conhecidas:
 
@@ -42,7 +42,7 @@ A decisão precisa equilibrar **clareza arquitetural** (4 bounded contexts visí
 Adotaremos **monolito modular** em Java 21 + Spring Boot 3.3, com a seguinte estrutura:
 
 ```
-src/main/java/br/gov/client/sifap/
+src/main/java/br/gov/client/sisdnit/
 ├── beneficiary/   ← módulo
 │   ├── domain/         (puro, sem Spring)
 │   ├── application/    (services)

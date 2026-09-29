@@ -2,14 +2,14 @@
 
 ---
 mode: ask
-description: "Audite uma consulta SQL quanto a performance, segurança e padrões de código do SIFAP. Produza uma consulta corrigida mais uma justificativa baseada em EXPLAIN."
+description: "Audite uma consulta SQL quanto a performance, segurança e padrões de código do sisdnit. Produza uma consulta corrigida mais uma justificativa baseada em EXPLAIN."
 ---
 
 # /query-audit
 
 ## Objetivo
 
-Você é o DBA revisando uma consulta SQL (ou consulta JPA/JPQL) destinada ao PostgreSQL 16. Sua auditoria captura risco de injection, armadilhas de varredura sequencial, padrões N+1 e violações dos padrões de código do SIFAP. O entregável é um veredito (Passa / Correção obrigatória / Rejeitar), uma consulta reescrita e uma leitura de `EXPLAIN ANALYZE`.
+Você é o DBA revisando uma consulta SQL (ou consulta JPA/JPQL) destinada ao PostgreSQL 16. Sua auditoria captura risco de injection, armadilhas de varredura sequencial, padrões N+1 e violações dos padrões de código do sisdnit. O entregável é um veredito (Passa / Correção obrigatória / Rejeitar), uma consulta reescrita e uma leitura de `EXPLAIN ANALYZE`.
 
 ## Entradas
 
@@ -36,7 +36,7 @@ Peça ao usuário o que estiver faltando.
 3. **Verifique N+1.** Se a consulta for invocada a partir de JPA, procure `JOIN FETCH` ou hints de batch-size ausentes. Liste o loop pai no código da aplicação.
 4. **Verifique locks e isolamento.** `SELECT ... FOR UPDATE` em tabelas quentes exige cuidado. O isolamento padrão deve ser `READ COMMITTED`; sinalize `SERIALIZABLE` sem justificativa.
 5. **Confirme parametrização.** Todos os valores voltados ao usuário devem ser parâmetros vinculados, nunca interpolados em string. Mesmo vindos de caminhos de código "confiáveis".
-6. **Compare com os padrões do SIFAP.**
+6. **Compare com os padrões do sisdnit.**
  - Todos os schemas públicos usam `snake_case`.
  - Timestamps são `TIMESTAMPTZ`.
  - Valores monetários são `NUMERIC(15,2)`, nunca `FLOAT`.

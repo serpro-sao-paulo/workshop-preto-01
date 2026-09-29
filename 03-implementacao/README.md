@@ -17,7 +17,7 @@
 > 3. Como subir local com `docker compose up`
 > 4. Link direto para o GUIDE com os 5 passos por feature
 
-> Construa o protótipo do SIFAP 2.0 — backend Java 21 + Spring Boot 3, frontend Next.js 15, PostgreSQL 16 — usando o modo Agent do GitHub Copilot.
+> Construa o protótipo do sisdnit 2.0 — backend Java 21 + Spring Boot 3, frontend Next.js 15, PostgreSQL 16 — usando o modo Agent do GitHub Copilot.
 
 ## Onde isso encaixa no SDLC
 

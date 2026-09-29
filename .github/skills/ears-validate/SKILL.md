@@ -29,7 +29,7 @@ description: "Use ao validar requisitos contra padrões da notação EARS. Acion
 - [ ] Sem detalhes de implementação ("use Redis") - apenas comportamento.
 - [ ] Tem um REQ-ID no formato `REQ-NNN`.
 - [ ] Tem pelo menos um critério de aceitação.
-- [ ] **Tem um `source_legacy:` não vazio apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justification`.**
+- [ ] **Tem um `source_legacy:` não vazio apontando para um arquivo `*.java`, `*.jsp`, `*.xml` ou `*.js` em `01-arqueologia/legado-sisdnit/`, ou `[GREENFIELD] + justification`. Arquivos `.NSM` e `.ddm` são inválidos.**
 
 ## Defeitos comuns
 | Defeito | Exemplo | Correção |
@@ -44,7 +44,7 @@ description: "Use ao validar requisitos contra padrões da notação EARS. Acion
 ### REQ-NNN (<pattern>)
 <EARS statement>
 
-**source_legacy**: 01-arqueologia/legado-sifap/natural-programs/<FILE>.NSN#L<start>-L<end>
+**source_legacy**: 01-arqueologia/legado-sisdnit/<path>/<FILE>.(java|jsp|xml|js)#L<start>-L<end>
 _(ou `[GREENFIELD] <justificativa>` quando não houver paralelo legado)_
 
 **Critérios de aceite**

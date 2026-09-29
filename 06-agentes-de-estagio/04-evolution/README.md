@@ -42,7 +42,7 @@ Operacionalizar o que foi construído: criar issues claras para o modo Agent, re
 Estou iniciando o Estágio 4 — Evolução.
 Temos um protótipo com backend, frontend e testes.
 Ajude a criar issues para Copilot Agent, revisar PRs, preparar CI/CD,
-organizar Terraform e escrever o runbook final do SIFAP 2.0.
+organizar Terraform e escrever o runbook final do sisdnit 2.0.
 ```
 
 ## O que perguntar

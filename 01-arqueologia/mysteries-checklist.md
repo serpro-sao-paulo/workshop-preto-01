@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# Checklist de Mistérios do SIFAP
+# Checklist de Mistérios do sisdnit
 
 ![ESTÁGIO 01 Arqueologia](https://img.shields.io/badge/ESTÁGIO-01%20Arqueologia-F25022?style=for-the-badge) ![TIPO Worksheet](https://img.shields.io/badge/TIPO-Worksheet-1A1A1A?style=for-the-badge) ![PREENCHA Durante S1](https://img.shields.io/badge/PREENCHA-Durante%20S1-737373?style=for-the-badge)
 
@@ -10,8 +10,8 @@
 >
 > **O que você terá ao final do estágio:**
 >
-> 1. Este documento totalmente preenchido com os dados reais do legado SIFAP
-> 2. Rastreabilidade para `01-arqueologia/legado-sifap/` (programas `.NSN` e DDMs)
+> 1. Este documento totalmente preenchido com os dados reais do legado sisdnit
+> 2. Rastreabilidade para `01-arqueologia/legado-sisdnit/` (programas `.NSN` e DDMs)
 > 3. Base de evidência usada nas EARS do Estágio 2 (`source_legacy:`)
 >
 > 📘 **Guia passo a passo:** [`GUIDE.md`](GUIDE.md).
@@ -21,7 +21,7 @@
 
 ## Por que isso existe
 
-Em sistemas legados de verdade, regras de negócio críticas frequentemente ficam escondidas em código sem comentário, em constantes mágicas, em casos especiais sem justificativa. A facilitadora plantou 10 dessas armadilhas no SIFAP justamente para treinar o olhar do time. Quem aprende a achar mistérios no workshop, acha em produção.
+Em sistemas legados de verdade, regras de negócio críticas frequentemente ficam escondidas em código sem comentário, em constantes mágicas, em casos especiais sem justificativa. A facilitadora plantou 10 dessas armadilhas no sisdnit justamente para treinar o olhar do time. Quem aprende a achar mistérios no workshop, acha em produção.
 
 ## Como funciona
 

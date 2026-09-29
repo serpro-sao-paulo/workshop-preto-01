@@ -33,7 +33,7 @@ Use nomes curtos, sem acento e orientados a comportamento.
 | Nome bom | Nome fraco |
 | --- | --- |
 | `001-geracao-ciclo-pagamento` | `001-backend` |
-| `002-validacao-beneficiario` | `002-sifap` |
+| `002-validacao-beneficiario` | `002-sisdnit` |
 | `003-relatorio-auditoria` | `003-coisas` |
 
 ## Artefatos obrigatórios
@@ -66,7 +66,7 @@ Use nomes curtos, sem acento e orientados a comportamento.
 /speckit.specify
 Funcionalidade: geração de ciclo de pagamento mensal.
 Regra legado: criar pagamentos apenas para beneficiários ativos.
-source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L120-L168
+source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L120-L168
 Acceptance: 10 ativos + 2 suspensos geram 10 pagamentos.
 ```
 

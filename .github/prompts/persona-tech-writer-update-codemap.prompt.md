@@ -1,5 +1,5 @@
 ---
-description: "Gerar ou atualizar CODEMAP.md — um índice navegável da base de código do SIFAP 2.0 mostrando módulos, proprietários e pontos de entrada."
+description: "Gerar ou atualizar CODEMAP.md — um índice navegável da base de código do sisdnit 2.0 mostrando módulos, proprietários e pontos de entrada."
 argument-hint: "service=payment"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
@@ -24,7 +24,7 @@ Peça à pessoa usuária o que estiver faltando.
 
 ## Processo
 
-1. **Liste as pastas de serviço de nível superior.** Serviços backend em `04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/<service>/`, rotas frontend em `04-prototipo-sifap-moderno/frontend/app/<route>/`, infra em `05-terraform-azure/modules/<name>/`.
+1. **Liste as pastas de serviço de nível superior.** Serviços backend em `04-prototipo-sisdnit-moderno/backend/src/main/java/br/gov/sisdnit/<service>/`, rotas frontend em `04-prototipo-sisdnit-moderno/frontend/app/<route>/`, infra em `05-terraform-azure/modules/<name>/`.
 2. **Para cada módulo, capture cinco fatos.**
  - Propósito (uma frase).
  - Pontos de entrada públicos (endpoints REST, rotas de página, comandos CLI, entradas de IaC).
@@ -32,7 +32,7 @@ Peça à pessoa usuária o que estiver faltando.
  - Faixas de `REQ-ID` vinculadas (por exemplo, `REQ-PAY-001..024`).
  - Persona proprietária (`alex`, `sam`, `jordan`, `morgan`, `casey`).
 3. **Encontre testes.** Para cada módulo, encontre o diretório de testes correspondente e crie um link para ele.
-4. **Encontre o mapeamento legado.** Quando um módulo corresponder a um programa Natural de `01-arqueologia/legado-sifap/natural-programs/`, nomeie o programa (`CALCBENF.NSN` etc.). Isso explicita a linhagem da modernização.
+4. **Encontre o mapeamento legado.** Quando um módulo corresponder a um programa Natural de `01-arqueologia/legado-sisdnit/programs/`, nomeie o programa (`CALCBENF.NSN` etc.). Isso explicita a linhagem da modernização.
 5. **Encontre dependências não óbvias.** Imports entre módulos, bibliotecas compartilhadas (`commons-*`) e serviços externos do Azure. Destaque qualquer módulo que dependa de mais de três outros, pois isso é um cheiro de design.
 6. **Ordene módulos por valor visível à pessoa usuária.** Caminhos críticos de uso primeiro (cadastro, desembolso, auditoria), módulos de suporte depois, infra por último.
 7. **Renderize como um único arquivo markdown navegável.** Mantenha abaixo de 200 linhas. Se passar disso, divida sub-codemaps por área de serviço e crie links para eles.
@@ -42,7 +42,7 @@ Peça à pessoa usuária o que estiver faltando.
 O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 
 ```markdown
-# Mapa do Código do SIFAP 2.0
+# Mapa do Código do sisdnit 2.0
 
 > Última atualização: <YYYY-MM-DD>. Donos: veja `pt-br/05-personas/`.
 
@@ -54,8 +54,8 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 
 ### payments — orquestração de desembolsos
 - **Propósito**: emitir, tentar novamente e reconciliar desembolsos de beneficiários.
-- **Path**: `04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/payments/`
-- **Testes**: `04-prototipo-sifap-moderno/backend/src/test/java/br/gov/sifap/payments/`
+- **Path**: `04-prototipo-sisdnit-moderno/backend/src/main/java/br/gov/sisdnit/payments/`
+- **Testes**: `04-prototipo-sisdnit-moderno/backend/src/test/java/br/gov/sisdnit/payments/`
 - **Pontos de entrada**: `POST /api/v1/payments`, `GET /api/v1/payments/{id}`, `POST /api/v1/payments/{id}/retry`
 - **Estado**: tabelas Postgres `payment`, `payment_attempt`, `disbursement_lock`. Fila Service Bus `payments-out`.
 - **REQ-IDs**: REQ-PAY-001..024
@@ -69,8 +69,8 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 ## 3. Rotas de frontend
 
 ### /beneficiaries — listagem e detalhe
-- **Path**: `04-prototipo-sifap-moderno/frontend/app/beneficiaries/`
-- **Testes**: `04-prototipo-sifap-moderno/frontend/app/beneficiaries/__tests__/`
+- **Path**: `04-prototipo-sisdnit-moderno/frontend/app/beneficiaries/`
+- **Testes**: `04-prototipo-sisdnit-moderno/frontend/app/beneficiaries/__tests__/`
 - **REQ-IDs**: REQ-UI-007..014
 - **Dono**: @sam
 - **Consome API de**: `payments`, `beneficiaries`
@@ -85,8 +85,8 @@ O entregável é `docs/CODEMAP.md` (ou subarquivos), com esta estrutura:
 - ...
 
 ## 5. Bibliotecas transversais
-- `br.gov.sifap.shared.audit` — usada por pagamentos, beneficiários e programas.
-- `br.gov.sifap.shared.money` — wrappers `BigDecimal` para cálculos de ICMS.
+- `br.gov.sisdnit.shared.audit` — usada por pagamentos, beneficiários e programas.
+- `br.gov.sisdnit.shared.money` — wrappers `BigDecimal` para cálculos de ICMS.
 
 ## 6. Pontos de atenção observados
 - `beneficiaries` importa de 4 outros módulos — revisar para uma fronteira de responsabilidade mais estreita.
@@ -106,7 +106,7 @@ Rode `/update-codemap` após adicionar ou renomear qualquer módulo. Não gere a
 - Gerar a partir de `find . -type d`: isso é uma listagem de diretórios, não um mapa.
 - Incluir todos os arquivos. O codemap nomeia módulos, não linhas.
 - Listar endpoints como `*`. Seja específico.
-- Esquecer a coluna de linhagem legada para SIFAP. Modernização sem linhagem fica invisível.
+- Esquecer a coluna de linhagem legada para sisdnit. Modernização sem linhagem fica invisível.
 - Usar times como proprietários. A pessoa de plantão é a proprietária.
 - Pular a seção "Smells observados". O codemap também é uma verificação de saúde.
 - Deixar o arquivo sofrer drift por mais de 30 dias. Codemap desatualizado é pior que nenhum codemap.

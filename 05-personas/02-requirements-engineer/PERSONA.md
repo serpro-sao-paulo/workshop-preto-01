@@ -28,7 +28,7 @@
 
 ## Quem é essa pessoa
 
-Quem pega conversa solta e transforma em requisito testável. Junto com o PO, quem mantém o time longe de escrever código para um problema mal enquadrado. Num sistema legado como o SIFAP, esse papel é crítico: as regras estão tacitamente codificadas em Natural e ninguém mais as articula.
+Quem pega conversa solta e transforma em requisito testável. Junto com o PO, quem mantém o time longe de escrever código para um problema mal enquadrado. Num sistema legado como o sisdnit, esse papel é crítico: as regras estão tacitamente codificadas em Natural e ninguém mais as articula.
 
 ## Missão no workshop
 
@@ -82,7 +82,7 @@ Converter o que foi descoberto no Estágio 1 em requisitos formais e testáveis 
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Leia esta regra do SIFAP legado e converta para notação EARS: [cole a regra]. Identifique qual dos 6 padrões EARS se aplica e explique por quê."_
+1. **(Chat)** _"Leia esta regra do sisdnit legado e converta para notação EARS: [cole a regra]. Identifique qual dos 6 padrões EARS se aplica e explique por quê."_
 2. **(Chat)** _"Analise estes 5 requisitos EARS e encontre: (a) ambiguidades que precisam de decisão do PO, (b) dependências entre eles, (c) requisitos conflitantes."_
 3. **(Plan)** _"No SPECIFICATION.md, planeje requisitos EARS para o módulo de auditoria com base nas regras BR-008 a BR-012 do catálogo. Use os padrões Event e Unwanted Behavior."_
 

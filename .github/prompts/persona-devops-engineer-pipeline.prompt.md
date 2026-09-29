@@ -1,5 +1,5 @@
 ---
-description: "Crie um pipeline CI/CD no GitHub Actions para o SIFAP 2.0 com build, testes, gates de segurança e promoção entre ambientes."
+description: "Crie um pipeline CI/CD no GitHub Actions para o sisdnit 2.0 com build, testes, gates de segurança e promoção entre ambientes."
 argument-hint: "workflow=ci stages=build,test,deploy env=staging"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
@@ -11,7 +11,7 @@ tools: ['search/codebase', 'edit/editFiles']
 
 ## Objetivo
 
-Você é o DevOps engineer criando (ou refatorando) um workflow de **GitHub Actions** para o SIFAP 2.0. O pipeline deve fazer build, testar, escanear e promover artefatos por `develop` → `stage` → `main` (= produção) com gates explícitos. O entregável fica em `.github/workflows/` e referencia workflows reutilizáveis em `.github/workflows/_reusable/` quando forem compartilhados.
+Você é o DevOps engineer criando (ou refatorando) um workflow de **GitHub Actions** para o sisdnit 2.0. O pipeline deve fazer build, testar, escanear e promover artefatos por `develop` → `stage` → `main` (= produção) com gates explícitos. O entregável fica em `.github/workflows/` e referencia workflows reutilizáveis em `.github/workflows/_reusable/` quando forem compartilhados.
 
 ## Entradas
 
@@ -57,10 +57,10 @@ Sua resposta final deve incluir:
 name: backend-payments
 on:
  pull_request:
- paths: ['04-prototipo-sifap-moderno/backend/**']
+ paths: ['04-prototipo-sisdnit-moderno/backend/**']
  push:
  branches: [develop, stage, main]
- paths: ['04-prototipo-sifap-moderno/backend/**']
+ paths: ['04-prototipo-sisdnit-moderno/backend/**']
 
 permissions:
  id-token: write
@@ -92,7 +92,7 @@ jobs:
 
 > Workflow `backend-payments.yml` com 7 jobs (`build`, `quality`, `security`, `package`, `deploy-dev`, `deploy-stage`, `deploy-prod`).
 >
-> OIDC federado para o app do Entra ID `sp-sifap-cicd`, com escopo na subscription `sub-sifap-prod`.
+> OIDC federado para o app do Entra ID `sp-sisdnit-cicd`, com escopo na subscription `sub-sisdnit-prod`.
 >
 > Secrets obrigatórios: `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `AZURE_CLIENT_ID`, `ACR_NAME`. Sem senhas.
 >

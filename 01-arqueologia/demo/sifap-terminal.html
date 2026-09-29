@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>SIFAP</title>
+<title>sisdnit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fonte IBM 3270 — autoencoded em base64 via fontes-cdn nao disponiveis em Google Fonts.
@@ -315,7 +315,7 @@ async function bootSequence() {
   println();
   await typeOut('   DATACORP  -  COM-PLETE 7.4', 8);
   await sleep(150);
-  await typeOut('   NATURAL CONNECTED TO ADABAS DBID=047  -  LIBRARY: SIFAPPRD', 6);
+  await typeOut('   NATURAL CONNECTED TO ADABAS DBID=047  -  LIBRARY: sisdnitPRD', 6);
   await typeOut('   NATURAL VERSION 6.3.13   (C) SOFTWARE AG  1979-2014', 6);
   await typeOut('   TERMINAL: T0001', 6);
   await sleep(450);
@@ -333,7 +333,7 @@ function showLogon() {
 
            <span class="blue">SENHA    :</span>  ********
 
-           <span class="blue">LIBRARY  :</span>  SIFAPPRD
+           <span class="blue">LIBRARY  :</span>  sisdnitPRD
 
 
        <span class="dim">A SESSAO SERA REGISTRADA NO LOG DE ACESSOS DO SISTEMA.</span>
@@ -344,7 +344,7 @@ function showLogon() {
 `;
   renderScreen({
     programa: 'LOGON001',
-    titulo: 'SIFAP - LOGON DE USUARIO',
+    titulo: 'sisdnit - LOGON DE USUARIO',
     subtitulo: 'SISTEMA INTEGRADO DE PAGAMENTO',
     body,
     msg: 'INFORME O CODIGO DO USUARIO E TECLE ENTER PARA CONFIRMAR.',
@@ -358,7 +358,7 @@ function showMenu() {
   state.nivel = '00001';
   const body = `
 
-       SIFAP  -  SISTEMA INTEGRADO DE PAGAMENTO DE BENEFICIOS
+       sisdnit  -  SISTEMA INTEGRADO DE PAGAMENTO DE BENEFICIOS
 
            1  -  CONSULTAR BENEFICIARIO POR NIS
            2  -  CONSULTAR HISTORICO DE PAGAMENTOS
@@ -373,7 +373,7 @@ function showMenu() {
 `;
   renderScreen({
     programa: 'MENU0001',
-    titulo: 'SIFAP - MENU PRINCIPAL',
+    titulo: 'sisdnit - MENU PRINCIPAL',
     subtitulo: 'SELECAO DE FUNCAO',
     body,
     msg: 'INFORME O NUMERO DA OPCAO DESEJADA E TECLE ENTER.',
@@ -402,7 +402,7 @@ function showConsBenefForm() {
 `;
   renderScreen({
     programa: 'CBENF010',
-    titulo: 'SIFAP - CONSULTA BENEFICIARIO',
+    titulo: 'sisdnit - CONSULTA BENEFICIARIO',
     subtitulo: 'INFORMACAO DO NIS PARA CONSULTA',
     body,
     msg: 'INFORME O NIS DO BENEFICIARIO E TECLE ENTER PARA CONSULTAR.',
@@ -429,7 +429,7 @@ function showConsPagForm() {
 `;
   renderScreen({
     programa: 'CPAGT005',
-    titulo: 'SIFAP - CONSULTA PAGAMENTOS',
+    titulo: 'sisdnit - CONSULTA PAGAMENTOS',
     subtitulo: 'INFORMACAO DO NIS PARA CONSULTA',
     body,
     msg: 'INFORME O NIS E TECLE ENTER PARA EXIBIR O HISTORICO.',
@@ -466,7 +466,7 @@ function showBenefDetail(nis) {
 `;
   renderScreen({
     programa: 'CBENF020',
-    titulo: 'SIFAP - DETALHE DO BENEFICIARIO',
+    titulo: 'sisdnit - DETALHE DO BENEFICIARIO',
     subtitulo: 'DADOS CADASTRAIS E DE BENEFICIO',
     body,
     msg: '<span class="amber">REGISTRO LOCALIZADO COM SUCESSO.</span>',
@@ -503,7 +503,7 @@ function showPagamentos(nis) {
     : `<span class="amber">${pgs.length} REGISTRO(S) LOCALIZADO(S) COM SUCESSO.</span>`;
   renderScreen({
     programa: 'CPAGT010',
-    titulo: 'SIFAP - HISTORICO DE PAGAMENTOS',
+    titulo: 'sisdnit - HISTORICO DE PAGAMENTOS',
     subtitulo: 'PAGAMENTOS REGISTRADOS PARA O BENEFICIARIO',
     body, msg,
     pfkeys: 'PF3=VOLTAR  PF7=NOVA CONSULTA  PF8=DETALHE BENEF  PF12=MENU',
@@ -529,7 +529,7 @@ function showListaProg() {
 `;
   renderScreen({
     programa: 'LBENF030',
-    titulo: 'SIFAP - LISTAGEM POR PROGRAMA',
+    titulo: 'sisdnit - LISTAGEM POR PROGRAMA',
     subtitulo: 'SELECAO DE FILTRO',
     body,
     msg: 'INFORME O NUMERO DO PROGRAMA E TECLE ENTER PARA LISTAR.',
@@ -555,7 +555,7 @@ function showBenefList(filter) {
   body += '\n   <span class="dim">*** FIM DE LISTAGEM ***</span>\n';
   renderScreen({
     programa: 'LBENF031',
-    titulo: 'SIFAP - BENEFICIARIOS',
+    titulo: 'sisdnit - BENEFICIARIOS',
     subtitulo: filter ? `PROGRAMA: ${filter}` : 'TODOS OS PROGRAMAS',
     body,
     msg: `<span class="amber">${lista.length} REGISTRO(S) LOCALIZADO(S). DIGITE NIS PARA DETALHE.</span>`,
@@ -589,14 +589,14 @@ function showRelatorio() {
    <span class="amber">TOTAL GERAL        ${lpad(totGeral, 12)}    ${lpad(valGeral.toFixed(2), 16)}</span>
 
 
-   <span class="dim">FONTE DOS DADOS .....: TABELA SIFAP-BENEF (ADABAS FILE 047)</span>
+   <span class="dim">FONTE DOS DADOS .....: TABELA sisdnit-BENEF (ADABAS FILE 047)</span>
    <span class="dim">REGRA DE NEGOCIO ....: PGM CALC-VALOR-MENSAL  (NATURAL CRPGM042)</span>
-   <span class="dim">ULTIMA EXECUCAO BATCH: 24/04/2026 23:47:12  (JOB SIFAPBT0)</span>
+   <span class="dim">ULTIMA EXECUCAO BATCH: 24/04/2026 23:47:12  (JOB sisdnitBT0)</span>
 
 `;
   renderScreen({
     programa: 'RGER010 ',
-    titulo: 'SIFAP - RELATORIO GERENCIAL',
+    titulo: 'sisdnit - RELATORIO GERENCIAL',
     subtitulo: 'CONSOLIDADO POR PROGRAMA',
     body,
     msg: '<span class="amber">RELATORIO GERADO COM SUCESSO. *** FIM DE RELATORIO ***</span>',
@@ -637,13 +637,13 @@ function showHelp() {
        LINGUAGEM ........: NATURAL 6.3 (SOFTWARE AG)
        BANCO ............: ADABAS FILE 047
        MONITOR ..........: COM-PLETE 7.4
-       LIBRARY ..........: SIFAPPRD
+       LIBRARY ..........: sisdnitPRD
        ANO IMPLANTACAO ..: 1997
 
 `;
   renderScreen({
     programa: 'HELP0001',
-    titulo: 'SIFAP - AJUDA OPERACIONAL',
+    titulo: 'sisdnit - AJUDA OPERACIONAL',
     subtitulo: 'COMANDOS E REFERENCIA TECNICA',
     body,
     msg: '<span class="amber">CONSULTA DE AJUDA EXIBIDA.</span>',
@@ -666,7 +666,7 @@ function logoff() {
   println(`              DATA / HORA ....: ${now().data}  ${now().hora}`);
   println(`              TERMINAL .......: ${state.terminal}`);
   println();
-  println('              OBRIGADO POR UTILIZAR O SIFAP.');
+  println('              OBRIGADO POR UTILIZAR O sisdnit.');
 }
 
 function handleCommand(raw) {

@@ -1,18 +1,18 @@
 ---
-title: "SIFAP Terminal — Roteiro de Demo Interativa"
-description: "Script cena-a-cena para conduzir a demo interativa do simulador SIFAP no Estágio 1 (Arqueologia Digital). Cobre todos os pontos do sistema com comandos exatos, o que aparece na tela e falas-chave de narração. Pensado para uso ao vivo lado a lado com o simulador projetado. Versão alinhada ao terminal v1.1 com fidelidade SIAFI/SIAPE."
+title: "sisdnit Terminal — Roteiro de Demo Interativa"
+description: "Script cena-a-cena para conduzir a demo interativa do simulador sisdnit no Estágio 1 (Arqueologia Digital). Cobre todos os pontos do sistema com comandos exatos, o que aparece na tela e falas-chave de narração. Pensado para uso ao vivo lado a lado com o simulador projetado. Versão alinhada ao terminal v1.1 com fidelidade SIAFI/SIAPE."
 author: "Paula Silva — Americas Software GBB, Microsoft"
 date: 2026-04-25
 version: 1.1.0
 status: ready
-artifact: sifap-terminal.html (v1.1)
+artifact: sisdnit-terminal.html (v1.1)
 audience: Paula (facilitadora principal)
 duration: 18-22 min (versão completa) | 8-10 min (versão reduzida)
 event: Hackathon SERPRO 2026 — Estágio 1 Arqueologia Digital
-tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
+tags: [hackathon, serpro, sisdnit, demo-script, facilitacao, estagio-1]
 ---
 
-# SIFAP Terminal — Roteiro de Demo Interativa
+# sisdnit Terminal — Roteiro de Demo Interativa
 
 > Script para você conduzir ao vivo, projetando o simulador. Cada cena tem comando exato, descrição da tela e falas-chave. Não é discurso para ler — são pontos para você costurar do seu jeito.
 >
@@ -70,7 +70,7 @@ tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
 
 | Passo | Ação |
 |---|---|
-| 1 | Abra `sifap-terminal.html` no browser |
+| 1 | Abra `sisdnit-terminal.html` no browser |
 | 2 | `F11` ou clique **Fullscreen** |
 | 3 | Clique **Reset** para garantir que está no boot |
 | 4 | Aumente zoom do browser `Ctrl/Cmd +` 1-2 vezes (sala grande) |
@@ -121,7 +121,7 @@ tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
 - "Isso é um terminal Natural/Adabas. Tecnologia da Software AG, anos 90."
 - "ADABAS é o banco — não é relacional, é nested-file. File 047."
 - "COM-PLETE é o monitor de teleprocessamento — pensem nele como o 'web server' do mainframe."
-- "Library SIFAPPRD é onde mora o código de produção. Como um 'pacote' Java, mas sem versionamento."
+- "Library sisdnitPRD é onde mora o código de produção. Como um 'pacote' Java, mas sem versionamento."
 - *(Apontar pro `[EXECUTADO]`)* "Reparem: não é 'OK'. É EXECUTADO. Convenção dos sistemas brasileiros — SIAFI, SIAPE, todos usam essa palavra."
 
 **[GANCHO]** Doc 13 §4.2 — Scenario B Natural+Adabas. Esses são os ingredientes reais que o time vai encontrar no repo.
@@ -135,9 +135,9 @@ tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
 **[TELA]** Tela de logon com header de 3 linhas (DATA, HORA, TID) → menu principal aparece
 
 **[FALAR]**
-- "Não tem validação de senha — é demo. No SIFAP real, autenticação era no próprio COM-PLETE com perfis."
+- "Não tem validação de senha — é demo. No sisdnit real, autenticação era no próprio COM-PLETE com perfis."
 - *(Apontar pro prompt)* "Reparem o prompt: `===>` com **três iguais**. Não é dois, não é um. É padrão Natural — quem viu sistema da década de 90 reconhece na hora."
-- "BIBLIOTECA: SIFAPPRD. Nome de até 8 caracteres, tudo maiúsculo. Convenção mainframe."
+- "BIBLIOTECA: sisdnitPRD. Nome de até 8 caracteres, tudo maiúsculo. Convenção mainframe."
 
 ---
 
@@ -148,7 +148,7 @@ tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
 **[TELA]** Menu principal com header SIAFI-like de 4 linhas
 
 **[FALAR]**
-- *(Apontar pro header)* "Esse cabeçalho de 4 linhas era padrão da Dataprev/SERPRO. Olhem: `PGM: MENU0001`, `USUARIO`, `NIVEL: ADM`, `LIBR: SIFAPPRD`, `TID: T0001`. Cada tela mostra exatamente em qual programa Natural você está."
+- *(Apontar pro header)* "Esse cabeçalho de 4 linhas era padrão da Dataprev/SERPRO. Olhem: `PGM: MENU0001`, `USUARIO`, `NIVEL: ADM`, `LIBR: sisdnitPRD`, `TID: T0001`. Cada tela mostra exatamente em qual programa Natural você está."
 - "Sete opções funcionais mais o logoff."
 - "Numeração — não tem mouse, não tem hover. Operadores experientes digitavam `1` antes do menu terminar de renderizar."
 - "Olhem as opções 6 e 7 — BLOQUEADAS. Vamos voltar nelas no final."
@@ -336,7 +336,7 @@ tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
 **[FALAR]**
 - "Manutenção e Batch Noturno — bloqueados pra esse perfil."
 - *(Apontar pra linha em vermelho)* "Reparem como o erro aparece: vermelho, na linha de status, código `NAT0850`. Não é popup, não é alerta. É só uma linha que muda. Quem opera no automático nem percebe."
-- "No SIFAP real, essas operações só rodam de madrugada, com perfil OPERACAO, e são auditadas."
+- "No sisdnit real, essas operações só rodam de madrugada, com perfil OPERACAO, e são auditadas."
 - "**Decisão de escopo: NÃO vamos modernizar essas duas funções no hackathon.** Está fora."
 - "Modernização real tem 'scope freeze' — você define o que está dentro e respeita."
 
@@ -352,7 +352,7 @@ tags: [hackathon, serpro, sifap, demo-script, facilitacao, estagio-1]
 
 **[FALAR]**
 - "Tela de ajuda: stack completa. Natural 6.3, Adabas File 047, COM-PLETE 7.4."
-- "Library: SIFAPPRD. Implantação: 1997."
+- "Library: sisdnitPRD. Implantação: 1997."
 - "**Quase 30 anos de produção.** Não é descartável."
 - "Está rodando há mais tempo do que muitos de vocês têm de carreira."
 - "Modernização não é sobre 'jogar fora o velho'. É sobre extrair conhecimento, preservar regras, e construir novo com fundação sólida."
@@ -488,4 +488,4 @@ PF12                                   → Logoff
 
 ---
 
-*Documento de facilitação ao vivo. Use junto com `sifap-terminal.html` v1.1. Parte do material do Hackathon SERPRO 2026, Estágio 1: Arqueologia Digital.*
+*Documento de facilitação ao vivo. Use junto com `sisdnit-terminal.html` v1.1. Parte do material do Hackathon SERPRO 2026, Estágio 1: Arqueologia Digital.*

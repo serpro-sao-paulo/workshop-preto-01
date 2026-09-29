@@ -28,7 +28,7 @@
 
 ## Quem é essa pessoa
 
-Quem transforma um requisito em teste executável. No SIFAP 2.0, quem garante que a regra de cálculo de pagamento sobrevive a qualquer refatoração do Estágio 3 e que o batch do ciclo mensal funciona dentro das fronteiras esperadas.
+Quem transforma um requisito em teste executável. No sisdnit 2.0, quem garante que a regra de cálculo de pagamento sobrevive a qualquer refatoração do Estágio 3 e que o batch do ciclo mensal funciona dentro das fronteiras esperadas.
 
 ## Missão no workshop
 

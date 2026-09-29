@@ -139,10 +139,10 @@ Entre **10:00 e 10:45**, **todo par** faz as mesmas 4 coisas. Depois começa a e
 
 | Par                   | Ação às 11:00                                                                                                                                                                                       |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1 · Visão**         | PO abre [`../../01-blueprint/WORKSHOP-BLUEPRINT.md`](../../01-blueprint/WORKSHOP-BLUEPRINT.md); RE abre [`01-arqueologia/legado-sifap/natural-programs/`](01-arqueologia/legado-sifap/natural-programs/) e começa o catálogo de regras.       |
-| **2 · Arquitetura**   | EA abre [`01-arqueologia/legado-sifap/legacy-docs/`](01-arqueologia/legado-sifap/legacy-docs/) e começa C4 L1; SA prepara candidatos a bounded context.                                                                                       |
+| **1 · Visão**         | PO abre [`../../01-blueprint/WORKSHOP-BLUEPRINT.md`](../../01-blueprint/WORKSHOP-BLUEPRINT.md); RE abre [`01-arqueologia/legado-sisdnit/programs/`](01-arqueologia/legado-sisdnit/programs/) e começa o catálogo de regras.       |
+| **2 · Arquitetura**   | EA abre [`01-arqueologia/legado-sisdnit/legacy-docs/`](01-arqueologia/legado-sisdnit/legacy-docs/) e começa C4 L1; SA prepara candidatos a bounded context.                                                                                       |
 | **3 · Implementação** | TL define estratégia de branches, template de PR, definição de pronto; Dev confirma Copilot + Spec-Kit prontos (a nova app será criada no Estágio 3).                                                                                   |
-| **4 · Qualidade**     | DBA abre [`01-arqueologia/legado-sifap/adabas-ddms/`](01-arqueologia/legado-sifap/adabas-ddms/) e começa o mapeamento de campos; QA lê o layout dos testes em [`../../04-prototipo-sifap-moderno/`](../../04-prototipo-sifap-moderno/).       |
+| **4 · Qualidade**     | DBA abre [`01-arqueologia/legado-sisdnit/adabas-ddms/`](01-arqueologia/legado-sisdnit/adabas-ddms/) e começa o mapeamento de campos; QA lê o layout dos testes em [`../../04-prototipo-sisdnit-moderno/`](../../04-prototipo-sisdnit-moderno/).       |
 | **5 · Operações**     | DevOps abre [`../../05-terraform-azure/`](../../05-terraform-azure/) e revisa módulos; TW abre o template em [`01-arqueologia/glossary.md`](01-arqueologia/glossary.md).                            |
 
 ---
@@ -208,8 +208,8 @@ Bom: _"Objetivo: validar CPF em `BeneficiaryService`. Tentei: regex + sugestão 
 
 | Artefato               | Caminho                                    | Pronto significa                                         |
 | ---------------------- | ------------------------------------------ | -------------------------------------------------------- |
-| Backend funcionando    | `04-prototipo-sifap-moderno/backend/`      | `mvn test` verde; OpenAPI documentada                    |
-| Frontend funcionando   | `04-prototipo-sifap-moderno/frontend/`     | `npm test` verde; fluxos principais usáveis              |
+| Backend funcionando    | `04-prototipo-sisdnit-moderno/backend/`      | `mvn test` verde; OpenAPI documentada                    |
+| Frontend funcionando   | `04-prototipo-sisdnit-moderno/frontend/`     | `npm test` verde; fluxos principais usáveis              |
 | Migrações              | `backend/src/main/resources/db/migration/` | Scripts Flyway numerados; idempotentes (Par 4 cuida)     |
 | Relatório de cobertura | Artefato do CI                             | Backend ≥ 70%, frontend ≥ 60% de linhas (Par 4 verifica) |
 

@@ -28,11 +28,11 @@
 
 ## Quem é essa pessoa
 
-Dono do "por quê". Quem mantém o time longe de construir código bonito para o problema errado. No contexto do SIFAP 2.0, o PO sabe que 2,3 milhões de beneficiários dependem do sistema, sabe que o ciclo mensal é sagrado, e carrega essa prioridade para cada decisão técnica.
+Dono do "por quê". Quem mantém o time longe de construir código bonito para o problema errado. No contexto do sisdnit 2.0, o PO sabe que 2,3 milhões de beneficiários dependem do sistema, sabe que o ciclo mensal é sagrado, e carrega essa prioridade para cada decisão técnica.
 
 ## Missão no workshop
 
-Traduzir o cenário SIFAP em escopo executável nas oito horas do dia. Proteger o valor de negócio quando o time começar a querer reescrever o legado linha por linha. Priorizar, cortar, explicar.
+Traduzir o cenário sisdnit em escopo executável nas oito horas do dia. Proteger o valor de negócio quando o time começar a querer reescrever o legado linha por linha. Priorizar, cortar, explicar.
 
 ## Seu papel no framework Agentic Legacy Modernization
 
@@ -84,7 +84,7 @@ Este workshop aplica o framework **Agentic Legacy Modernization** — uma aborda
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Analise o programa CALCBENF.NSN do SIFAP legado e liste as 5 regras de negócio com maior impacto no beneficiário. Para cada uma, diga se deve ser migrada, descartada ou evoluída."_
+1. **(Chat)** _"Analise o programa CALCBENF.NSN do sisdnit legado e liste as 5 regras de negócio com maior impacto no beneficiário. Para cada uma, diga se deve ser migrada, descartada ou evoluída."_
 2. **(Chat)** _"Revise estas 3 user stories e reescreva como GitHub issues no formato que o Copilot Agent consome. Inclua contexto, requisitos funcionais como checklist e critérios de aceitação."_
 3. **(Chat)** _"O time quer implementar 8 funcionalidades em 3 horas. Com base em complexidade, ajude-me a cortar para as 3 mais críticas para o ciclo mensal de pagamento."_
 

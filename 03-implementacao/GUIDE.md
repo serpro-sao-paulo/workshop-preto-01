@@ -48,7 +48,7 @@
 
 ## Objetivo
 
-Estender o protótipo funcional do SIFAP 2.0 implementando as features priorizadas no Estágio 2. O protótipo já tem a estrutura base — seu time vai **adicionar features, corrigir bugs e escrever testes**. Cada feature precisa rastrear até uma REQ-ID.
+Estender o protótipo funcional do sisdnit 2.0 implementando as features priorizadas no Estágio 2. O protótipo já tem a estrutura base — seu time vai **adicionar features, corrigir bugs e escrever testes**. Cada feature precisa rastrear até uma REQ-ID.
 
 ## Por que isso importa
 
@@ -71,7 +71,7 @@ Sua tarefa: pegar as REQ-IDs do Estágio 2 e transformar cada uma em **endpoint 
 ### 1. Suba o ambiente
 
 ```bash
-# No raiz do repositório (04-prototipo-sifap-moderno/)
+# No raiz do repositório (04-prototipo-sisdnit-moderno/)
 docker compose up -d
 ```
 
@@ -82,7 +82,7 @@ Isso sobe:
 - **Frontend (Next.js 15)** na porta **3000** (local) ou **3001** (docker-compose do root)
 
 > [!WARNING]
-> Se você rodou `docker compose up` no **ROOT** do workspace (recomendado), o frontend está em **`http://localhost:3001`**. Se rodou de dentro de `04-prototipo-sifap-moderno/`, está em **`http://localhost:3000`**.
+> Se você rodou `docker compose up` no **ROOT** do workspace (recomendado), o frontend está em **`http://localhost:3001`**. Se rodou de dentro de `04-prototipo-sisdnit-moderno/`, está em **`http://localhost:3000`**.
 
 ### 2. Verifique que tudo está no ar
 
@@ -114,7 +114,7 @@ Abra http://localhost:8080/swagger-ui.html e teste:
 O backend segue uma arquitetura **modular monolith** com 4 módulos e 3 camadas cada:
 
 ```
-src/main/java/br/gov/client/sifap/
+src/main/java/br/gov/client/sisdnit/
 │
 ├── beneficiary/ # Módulo: Beneficiários
 │ ├── domain/ # Entidades e regras de negócio
@@ -231,7 +231,7 @@ Para implementar features rapidamente:
 ### Rodar todos os testes
 
 ```bash
-cd 04-prototipo-sifap-moderno/backend
+cd 04-prototipo-sisdnit-moderno/backend
 ./mvnw test
 ```
 
@@ -255,7 +255,7 @@ cd 04-prototipo-sifap-moderno/backend
 ### Rodar o frontend localmente
 
 ```bash
-cd 04-prototipo-sifap-moderno/frontend
+cd 04-prototipo-sisdnit-moderno/frontend
 npm install
 npm run dev
 ```
@@ -292,9 +292,9 @@ Para cada feature que você implementa, mantenha rastreabilidade com a spec:
 
 | Requisito EARS                                                                    | Código                           | Teste                                        |
 | --------------------------------------------------------------------------------- | -------------------------------- | -------------------------------------------- |
-| REQ-BEN-01: "O SIFAP deve validar CPF com módulo 11"                              | `Cpf.java` (domain)              | `CpfTest.java` — 11 testes                   |
+| REQ-BEN-01: "O sisdnit deve validar CPF com módulo 11"                              | `Cpf.java` (domain)              | `CpfTest.java` — 11 testes                   |
 | REQ-PAY-03: "Quando um ciclo for gerado, criar pagamentos para beneficiários ACTIVE" | `PaymentCycleService.generate()` | `PaymentCycleServiceTest.generate_openCycle` |
-| REQ-AUD-01: "Quando uma entidade for alterada, gravar um registro de auditoria"    | `AuditService.record()`          | `SifapApplicationIntegrationTest`            |
+| REQ-AUD-01: "Quando uma entidade for alterada, gravar um registro de auditoria"    | `AuditService.record()`          | `sisdnitApplicationIntegrationTest`            |
 
 Quando adicionar uma feature, documente no commit: `Implements REQ-XXX`. Isso fecha o ciclo spec → código → teste.
 
@@ -307,8 +307,8 @@ Suponha que o Estágio 2 produziu este REQ-ID:
 ```yaml
 REQ-PAY-DSCT-01:
   pattern: unwanted
-  text: "O SIFAP não deve permitir que descontos não judiciais excedam 30% do valor bruto."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
+  text: "O sisdnit não deve permitir que descontos não judiciais excedam 30% do valor bruto."
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148
 ```
 
 Sua implementação no Estágio 3:

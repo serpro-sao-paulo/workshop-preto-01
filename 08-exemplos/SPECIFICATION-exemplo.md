@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD060 -->
 
-# SPECIFICATION — SIFAP 2.0 · Módulo Payment (Exemplo Preenchido)
+# SPECIFICATION — sisdnit 2.0 · Módulo Payment (Exemplo Preenchido)
 
 ![EXEMPLO Pronto](https://img.shields.io/badge/EXEMPLO-Pronto-7FBA00?style=for-the-badge) ![USE Como referência](https://img.shields.io/badge/USE-Como%20referência-1A1A1A?style=for-the-badge)
 
@@ -40,9 +40,9 @@ O módulo **`payment`** cobre o ciclo de vida de pagamentos: geração mensal, a
 ```yaml
 REQ-PAY-001:
   pattern: unwanted          # padrão "Unwanted Behavior" — 5 dos 6 da EARS
-  text: "O SIFAP não deve permitir que o total de descontos NÃO judiciais
+  text: "O sisdnit não deve permitir que o total de descontos NÃO judiciais
          exceda 30% do valor bruto do pagamento."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148
   business_rule: BR-001
   acceptance:
     - "Dado pagamento bruto R$ 1000 e desconto 'TAX' de R$ 400 → desconto aplicado é R$ 300 (truncado em 30%)."
@@ -58,9 +58,9 @@ REQ-PAY-001:
 REQ-PAY-002:
   pattern: event-driven
   text: "Quando um desconto do tipo 'JUDICIAL' é aplicado a um pagamento,
-         o SIFAP deve adicionar o valor integralmente ao total de descontos,
+         o sisdnit deve adicionar o valor integralmente ao total de descontos,
          sem aplicar o teto de 30%."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/CALCDSCT.NSN#L142-L148
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/CALCDSCT.NSN#L142-L148
   business_rule: BR-001
   acceptance:
     - "Desconto judicial de 80% do bruto é aceito integralmente."
@@ -75,9 +75,9 @@ REQ-PAY-002:
 REQ-PAY-003:
   pattern: event-driven
   text: "Quando o ciclo de pagamento mensal é iniciado (no 5º dia útil do mês),
-         o SIFAP deve criar um registro de Payment para cada beneficiário
+         o sisdnit deve criar um registro de Payment para cada beneficiário
          com status ACTIVE na data de corte (último dia do mês anterior)."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L88-L142
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L88-L142
   business_rule: BR-005
   acceptance:
     - "100 beneficiários ACTIVE + 30 INACTIVE → 100 pagamentos gerados."
@@ -93,8 +93,8 @@ REQ-PAY-003:
 ```yaml
 REQ-PAY-004:
   pattern: ubiquitous
-  text: "O SIFAP deve criar todo novo Payment com status PENDING."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L156
+  text: "O sisdnit deve criar todo novo Payment com status PENDING."
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L156
   business_rule: BR-006
   acceptance:
     - "Pagamento recém-criado tem status='PENDING'."
@@ -108,10 +108,10 @@ REQ-PAY-004:
 ```yaml
 REQ-PAY-005:
   pattern: state-driven
-  text: "Enquanto um Payment estiver com status PENDING, o SIFAP deve permitir
+  text: "Enquanto um Payment estiver com status PENDING, o sisdnit deve permitir
          que um usuário com perfil OPERATOR ou ADMIN altere o status para
          APPROVED ou REJECTED."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN#L210-L235
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN#L210-L235
   business_rule: BR-007
   acceptance:
     - "OPERATOR aprova pagamento PENDING → status='APPROVED'."
@@ -126,10 +126,10 @@ REQ-PAY-005:
 ```yaml
 REQ-PAY-006:
   pattern: event-driven
-  text: "Quando o status de um Payment é alterado, o SIFAP deve gravar
+  text: "Quando o status de um Payment é alterado, o sisdnit deve gravar
          um registro de auditoria contendo: estado anterior, estado novo,
          usuário que alterou, timestamp UTC, motivo (se informado)."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/RELAUDIT.NSN#L45-L72
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/RELAUDIT.NSN#L45-L72
   business_rule: BR-014
   acceptance:
     - "Mudar PENDING→APPROVED grava 1 registro de auditoria."
@@ -145,9 +145,9 @@ REQ-PAY-006:
 REQ-PAY-007:
   pattern: optional
   text: "Onde o usuário escolher exportar o relatório de pagamentos do mês,
-         o SIFAP deve gerar arquivo CSV com codificação UTF-8 contendo
+         o sisdnit deve gerar arquivo CSV com codificação UTF-8 contendo
          todas as colunas exibidas na tela."
-  source_legacy: 01-arqueologia/legado-sifap/natural-programs/RELPGT.NSN#L120-L188
+  source_legacy: 01-arqueologia/legado-sisdnit/programs/RELPGT.NSN#L120-L188
   business_rule: BR-015
   acceptance:
     - "Botão 'Exportar CSV' gera arquivo com header + linhas."
@@ -162,7 +162,7 @@ REQ-PAY-007:
 ```yaml
 REQ-PAY-008:
   pattern: ubiquitous
-  text: "O SIFAP deve mascarar CPF em todos os logs no formato XXX.XXX.NNN-NN
+  text: "O sisdnit deve mascarar CPF em todos os logs no formato XXX.XXX.NNN-NN
          (mantendo apenas os 3 dígitos centrais e os dígitos verificadores)."
   source_legacy: "[GREENFIELD] LGPD Art. 6º (princípio da minimização) — não há equivalente no legado."
   business_rule: "—"
@@ -212,7 +212,7 @@ C4Container
   Person(operator, "Operator", "Aprova pagamentos")
   Person(auditor, "Auditor", "Consulta auditoria")
 
-  Container_Boundary(sifap, "SIFAP 2.0") {
+  Container_Boundary(sisdnit, "sisdnit 2.0") {
     Container(api, "Payment API", "Java 21 + Spring Boot 3", "REST /api/v1/payments")
     Container(batch, "Payment Batch", "Spring Batch", "Geração mensal de ciclo")
     ContainerDb(db, "PostgreSQL 16", "RDBMS", "Tabelas: payment, deduction, payment_audit")

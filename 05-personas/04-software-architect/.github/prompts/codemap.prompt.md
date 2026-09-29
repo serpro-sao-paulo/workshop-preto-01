@@ -2,7 +2,7 @@
 
 ---
 mode: ask
-description: "Produza um mapa de código navegável de um serviço SIFAP 2.0: componentes, dependências, cobertura de REQ-ID e pontos de integração."
+description: "Produza um mapa de código navegável de um serviço sisdnit 2.0: componentes, dependências, cobertura de REQ-ID e pontos de integração."
 ---
 
 # /codemap
@@ -16,7 +16,7 @@ Você é o software architect gerando um **mapa de código em nível de serviço
 Peça ao usuário o que estiver faltando.
 
 - O serviço a mapear (por exemplo `payments`, `beneficiaries`, `audit`).
-- A raiz do path (`04-prototipo-sifap-moderno/backend/src/main/java/br/gov/sifap/<service>/`).
+- A raiz do path (`04-prototipo-sisdnit-moderno/backend/src/main/java/br/gov/sisdnit/<service>/`).
 - A pasta de spec vinculada (`specs/<NNN>-<feature>/SPECIFICATION.md`).
 - Se deve incluir ou excluir paths `test/`.
 - Um code map anterior para este serviço, se existir.
@@ -28,7 +28,7 @@ Peça ao usuário o que estiver faltando.
 3. **Mapeie dependências inbound e outbound.** Inbound: quem chama isto? Outbound: o que isto chama? Fique em dependências diretas; análise transitiva fica em `DESIGN.md`.
 4. **Encontre tipos compartilhados e ports.** Interfaces em `domain/`, ports em `application/`, gateways em `infrastructure/`. Liste quais são contratos estáveis e quais são internos.
 5. **Cruze referências de REQ-IDs.** Para cada método público ou componente, encontre anotações `@implements REQ-NNN`. Liste componentes sem requisito ("no REQ-ID found") para revisão.
-6. **Encontre linhagem legada.** Observe quais programas Natural em `02-cenario-sifap-legado/natural-programs/` mapeiam para qual componente Java. Isso é essencial para a modernização do SIFAP.
+6. **Encontre linhagem legada.** Observe quais programas Natural em `02-cenario-sisdnit-legado/programs/` mapeiam para qual componente Java. Isso é essencial para a modernização do sisdnit.
 7. **Exponha architecture smells.**
  - Classes de service chamando controllers (direção errada).
  - Domain dependendo de infrastructure (direção errada).
@@ -67,11 +67,11 @@ flowchart LR
 
 | Tipo | FQN | Papel | REQ-IDs | Entrada | Saída |
 |------|-----|------|---------|---------|----------|
-| controller | `br.gov.sifap.payments.PaymentController` | Adaptador REST | REQ-PAY-001..006 | (HTTP) | PaymentService |
-| service | `br.gov.sifap.payments.PaymentService` | Orquestração | REQ-PAY-001..018 | PaymentController, RetryJob | DisbursementCalculator, PaymentRepository, PaymentAttemptRepository, PaymentsOutGateway, AuditLogger |
-| domain | `br.gov.sifap.payments.DisbursementCalculator` | Cálculo puro, ICMS, isenções | REQ-PAY-008..011 | PaymentService | (nenhuma) |
-| repository | `br.gov.sifap.payments.PaymentRepository` | Mapeamento JPA para `payment` | REQ-PAY-001 | PaymentService | (DB) |
-| gateway | `br.gov.sifap.payments.PaymentsOutGateway` | Produtor de Service Bus | REQ-PAY-014..018 | PaymentService | (Service Bus) |
+| controller | `br.gov.sisdnit.payments.PaymentController` | Adaptador REST | REQ-PAY-001..006 | (HTTP) | PaymentService |
+| service | `br.gov.sisdnit.payments.PaymentService` | Orquestração | REQ-PAY-001..018 | PaymentController, RetryJob | DisbursementCalculator, PaymentRepository, PaymentAttemptRepository, PaymentsOutGateway, AuditLogger |
+| domain | `br.gov.sisdnit.payments.DisbursementCalculator` | Cálculo puro, ICMS, isenções | REQ-PAY-008..011 | PaymentService | (nenhuma) |
+| repository | `br.gov.sisdnit.payments.PaymentRepository` | Mapeamento JPA para `payment` | REQ-PAY-001 | PaymentService | (DB) |
+| gateway | `br.gov.sisdnit.payments.PaymentsOutGateway` | Produtor de Service Bus | REQ-PAY-014..018 | PaymentService | (Service Bus) |
 
 ## 3. API pública
 
@@ -113,7 +113,7 @@ Rode `/codemap` após qualquer adição/renomeação/exclusão em `payments/`. V
 - Pular o diagrama Mermaid. Visuais capturam camadas quebradas instantaneamente.
 - Sem coluna REQ-ID. Codemap sem rastreabilidade é listagem de diretório.
 - Listar deps transitivas. Apenas diretas — mantenha escaneável.
-- Pular linhagem legada para módulos SIFAP. O projeto inteiro depende disso.
+- Pular linhagem legada para módulos sisdnit. O projeto inteiro depende disso.
 - Deixar drift > 30 dias. Codemaps obsoletos confundem pessoas novas.
 
 ## Critérios de sucesso

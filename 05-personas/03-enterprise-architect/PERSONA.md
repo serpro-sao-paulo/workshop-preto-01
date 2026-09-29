@@ -28,11 +28,11 @@
 
 ## Quem é essa pessoa
 
-Quem enxerga o sistema dentro do seu ecossistema. No SIFAP, isso significa: SIAFI, Banco do Brasil, INCRA, MDA e outros internos do governo. O EA sabe onde estão os contratos, quais são frágeis, e quais podem ser tocados sem disparar a cadeia inteira.
+Quem enxerga o sistema dentro do seu ecossistema. No sisdnit, isso significa: SIAFI, Banco do Brasil, INCRA, MDA e outros internos do governo. O EA sabe onde estão os contratos, quais são frágeis, e quais podem ser tocados sem disparar a cadeia inteira.
 
 ## Missão no workshop
 
-Garantir que o SIFAP 2.0 não quebre o mundo ao redor. Desenhar o mapa de dependências. Validar que a arquitetura-alvo respeita contratos externos (síncrono com SIAFI, assíncrono com BB) e que a estratégia de coexistência com o legado é viável.
+Garantir que o sisdnit 2.0 não quebre o mundo ao redor. Desenhar o mapa de dependências. Validar que a arquitetura-alvo respeita contratos externos (síncrono com SIAFI, assíncrono com BB) e que a estratégia de coexistência com o legado é viável.
 
 ## Seu papel no framework Agentic Legacy Modernization
 
@@ -82,7 +82,7 @@ Garantir que o SIFAP 2.0 não quebre o mundo ao redor. Desenhar o mapa de depend
 
 ## 3 exemplos de prompt
 
-1. **(Chat)** _"Crie um diagrama C4 Nível 1 em Mermaid para o SIFAP 2.0 mostrando: 3 tipos de usuário, o sistema central, e 4 sistemas externos (SIAFI, Receita Federal, Banco do Brasil, CadÚnico)."_
+1. **(Chat)** _"Crie um diagrama C4 Nível 1 em Mermaid para o sisdnit 2.0 mostrando: 3 tipos de usuário, o sistema central, e 4 sistemas externos (SIAFI, Receita Federal, Banco do Brasil, CadÚnico)."_
 2. **(Chat)** _"Se o SIAFI ficar offline por 2 horas durante o ciclo mensal de pagamento, qual o impacto? Proponha 3 estratégias de fallback e recomende uma."_
 3. **(Chat)** _"Compare estas 3 opções de integração com o Banco do Brasil: batch CNAB, REST síncrono, mensageria assíncrona. Escreva um ADR recomendando uma."_
 

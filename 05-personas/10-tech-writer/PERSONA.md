@@ -106,7 +106,7 @@ Tech Writer é a persona mais transversal do time — você participa de todos o
 
 - Não conhece o formato ADR? Abra [`../02-spec-moderna/ADR-TEMPLATE.md`](../../02-spec-moderna/ADR-TEMPLATE.md) — copie e preencha.
 - README vazio? Comece com: (1) o que o sistema é, (2) como rodar, (3) endpoints disponíveis. O resto pode crescer.
-- Glossário travado? Pergunte ao Copilot: _"Liste todas as abreviações encontradas nos arquivos `.NSN` do SIFAP e expanda cada uma."_
+- Glossário travado? Pergunte ao Copilot: _"Liste todas as abreviações encontradas nos arquivos `.NSN` do sisdnit e expanda cada uma."_
 - Relatório do Agent vazio? Abra [`../04-evolucao/agent-experience-report.md`](../../04-evolucao/agent-experience-report.md) — o template tem seções prontas para preencher.
 
 ## Dependências — Quem depende de você

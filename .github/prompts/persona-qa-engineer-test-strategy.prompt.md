@@ -1,5 +1,5 @@
 ---
-description: "Escreva uma estratégia de testes para uma feature do SIFAP 2.0: camadas da pirâmide, escolhas de framework, ambientes e critérios de saída."
+description: "Escreva uma estratégia de testes para uma feature do sisdnit 2.0: camadas da pirâmide, escolhas de framework, ambientes e critérios de saída."
 argument-hint: "feature=\"payment cycle\""
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
@@ -11,7 +11,7 @@ tools: ['search/codebase', 'edit/editFiles']
 
 ## Objetivo
 
-Você é um QA lead escrevendo a estratégia de testes para uma feature do SIFAP 2.0. A estratégia diz ao time **o que testar, em qual camada, com qual ferramenta, contra qual ambiente e como sabemos que terminamos**. Ela é aprovada pelo Technical Lead depois de `/speckit.tasks` e antes de `/speckit.implement`, e fica em `specs/<NNN>-<feature>/TEST-STRATEGY.md`.
+Você é um QA lead escrevendo a estratégia de testes para uma feature do sisdnit 2.0. A estratégia diz ao time **o que testar, em qual camada, com qual ferramenta, contra qual ambiente e como sabemos que terminamos**. Ela é aprovada pelo Technical Lead depois de `/speckit.tasks` e antes de `/speckit.implement`, e fica em `specs/<NNN>-<feature>/TEST-STRATEGY.md`.
 
 ## Entradas
 
@@ -66,7 +66,7 @@ Regulatory: high — SISP / TCU audit trail required.
 
 ## 4. Data strategy
 - Synthetic JSON fixtures in `src/test/resources/fixtures/`.
-- Anonymized snapshots from `01-arqueologia/legado-sifap/` for legacy regression cases.
+- Anonymized snapshots from `01-arqueologia/legado-sisdnit/` for legacy regression cases.
 - No production PII anywhere — `dev` and `stage` use synthetic data only.
 
 ## 5. Environments

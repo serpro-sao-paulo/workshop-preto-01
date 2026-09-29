@@ -248,14 +248,14 @@ Exemplo de saída de `terraform plan`:
 ```
 Plan: 12 to add, 0 to change, 0 to destroy.
 
- + azurerm_resource_group.sifap
- + azurerm_postgresql_flexible_server.sifap
- + azurerm_service_plan.sifap
- + azurerm_linux_web_app.sifap_backend
- + azurerm_static_web_app.sifap_frontend
- + azurerm_key_vault.sifap
- + azurerm_application_insights.sifap
- + azurerm_container_registry.sifap
+ + azurerm_resource_group.sisdnit
+ + azurerm_postgresql_flexible_server.sisdnit
+ + azurerm_service_plan.sisdnit
+ + azurerm_linux_web_app.sisdnit_backend
+ + azurerm_static_web_app.sisdnit_frontend
+ + azurerm_key_vault.sisdnit
+ + azurerm_application_insights.sisdnit
+ + azurerm_container_registry.sisdnit
  ...
 ```
 

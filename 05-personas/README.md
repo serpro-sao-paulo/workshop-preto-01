@@ -18,7 +18,7 @@
 
 > Esta pasta contém **somente os 10 kits usados neste workshop**. O time tem 5 pessoas; cada pessoa usa 2 kits do mesmo par. Cada kit é a fonte única da persona: `PERSONA.md` descreve o papel, e os artefatos `.github/`, `mcp.json`, prompts e skills configuram o Copilot para esse mesmo papel.
 
-![Visão geral das personas por par no hackathon SIFAP](../assets/personas-team.svg)
+![Visão geral das personas por par no hackathon sisdnit](../assets/personas-team.svg)
 
 ## Por que estes 10 kits
 

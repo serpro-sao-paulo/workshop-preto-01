@@ -2,12 +2,12 @@
   <rect width="1200" height="560" fill="#F7F7F5"/>
 
   <text x="60" y="60" fill="#737373" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" letter-spacing="1.9">TRANSFORMAÇÃO DE ARQUITETURA · LEGADO → MODERNO</text>
-  <text x="60" y="110" fill="#1A1A1A" font-size="42" font-weight="500" letter-spacing="-0.8">Do SIFAP 1.0 ao SIFAP 2.0</text>
+  <text x="60" y="110" fill="#1A1A1A" font-size="42" font-weight="500" letter-spacing="-0.8">Do sisdnit 1.0 ao sisdnit 2.0</text>
 
   <g transform="translate(60, 160)">
     <rect width="540" height="380" fill="#FAF4F2" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="540" height="6" fill="#F25022"/>
-    <text x="32" y="52" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" letter-spacing="1.4">SIFAP 1.0 · LEGADO · 1997</text>
+    <text x="32" y="52" fill="#B33816" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" letter-spacing="1.4">sisdnit 1.0 · LEGADO · 1997</text>
     <text x="32" y="92" fill="#1A1A1A" font-size="28" font-weight="500">Monólito no mainframe</text>
 
     <g transform="translate(32, 130)">
@@ -39,7 +39,7 @@
   <g transform="translate(620, 160)">
     <rect width="520" height="380" fill="#F4F8E8" stroke="#E5E5E0" stroke-width="1"/>
     <rect x="0" y="0" width="520" height="6" fill="#7FBA00"/>
-    <text x="32" y="52" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" letter-spacing="1.4">SIFAP 2.0 · MODERNO · 2026</text>
+    <text x="32" y="52" fill="#5A8500" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" letter-spacing="1.4">sisdnit 2.0 · MODERNO · 2026</text>
     <text x="32" y="92" fill="#1A1A1A" font-size="28" font-weight="500">Cloud native no Azure</text>
 
     <g transform="translate(32, 130)">

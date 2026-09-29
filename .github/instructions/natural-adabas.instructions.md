@@ -1,11 +1,11 @@
 ---
 description: "Guia de leitura para código legado Natural/Adabas — padrões da linguagem, estrutura FDT, convenções de nomes, fluxos batch"
-applyTo: '**/*.NSN,**/*.cpy,**/*.ddm,**/01-arqueologia/legado-sifap/**'
+applyTo: '**/*.NSN,**/*.cpy,**/*.ddm,**/01-arqueologia/legado-sisdnit/**'
 ---
 
 # Código Legado Natural/Adabas — Guia de Leitura
 
-Este arquivo é ativado quando você abre programas Natural, DDMs Adabas ou qualquer arquivo dentro do diretório `01-arqueologia/legado-sifap/`. Ele ensina como ler código legado — não interpreta nenhum sistema específico por você.
+Este arquivo é ativado quando você abre programas Natural, DDMs Adabas ou qualquer arquivo dentro do diretório `01-arqueologia/legado-sisdnit/`. Ele ensina como ler código legado — não interpreta nenhum sistema específico por você.
 
 ## Estrutura de Programa Natural
 

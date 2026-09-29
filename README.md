@@ -1,10 +1,10 @@
 <!-- markdownlint-disable MD013 MD025 MD026 MD028 MD029 MD034 MD040 MD051 MD056 MD060 -->
 
-# 🏰 Kit do Time — Workshop SIFAP 2.0 (PT-BR)
+# 🏰 Kit do Time — Workshop sisdnit 2.0 (PT-BR)
 
-![Jornada de modernização do SIFAP: de Natural e Adabas para Java 21 e Next.js 15](assets/hero-sifap-journey.svg)
+![Jornada de modernização do sisdnit: de Natural e Adabas para Java 21 e Next.js 15](assets/hero-sisdnit-journey.svg)
 
-> 🎮 **A missão em uma frase:** você e 4 colegas têm **8 horas** para modernizar um sistema de pagamentos de **29 anos**. Cinco pares, quatro mundos, uma princesa para resgatar (= SIFAP 2.0 rodando ao vivo na demo).
+> 🎮 **A missão em uma frase:** você e 4 colegas têm **8 horas** para modernizar um sistema de pagamentos de **29 anos**. Cinco pares, quatro mundos, uma princesa para resgatar (= sisdnit 2.0 rodando ao vivo na demo).
 
 ---
 
@@ -34,7 +34,7 @@
 (arqueologia)           (spec moderna)          (implementação)       (evolução)
                                                                           │
                                                                           ▼
-                                                                     👸 SIFAP 2.0
+                                                                     👸 sisdnit 2.0
                                                                        rodando!
 ```
 
@@ -43,7 +43,7 @@
 - **Power-ups permanentes** = persona-kits (slash commands, skills)
 - **Cano verde** = passagem entre estágios (5 min de conversa síncrona)
 - **Estrela** = CI verde valida seu PR
-- **Princesa** = demo do SIFAP 2.0 funcionando
+- **Princesa** = demo do sisdnit 2.0 funcionando
 
 📘 Entenda a analogia em detalhe → [`07-conceitos/02-agentes-como-super-mario.md`](07-conceitos/02-agentes-como-super-mario.md)
 
@@ -60,10 +60,10 @@
 ├── 📜 00-SITEMAP.md                   ← mapa visual do kit
 ├── 📜 00-GIT-WORKFLOW.md              ← branches, PRs, merges
 │
-├── 📁 01-arqueologia/                 🟦 ESTÁGIO 1 — ler legado SIFAP
+├── 📁 01-arqueologia/                 🟦 ESTÁGIO 1 — ler legado sisdnit
 │   ├── GUIDE.md                       (passo a passo do estágio)
 │   ├── LEGACY-EXPLORATION-CHECKLIST.md (gate obrigatório!)
-│   └── legado-sifap/                  📜 (15 .NSN + 4 DDMs + docs históricos)
+│   └── legado-sisdnit/                  📜 (15 .NSN + 4 DDMs + docs históricos)
 ├── 📁 02-spec-moderna/                🟫 ESTÁGIO 2 — escrever EARS, ADRs, C4
 ├── 📁 03-implementacao/               🟧 ESTÁGIO 3 — Java + Next.js + testes
 ├── 📁 04-evolucao/                    🏰 ESTÁGIO 4 — Agent mode + Terraform
@@ -164,7 +164,7 @@ git checkout develop
 code .
 ```
 
-Não há script de bootstrap nem dev container: o repositório já vem completo do template (documentação, personas, legado SIFAP, CI e Spec-Kit).
+Não há script de bootstrap nem dev container: o repositório já vem completo do template (documentação, personas, legado sisdnit, CI e Spec-Kit).
 
 📘 Detalhes em [`00-SETUP.md`](00-SETUP.md)
 
@@ -197,11 +197,11 @@ cat 05-personas/YY-persona-B/PERSONA.md
 
 A maioria dos projetos de modernização falha não porque o time não sabe escrever Java, mas porque escreve Java para o **problema errado**. Modernizam o brief, não o sistema. Perdem 29 anos de regras de negócio enterradas em código que ninguém lê.
 
-![Quatro dores do SIFAP legado](assets/sifap-pain-points.svg)
+![Quatro dores do sisdnit legado](assets/sisdnit-pain-points.svg)
 
 Este kit existe para impedir isso:
 
-- 📜 O código legado vem junto (em [`01-arqueologia/legado-sifap/`](01-arqueologia/legado-sifap/))
+- 📜 O código legado vem junto (em [`01-arqueologia/legado-sisdnit/`](01-arqueologia/legado-sisdnit/))
 - ⭐ A rastreabilidade (`source_legacy:`) é exigida pelo CI
 - 🟢 Os canos verdes (passagens H1, H2, H3) estão agendados
 - 🧑‍🤝‍🧑 Os papéis são explícitos (10 PERSONA.md)
@@ -215,7 +215,7 @@ Todo documento aqui segue 5 regras:
 
 1. 📍 **Contexto primeiro** — onde isso encaixa no SDLC e por que importa
 2. 👣 **Passo a passo executável** — comandos, checklist ou sequência
-3. 🎯 **Exemplo concreto** — sempre exemplos SIFAP, nunca abstrato
+3. 🎯 **Exemplo concreto** — sempre exemplos sisdnit, nunca abstrato
 4. ✅ **Critério de pronto** — como saber que terminou
 5. 🆘 **Solução de problemas** — onde há risco operacional, há seção de troubleshooting
 

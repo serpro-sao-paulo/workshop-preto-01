@@ -1,6 +1,6 @@
 ---
 name: Solicitação de Funcionalidade
-about: Nova funcionalidade do SIFAP 2.0
+about: Nova funcionalidade do sisdnit 2.0
 title: '[FEATURE] '
 labels: feature
 ---

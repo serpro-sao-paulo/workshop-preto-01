@@ -1,6 +1,6 @@
 ---
 description: "Gera classes de entidade JPA a partir de definições Adabas FDT, com JSONB para campos MU/PE."
-argument-hint: "ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD"
+argument-hint: "ddm=01-arqueologia/legado-sisdnit/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
 ---
@@ -18,12 +18,12 @@ No início do Estágio 3, quando a equipe está configurando a camada de dados p
 ## Pré-condições
 
 - `02-spec-moderna/bounded-contexts.md` existe (para saber qual context possui este DDM)
-- O arquivo DDM está acessível em `01-arqueologia/legado-sifap/adabas-ddms/`
+- O arquivo DDM está acessível em `01-arqueologia/legado-sisdnit/adabas-ddms/`
 - A equipe decidiu o package-alvo a partir do design do modular monolith
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O path do arquivo DDM (por exemplo, `01-arqueologia/legado-sifap/adabas-ddms/DDMXXXXX.ddm`)
+- O path do arquivo DDM (por exemplo, `01-arqueologia/legado-sisdnit/adabas-ddms/DDMXXXXX.ddm`)
 - O bounded context e package Java de destino
 - Formato de data usado no sistema legado (por exemplo, `YYYYMMDD` packed, ou `YYYY-MM-DD` alpha)
 
@@ -135,5 +135,5 @@ Garanta que a classe de entidade compile. Reporte quaisquer problemas.
 ## Exemplo de Invocação
 
 ```
-/generate-jpa-from-fdt ddm=01-arqueologia/legado-sifap/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD
+/generate-jpa-from-fdt ddm=01-arqueologia/legado-sisdnit/adabas-ddms/DDM001.ddm context=payment package=com.datacorp.app.payment dateformat=YYYYMMDD
 ```

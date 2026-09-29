@@ -1,6 +1,6 @@
 ---
 description: "Traduz um programa Natural para Java 21 + Spring Boot 3.3 idiomático, preservando semântica de negócio."
-argument-hint: "file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment"
+argument-hint: "file=01-arqueologia/legado-sisdnit/programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
 ---
@@ -20,11 +20,11 @@ No início do Estágio 3, quando a equipe começa a implementar bounded contexts
 - `02-spec-moderna/modular-monolith-design.md` existe com a estrutura de packages definida
 - `02-spec-moderna/SPECIFICATION.md` existe com requisitos EARS
 - O bounded context e package-alvo são conhecidos
-- O arquivo-fonte Natural está acessível em `01-arqueologia/legado-sifap/`
+- O arquivo-fonte Natural está acessível em `01-arqueologia/legado-sisdnit/`
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O path do arquivo do programa Natural (por exemplo, `01-arqueologia/legado-sifap/natural-programs/PGXXXXXX.NSN`)
+- O path do arquivo do programa Natural (por exemplo, `01-arqueologia/legado-sisdnit/programs/PGXXXXXX.NSN`)
 - O bounded context e package Java de destino
 - Quaisquer requisitos EARS relacionados (REQ-IDs)
 
@@ -127,5 +127,5 @@ Se uma construção Natural não tiver um idioma Java limpo, apresente 2 alterna
 ## Exemplo de Invocação
 
 ```
-/translate-natural-to-java file=01-arqueologia/legado-sifap/natural-programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment
+/translate-natural-to-java file=01-arqueologia/legado-sisdnit/programs/PGMAIN01.NSN context=payment package=com.datacorp.app.payment
 ```

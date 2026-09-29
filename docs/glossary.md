@@ -36,15 +36,15 @@
 ### Adabas
 
 - **Fonte:** Armazenamento de dados legado
-- **Definição:** Banco de dados mainframe em estilo NoSQL multivalorado usado pelo sistema legado SIFAP. DDMs (Data Definition Modules) do Adabas descrevem registros.
-- **Usado em:** todos os programas `.NSN` em `02-cenario-sifap-legado/natural-programs/`
+- **Definição:** Banco de dados mainframe em estilo NoSQL multivalorado usado pelo sistema legado sisdnit. DDMs (Data Definition Modules) do Adabas descrevem registros.
+- **Usado em:** todos os programas `.NSN` em `02-cenario-sisdnit-legado/programs/`
 
 ## B
 
 ### Beneficiário (Beneficiary)
 
 - **Fonte:** `BENEFICIARIO.ddm`
-- **Definição:** Pessoa que recebe pagamentos de benefício social pelo SIFAP.
+- **Definição:** Pessoa que recebe pagamentos de benefício social pelo sisdnit.
 - **Equivalente em inglês:** Beneficiary
 - **Usado em:** REQ-BEN-\*, `BeneficiaryEntity.java`
 
@@ -68,7 +68,7 @@
 ### DDM (Data Definition Module)
 
 - **Fonte:** Adabas
-- **Definição:** Definição de schema para um registro Adabas. O SIFAP usa 4 DDMs: Beneficiary, Payment, Social Program, Audit.
+- **Definição:** Definição de schema para um registro Adabas. O sisdnit usa 4 DDMs: Beneficiary, Payment, Social Program, Audit.
 - **Usado em:** arqueologia + mapeamento de schema
 
 ---

@@ -34,11 +34,11 @@ specs/
     └── tasks.md
 ```
 
-O número (`001`) dá ordem. O nome (`geracao-ciclo-pagamento`) explica o escopo. Evite nomes genéricos como `sifap` ou `backend`.
+O número (`001`) dá ordem. O nome (`geracao-ciclo-pagamento`) explica o escopo. Evite nomes genéricos como `sisdnit` ou `backend`.
 
 ## Passo a passo
 
-1. **Escolha uma descoberta do Estágio 1.** Exemplo: regra de pagamento encontrada em `01-arqueologia/legado-sifap/natural-programs/BATCHPGT.NSN`.
+1. **Escolha uma descoberta do Estágio 1.** Exemplo: regra de pagamento encontrada em `01-arqueologia/legado-sisdnit/programs/BATCHPGT.NSN`.
 2. **Crie ou renomeie a pasta da funcionalidade.** Use o padrão `NNN-nome-curto`.
 3. **Execute `/speckit.specify`.** A spec deve ter user stories, EARS, critérios de aceitação e `source_legacy:`.
 4. **Execute `/speckit.clarify`.** Resolva dúvidas antes de discutir arquitetura.

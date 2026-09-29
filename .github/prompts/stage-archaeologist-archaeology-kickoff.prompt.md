@@ -1,6 +1,6 @@
 ---
 description: "Inicia o Estágio 1 — orienta a equipe sobre a pasta de legado e produz um inventário inicial."
-argument-hint: "path=01-arqueologia/legado-sifap/"
+argument-hint: "path=01-arqueologia/legado-sisdnit/"
 agent: agent
 tools: ['search/codebase', 'edit/editFiles']
 ---
@@ -13,21 +13,21 @@ Oriente a equipe sobre a codebase legada com um inventário top-down antes de le
 
 ## Quando Invocar
 
-Logo no início do Estágio 1, imediatamente depois que a equipe recebe acesso à pasta `01-arqueologia/legado-sifap/`.
+Logo no início do Estágio 1, imediatamente depois que a equipe recebe acesso à pasta `01-arqueologia/legado-sisdnit/`.
 
 ## Pré-condições
 
-- A pasta `01-arqueologia/legado-sifap/` está disponível no workspace (ela já vem no repositório do time, criado via **Use this template**)
+- A pasta `01-arqueologia/legado-sisdnit/` está disponível no workspace (ela já vem no repositório do time, criado via **Use this template**)
 - A equipe ainda não abriu programas individuais
 
 ## Entradas que a Equipe Deve Fornecer
 
-- O path para a pasta de legado (normalmente `01-arqueologia/legado-sifap/`)
+- O path para a pasta de legado (normalmente `01-arqueologia/legado-sisdnit/`)
 - Confirmação de que a equipe ainda não começou a ler arquivos individuais (este prompt é para orientação, não leitura profunda)
 
 ## O Que Vou Fazer
 
-- Escanear a pasta `01-arqueologia/legado-sifap/` recursivamente e listar todos os diretórios
+- Escanear a pasta `01-arqueologia/legado-sisdnit/` recursivamente e listar todos os diretórios
 - Contar arquivos por extensão (`.NSN`, `.cpy`, `.ddm`, `.map` e quaisquer outras)
 - Classificar programas por prefixos de padrão de nomes (por exemplo, `BN-*` para batch, `PG-*` para online)
 - Sinalizar os 3 principais itens que parecem incomuns com base no tamanho do nome, tamanho do arquivo ou localização
@@ -90,5 +90,5 @@ Não abra nenhum arquivo para ler seu conteúdo. Este prompt opera somente sobre
 ## Exemplo de Invocação
 
 ```
-/archaeology-kickoff path=01-arqueologia/legado-sifap/
+/archaeology-kickoff path=01-arqueologia/legado-sisdnit/
 ```

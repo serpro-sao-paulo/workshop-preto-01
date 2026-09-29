@@ -66,7 +66,7 @@ Quando o jogo vai mal, é quase sempre porque alguém pulou uma etapa.
 
 ---
 
-## 📜 Como isso fica no nosso workshop SIFAP
+## 📜 Como isso fica no nosso workshop sisdnit
 
 Quando o Estágio 2 começa, sua dupla vai fazer **exatamente** isso, mas para a feature "Geração de Ciclo de Pagamento":
 

@@ -1,7 +1,7 @@
 -- ============================================================================
 -- V1__init_payment_module-exemplo.sql
 -- ============================================================================
--- EXEMPLO PREENCHIDO de uma migração Flyway para o módulo `payment` do SIFAP 2.0.
+-- EXEMPLO PREENCHIDO de uma migração Flyway para o módulo `payment` do sisdnit 2.0.
 --
 -- Origem das tabelas:
 --   - DDM `PAGAMENTO.ddm` (legado) → tabela `payment.payment`

@@ -12,4 +12,4 @@ applyTo: "02-spec-moderna/**,specs/**"
 - Given/When/Then para critérios de aceitação
 - Numeração sequencial dentro de features
 - MUST/SHALL para obrigatório, SHOULD para recomendado
-- **Todo requisito carrega uma linha `source_legacy:`** apontando para `01-arqueologia/legado-sifap/natural-programs/*.NSN`, `01-arqueologia/legado-sifap/adabas-ddms/*.ddm` ou `[GREENFIELD] + justification`. O CI rejeita requisitos sem essa linha.
+- **Todo requisito carrega uma linha `source_legacy:`** apontando para um arquivo `*.java`, `*.jsp`, `*.xml` ou `*.js` em `01-arqueologia/legado-sisdnit/`, ou `[GREENFIELD] + justification`. Arquivos `.NSM` e `.ddm` são ignorados pelo gate. O CI rejeita requisitos sem essa linha.
