@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+	<head>
+		<%@ include file="include/head.jsp"%>
+	</head>
+		
+	<body>
+		<div id="container">
+		
+			<%@ include file="include/header.jsp" %>
+		
+			<div id="content" >
+				<h2>Resultado da Consulta de Número de Contrato/Conv&ecirc;nio</h2>
+				
+				<a href="ajuda/manual_gecon.pdf" class="help" target="_blank" title="Ajuda">
+					<span>Ajuda</span>
+				</a>
+				
+				<div class="form-info">
+					<p>Selecione o contrato.</p>
+				</div>
+				
+				<table>
+					<thead>
+						<tr> 
+							<th scope="col">Nº de Contrato/Conv&ecirc;nio no SIAC</th>
+							<th scope="col">Nº de Contrato/Conv&ecirc;nio no SIASG</th>
+							<th scope="col">Unidade de Lavratura do Contrato</th>
+						</tr>
+					</thead>
+					<tbody>	
+						<c:forEach var="numeroContrato" items="${listaNumeros}">
+							<tr>
+								<td class="center">
+									<a href="consulta_numero_contrato.do?tipoAcao=detalharObjeto&amp;idNumeroContrato=${numeroContrato.id}" title="clique aqui para detalhar este registro">
+										${numeroContrato.numeroContratoFormatadoSIAC}
+									</a>
+								</td>
+								<td class="center">
+									<a href="consulta_numero_contrato.do?tipoAcao=detalharObjeto&amp;idNumeroContrato=${numeroContrato.id}" title="clique aqui para detalhar este registro">
+										${numeroContrato.numeroContratoFormatadoSIASG}
+									</a>	
+								</td>
+								<td>
+									<a href="consulta_numero_contrato.do?tipoAcao=detalharObjeto&amp;idNumeroContrato=${numeroContrato.id}" title="clique aqui para detalhar este registro">
+										${numeroContrato.unidadeLavraturaContrato.nome}
+									</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+					
+					<tfoot>
+						<tr>
+							<td colspan="4">
+								<input type="button" value="Nova Consulta" class="button" onclick="cancelar('consulta_numero_contrato.do')"/>
+								<input name="button" type="button" class="button" onclick="cancelar('gecon.do?tipoAcao=manter_gerador&amp;codItemMenu=<%=UtilMenu.getIdItemMenu(request, "Manter Número de Contrato")%>')" value="Retornar ao Menu"/>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				
+				<%@ include file="include/quicknav_footer.jsp" %>
+				
+			</div>
+			<!-- end of content -->
+			
+		</div>
+		<!-- end of container -->
+		
+		<%@ include file="include/footer.jsp" %>
+		
+	</body>
+</html>

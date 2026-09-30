@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+	<head>
+		<%@ include file="include/head.jsp"%>
+	</head>
+		
+	<body>
+		<div id="container">
+		
+			<%@ include file="include/header.jsp"%>
+			
+			<div id="content" >
+				<h2>Resultado da Consulta de Números de Contratos</h2>
+				<div id="status-box">
+					<h3 class="msg-erro">${msg}</h3>
+					<input type="button" value="Nova Consulta" class="button" onclick="cancelar('consulta_numero_contrato.do')"/>
+					<input type="button" value="Cancelar" class="button" onclick="cancelar('gecon.do?tipoAcao=manter_gerador&amp;codItemMenu=<%=UtilMenu.getIdItemMenu(request, "Manter Número de Contrato")%>')" name="button"/>		
+				</div>
+				<%@ include file="include/quicknav_footer.jsp" %>
+			</div>
+			<!-- end of content -->
+			
+		</div>
+		<!-- end of container -->
+		
+		<%@ include file="include/footer.jsp" %>
+		
+	</body>
+</html>

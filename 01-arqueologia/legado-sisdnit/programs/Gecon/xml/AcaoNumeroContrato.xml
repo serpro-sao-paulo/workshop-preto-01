@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="NumeroContratoForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="unidadeLavratura" type="java.lang.String"/>
+			<form-property name="unidadeGestora" type="java.lang.String"/>
+			<form-property name="unidadeLotacao" type="java.lang.String"/>
+			<form-property name="nome" type="java.lang.String"/>
+			<form-property name="ddd" type="java.lang.String"/>
+			<form-property name="telefone" type="java.lang.String"/>
+			<form-property name="observacao" type="java.lang.String"/>
+			<form-property name="numeroSIAC" type="java.lang.String"/>
+			<form-property name="numeroSIASG" type="java.lang.String"/>
+			<form-property name="ano" type="java.lang.String"/>
+			<form-property name="situacao" type="java.lang.String"/>
+			<form-property name="numeroContratoConvenio" type="java.lang.String"/>
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+		<!-- ********************************************** -->
+	    <!-- ******* INCLUSÃO DE NÚMERO DE CONTRATO ******* -->
+	    <!-- ********************************************** -->
+    	<action
+    		path="/jsp/gecon/gera_numero_contrato"
+            name="NumeroContratoForm"
+            scope="request"
+            validate="true"
+            parameter="tipoAcao"
+            input="/jsp/gecon/gera_numero_contrato1.jsp"
+            type="br.gov.serpro.sunne.dnit.gecon.acao.AcaoNumeroContrato">
+
+			<forward name="sucessoProcessamento" path="/jsp/gecon/gera_numero_contrato5.jsp"/>
+
+			<!-- Reset da sessao e voltar a menu -->
+			<forward name="reset" path="/jsp/gecon/gera_numero_contrato1.jsp"/>
+            <forward name="voltarMenu" path="/jsp/gecon/index.jsp"/>
+        </action>
+		<!-- ********************************************** -->
+	    <!-- ******* CONSULTA DE NÚMERO DE CONTRATO ******* -->
+	    <!-- ********************************************** -->
+    	<action
+    		path="/jsp/gecon/consulta_numero_contrato"
+            name="NumeroContratoForm"
+            scope="request"
+            validate="true"
+            parameter="tipoAcao"
+            input="/jsp/gecon/consultar_numcontrato1.jsp"
+            type="br.gov.serpro.sunne.dnit.gecon.acao.AcaoNumeroContrato">
+
+            <forward name="sucessoConsulta" path="/jsp/gecon/consultar_numcontrato2.jsp" />
+			<forward name="detalharObjeto" path="/jsp/gecon/consultar_numcontrato3.jsp" />
+			<forward name="fracassoConsulta" path="/jsp/gecon/consultar_numcontrato4.jsp"/>
+
+			<!-- Reset da sessao e voltar a menu -->
+			<forward name="reset" path="/jsp/gecon/consultar_numcontrato1.jsp" />
+			<forward name="voltarMenu" path="/jsp/gecon/index.jsp" />
+        </action>
+
+		<!-- *********************************************** -->
+	    <!-- ******* ALTERACAO DE NÚMERO DE CONTRATO ******* -->
+	    <!-- *********************************************** -->
+    	<action
+    		path="/jsp/gecon/alteracao_numero_contrato"
+            name="NumeroContratoForm"
+            scope="request"
+            validate="true"
+            parameter="tipoAcao"
+            input="/jsp/gecon/alteracao_numero_contrato1.jsp"
+            type="br.gov.serpro.sunne.dnit.gecon.acao.AcaoNumeroContrato">
+
+			 <forward name="sucessoProcessamento" path="/jsp/gecon/alteracao_numero_contrato4.jsp"/>
+
+			<!-- Reset da sessao e voltar a menu -->
+			<forward name="reset" path="/jsp/gecon/alteracao_numero_contrato1.jsp"/>
+            <forward name="voltarMenu" path="/jsp/gecon/index.jsp"/>
+        </action>
+
+        <!-- ***************************************************************************** -->
+	    <!-- **** INCLUSAO DE NUMERO DE CONTRATO ANTIGO QUE NAO FOI GERADO PELO GECON **** -->
+	    <!-- ***************************************************************************** -->
+    	<action path="/jsp/gecon/gera_numero_contrato_antigo"
+	            name="NumeroContratoForm"
+	            scope="request"
+	            validate="true"
+	            parameter="tipoAcao"
+	            input="/jsp/gecon/gera_numero_contrato_antigo1.jsp"
+	            type="br.gov.serpro.sunne.dnit.gecon.acao.AcaoNumeroContrato">
+
+			<forward name="sucessoProcessamento" path="/jsp/gecon/gera_numero_contrato5.jsp"/>
+			<!-- Reset da sessao e voltar a menu -->
+			<forward name="reset" path="/jsp/gecon/gera_numero_contrato_antigo1.jsp"/>
+            <forward name="voltarMenu" path="/jsp/gecon/index.jsp"/>
+        </action>
+	</action-mappings>
+
+</struts-config>

@@ -1,0 +1,33 @@
+/* sobrescreve as cores do sistema para o tema (laranja) do GECON       */
+/* colocar aqui somente as regras sobrescritas! evitar redundância */
+
+/* cor dos links e menu ---------------------------------*/
+#menu,
+#menu ul,
+#menu ul li,
+#menu ul li a {
+	background-color: #ff7700;
+	background-image: -moz-linear-gradient(top, #ff7700 0%, #ff7700 50%, #ee6600 51%, #ee6600 100%); /* firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom,
+		color-stop(0%,#ff7700), color-stop(50%,#ff7700), color-stop(51%,#ee6600), color-stop(100%,#ee6600)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7700', endColorstr='#ee6600',GradientType=0 ); /* ie */
+}
+#menu ul li a {
+	border-left-color: #ff8811;
+	border-right-color: #dd5500;
+	/* text-shadow */
+	text-shadow: -1px -1px 1px #993311;
+}
+/* cor do hover nos links dos itens do menu */
+#menu ul li a:hover {
+	background-color: #f89010;
+	background-image: -moz-linear-gradient(top, #ffaa22 0%, #ffaa22 50%, #f89010 51%, #f89010 100%); /* firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom,
+		color-stop(0%,#ffaa22), color-stop(50%,#ffaa22), color-stop(51%,#f89010), color-stop(100%,#f89010)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaa22', endColorstr='#f89010',GradientType=0 ); /* ie */
+}
+
+/* Abas--------------------------------------------------*/
+.tabs li a:hover {
+	border-color: #f70;
+}
