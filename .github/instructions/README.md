@@ -9,7 +9,7 @@ Este diretório guarda as file-specific instructions do GitHub Copilot para o wo
 | Arquivo | Quando se aplica |
 | --- | --- |
 | `modular-monolith.instructions.md` | Código Java/Spring, Maven/Gradle e arquitetura de Modular Monolith. |
-| `natural-adabas.instructions.md` | Leitura do legado Natural/Adabas, DDMs, copycodes e artefatos em `01-arqueologia/legado-sisdnit/`. |
+
 
 ## Implementação
 
